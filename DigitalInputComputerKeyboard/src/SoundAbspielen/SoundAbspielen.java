@@ -1,4 +1,5 @@
 package SoundAbspielen;
+
 import java.awt.event.KeyEvent;
 import java.security.KeyException;
 
@@ -7,23 +8,27 @@ import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 public class SoundAbspielen extends Thread {
 
-	int ton;
-	int tonLenght;
-	Synthesizer synthesizer;
-	Gui gui;
+	private int ton;
+	private int tonLenght;
+	private Synthesizer synthesizer;
+	private Gui gui;
+	private SampleAbspielen sampleAbspielen;
 
 	public SoundAbspielen(int ton, int tonLenght, Gui gui) throws MidiUnavailableException {
+
 		this.synthesizer = MidiSystem.getSynthesizer();
 		synthesizer.open();
 		this.ton = ton;
 		this.tonLenght = tonLenght;
 		this.gui = gui;
-
+		this.sampleAbspielen = new SampleAbspielen();
 	}
 
-	public static int getIntVonKey(KeyEvent e) throws KeyException{
+	public static int getIntVonKey(KeyEvent e) throws KeyException {
 
 		switch (e.getKeyChar()) {
+		case ' ':
+			return 88;
 		case '<':
 			return 60;
 		case 'a':
@@ -87,19 +92,27 @@ public class SoundAbspielen extends Thread {
 	@Override
 	public void run() {
 
-		MidiChannel[] midiChannels = synthesizer.getChannels();
+		if (ton == 88) {
 
-		midiChannels[0].noteOn(ton, tonLenght);
-		try {
-			sleep(tonLenght);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			sampleAbspielen.clapAbspielen();
+
+		} else {
+
+			MidiChannel[] midiChannels = synthesizer.getChannels();
+
+			midiChannels[0].noteOn(ton, tonLenght);
+			try {
+				sleep(tonLenght);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			midiChannels[0].noteOff(ton, tonLenght);
+			gui.removeSoundAbspielens(this);
+			synthesizer.close();
+			this.interrupt();
 		}
-		midiChannels[0].noteOff(ton, tonLenght);
-		gui.removeSoundAbspielens(this);
-		synthesizer.close();
-		this.interrupt();
+
 	}
 
 }
