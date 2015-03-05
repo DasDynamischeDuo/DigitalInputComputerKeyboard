@@ -94,7 +94,7 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 		try {
 			btest[SoundAbspielen.getIntVonKey(e) - 60].doClick();
 		} catch (KeyException e1) {
-			System.out.println("Key nicht belegt");
+			System.out.println("Key nicht belegt test");
 			e1.printStackTrace();
 		}
 		
