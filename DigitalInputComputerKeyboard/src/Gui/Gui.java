@@ -14,9 +14,10 @@ public class Gui extends JFrame {
 				
 	JToggleButton rtasten[];//Buttonanzahlt einfuegen
 	JToggleButton ltasten[];
+	
 				
 				
-	 Gui(){
+	public Gui(){
 				 
 		 buttonsinitialisieren(rtasten, ltasten);
 		 buttonskonfig(rtasten, ltasten);
