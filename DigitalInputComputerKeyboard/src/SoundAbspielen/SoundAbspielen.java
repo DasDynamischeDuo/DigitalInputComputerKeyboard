@@ -22,6 +22,17 @@ public class SoundAbspielen extends Thread {
 		this.gui = gui;
 
 	}
+	
+	/**
+	 * Die Methode sucht zu einer gedrückten Taste einen bestimmten Int-Wert
+	 * @param e
+	 * Es wird ein KeyEvent übergeben
+	 * @return
+	 * Es wird ein Int-Wert zurück gegeben
+	 * @throws KeyException
+	 * Die Methode kann eine KeyExeption werfen
+	 */
+	
 
 	public static int getIntVonKey(KeyEvent e) throws KeyException{
 
