@@ -1,10 +1,17 @@
 package Gui;
-//heilige scheiﬂe endlich!!!!!!
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.security.KeyException;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 public class Gui extends JFrame {
 
@@ -24,6 +31,19 @@ public class Gui extends JFrame {
 		 initalisierenallg();
 		 buttonsinitialisieren(rtasten, ltasten);
 		 buttonskonfig(rtasten, ltasten);
+		 
+		 buttonszusammenfg();
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		 
 		 contentpane.setLayout(new GridLayout(3,1));
 		 tastenpane.setLayout(new GridLayout(1,2));
@@ -58,6 +78,157 @@ public class Gui extends JFrame {
 		 
 		 this.setContentPane(contentpane);
 		 this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+	}
+
+	private void buttonszusammenfg() {
+		lgrid.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				int i = getIntvonKey(e);
+				drueckeButtons(i);
+				
+			}
+
+			
+			
+			
+		});
+	}
+
+	private void drueckeButtons(int i) {
+		
+		switch (i) {
+		
+		case 60:
+			for (int j = 1; j < 89; j = j+17) {
+				ltasten[j].setSelected(true);;
+				if (j==70|j==87) {
+					ltasten[j+1].setSelected(true);
+				}
+				
+			}
+			break;
+			
+		case 61:
+			
+			int z = 2;
+			ltasten[2].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z++;
+				ltasten[z].setSelected(true);
+				z = z+16;
+				ltasten[z].setSelected(true);
+				}
+			ltasten[55].setSelected(true);	
+			
+			break;
+			
+			
+		case 62:
+			
+			break;
+			
+			
+			
+			
+			
+			
+			
+		case 63:
+			
+			break;
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+		default:
+			break;
+		}
+	}
+	
+
+	private int getIntvonKey(KeyEvent e) {
+		
+		switch (e.getKeyChar()) {
+		case '<':
+			return 60;
+		case 'a':
+			return 61;
+		case 'y':
+			return 62;
+		case 's':
+			return 63;
+		case 'x':
+			return 64;
+		case 'c':
+			return 65;
+		case 'f':
+			return 66;
+		case 'v':
+			return 67;
+		case 'g':
+			return 68;
+		case 'b':
+			return 69;
+		case 'h':
+			return 70;
+		case 'n':
+			return 71;
+		case 'j':
+			return 72;
+		case 'm':
+			return 73;
+		case 't':
+			return 74;
+		case '6':
+			return 75;
+		case 'z':
+			return 76;
+		case '7':
+			return 77;
+		case 'u':
+			return 78;
+		case 'i':
+			return 79;
+		case '9':
+			return 80;
+		case 'o':
+			return 81;
+		case '0':
+			return 82;
+		case 'p':
+			return 83;
+		case 'ﬂ':
+			return 84;
+		case '¸':
+			return 85;
+		case '+':
+			return 86;
+		default:
+			return 87;
+		}
 		
 	}
 
