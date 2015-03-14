@@ -1,8 +1,5 @@
 package Gui;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -15,6 +12,8 @@ import java.security.KeyException;
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+
+import SoundAbspielen.AsciiCode;
 
 public class Gui extends JFrame {
 
@@ -157,15 +156,6 @@ public class Gui extends JFrame {
 			
 			break;
 
-
-			
-			
-			
-			
-			
-			
-			
-			
 		default:
 			break;
 		}
@@ -175,59 +165,59 @@ public class Gui extends JFrame {
 	private int getIntvonKey(KeyEvent e) {
 		
 		switch (e.getKeyChar()) {
-		case '<':
+		case 60:
 			return 60;
-		case 'a':
+		case AsciiCode.A:
 			return 61;
-		case 'y':
+		case AsciiCode.Y:
 			return 62;
-		case 's':
+		case AsciiCode.S:
 			return 63;
-		case 'x':
+		case AsciiCode.X:
 			return 64;
-		case 'c':
+		case AsciiCode.C:
 			return 65;
-		case 'f':
+		case AsciiCode.F:
 			return 66;
-		case 'v':
+		case AsciiCode.V:
 			return 67;
-		case 'g':
+		case AsciiCode.G:
 			return 68;
-		case 'b':
+		case AsciiCode.B:
 			return 69;
-		case 'h':
+		case AsciiCode.H:
 			return 70;
-		case 'n':
+		case AsciiCode.N:
 			return 71;
-		case 'j':
+		case AsciiCode.J:
 			return 72;
-		case 'm':
+		case AsciiCode.M:
 			return 73;
-		case 't':
+		case AsciiCode.T:
 			return 74;
-		case '6':
+		case AsciiCode.ZAHL_6:
 			return 75;
-		case 'z':
+		case AsciiCode.Z:
 			return 76;
-		case '7':
+		case AsciiCode.ZAHL_7:
 			return 77;
-		case 'u':
+		case AsciiCode.U:
 			return 78;
-		case 'i':
+		case AsciiCode.I:
 			return 79;
-		case '9':
+		case KeyEvent.VK_9:
 			return 80;
-		case 'o':
+		case AsciiCode.O:
 			return 81;
-		case '0':
+		case KeyEvent.VK_0:
 			return 82;
-		case 'p':
+		case AsciiCode.P:
 			return 83;
-		case 'ß':
+		case AsciiCode.Q:
 			return 84;
-		case 'ü':
+		case AsciiCode.SCHARF_S:
 			return 85;
-		case '+':
+		case AsciiCode.PLUS:
 			return 86;
 		default:
 			return 87;
