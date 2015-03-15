@@ -8,12 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.KeyException;
+import java.security.acl.LastOwnerException;
 
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
-
-import SoundAbspielen.AsciiCode;
 
 public class Gui extends JFrame {
 
@@ -64,6 +63,8 @@ public class Gui extends JFrame {
 			rgrid.add(rtasten[i]);
 		}
 		
+		 rgrid.setFocusable(true);
+		 lgrid.setFocusable(true);
 		 lklav.add(lgrid);
 		 rklav.add(rgrid);
 		 
@@ -94,7 +95,9 @@ public class Gui extends JFrame {
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
+				
+				int i = getIntvonKey(e);
+				releaseButtons(i);
 				
 			}
 
@@ -112,14 +115,351 @@ public class Gui extends JFrame {
 		});
 	}
 
+	protected void releaseButtons(int i) {
+switch (i) {
+		
+		case 60:
+			
+			for (int j = 1; j < 88; j = j+17) {
+				ltasten[j].setSelected(false);;
+				if (j==69|j==86) {
+					ltasten[j+1].setSelected(false);
+				}
+				
+			}
+			break;
+			
+		case 61:
+			
+			int z = 2;
+			ltasten[2].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z++;
+				ltasten[z].setSelected(false);
+				z = z+16;
+				ltasten[z].setSelected(false);
+				}
+			ltasten[54].setSelected(false);	
+			
+			break;
+			
+			
+		case 62:
+			
+			for (int j = 4; j < 91; j=j+17) {
+				ltasten[j].setSelected(false);
+				if (j==72|j==89) {
+					ltasten[j-1].setSelected(false);
+					ltasten[j].setSelected(false);
+					ltasten[j+1].setSelected(false);
+				}
+			}
+			
+			break;
+			
+		case 63:
+			
+			int z2 = 5;
+			ltasten[5].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z2++;
+				ltasten[z2].setSelected(false);
+				z2 = z2+16;
+				ltasten[z2].setSelected(false);
+				}
+			ltasten[57].setSelected(false);	
+			
+			break;
+			
+		case 64:
+			
+			for (int j = 7; j < 93; j=j+17) {
+				ltasten[j].setSelected(false);
+				if (j==75|j==92) {
+					ltasten[j-1].setSelected(false);
+				}
+			}			
+			
+			break;
+			
+			
+		case 65:
+			
+			for (int j = 8; j < 95; j = j+17) {
+				ltasten[j].setSelected(false);;
+				if (j==76|j==93) {
+					ltasten[j+1].setSelected(false);
+				}
+				
+			}
+			
+			break;
+			
+		case 66:
+			
+			int z3 = 9;
+			ltasten[9].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z3++;
+				ltasten[z3].setSelected(false);
+				z3 = z3+16;
+				ltasten[z3].setSelected(false);
+				}
+			ltasten[61].setSelected(false);	
+			
+			break;
+			
+		case 67:
+			
+			for (int j = 11; j < 98; j=j+17) {
+				ltasten[j].setSelected(false);
+				if (j==79|j==96) {
+					ltasten[j-1].setSelected(false);
+					ltasten[j].setSelected(false);
+					ltasten[j+1].setSelected(false);
+				}
+			}
+			
+			break;
+			
+		case 68:
+			
+			int z4 = 12;
+			ltasten[12].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z4++;
+				ltasten[z4].setSelected(false);
+				z4 = z4+16;
+				ltasten[z4].setSelected(false);
+				}
+			ltasten[64].setSelected(false);	
+			
+			break;
+
+		case 69:
+			
+			for (int j = 14; j < 101; j=j+17) {
+				ltasten[j].setSelected(false);
+				if (j==82|j==99) {
+					ltasten[j-1].setSelected(false);
+					ltasten[j].setSelected(false);
+					ltasten[j+1].setSelected(false);
+				}
+			}
+			
+			break;
+			
+		case 70:
+			
+			int z5 = 15;
+			ltasten[15].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z5++;
+				ltasten[z5].setSelected(false);
+				z5 = z5+16;
+				ltasten[z5].setSelected(false);
+				}
+			ltasten[67].setSelected(false);	
+			
+			break;
+			
+		case 71:
+			
+			for (int j = 17; j < 103; j=j+17) {
+				ltasten[j].setSelected(false);
+				if (j==85|j==102) {
+					ltasten[j-1].setSelected(false);
+				}
+			}			
+			
+			break;
+			
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		case 74:
+			
+			for (int j = 1; j < 88; j = j+17) {
+				rtasten[j].setSelected(false);;
+				if (j==69|j==86) {
+					rtasten[j+1].setSelected(false);
+				}
+				
+			}
+			break;
+			
+		case 75:
+			
+			int z6 = 2;
+			rtasten[2].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z6++;
+				rtasten[z6].setSelected(false);
+				z6 = z6+16;
+				rtasten[z6].setSelected(false);
+				}
+			rtasten[54].setSelected(false);	
+			
+			break;
+			
+			
+		case 76:
+			
+			for (int j = 4; j < 91; j=j+17) {
+				rtasten[j].setSelected(false);
+				if (j==72|j==89) {
+					rtasten[j-1].setSelected(false);
+					rtasten[j].setSelected(false);
+					rtasten[j+1].setSelected(false);
+				}
+			}
+			
+			break;
+			
+		case 77:
+			
+			int z7 = 5;
+			rtasten[5].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z7++;
+				rtasten[z7].setSelected(false);
+				z7 = z7+16;
+				rtasten[z7].setSelected(false);
+				}
+			rtasten[57].setSelected(false);	
+			
+			break;
+			
+		case 78:
+			
+			for (int j = 7; j < 93; j=j+17) {
+				rtasten[j].setSelected(false);
+				if (j==75|j==92) {
+					rtasten[j-1].setSelected(false);
+				}
+			}			
+			
+			break;
+			
+			
+		case 79:
+			
+			for (int j = 8; j < 95; j = j+17) {
+				rtasten[j].setSelected(false);;
+				if (j==76|j==93) {
+					rtasten[j+1].setSelected(false);
+				}
+				
+			}
+			
+			break;
+			
+		case 80:
+			
+			int z8 = 9;
+			rtasten[9].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z8++;
+				rtasten[z8].setSelected(false);
+				z8 = z8+16;
+				rtasten[z8].setSelected(false);
+				}
+			rtasten[61].setSelected(false);	
+			
+			break;
+			
+		case 81:
+			
+			for (int j = 11; j < 98; j=j+17) {
+				rtasten[j].setSelected(false);
+				if (j==79|j==96) {
+					rtasten[j-1].setSelected(false);
+					rtasten[j].setSelected(false);
+					rtasten[j+1].setSelected(false);
+				}
+			}
+			
+			break;
+			
+		case 82:
+			
+			int z9 = 12;
+			rtasten[12].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z9++;
+				rtasten[z9].setSelected(false);
+				z9 = z9+16;
+				rtasten[z9].setSelected(false);
+				}
+			rtasten[64].setSelected(false);	
+			
+			break;
+
+		case 83:
+			
+			for (int j = 14; j < 101; j=j+17) {
+				rtasten[j].setSelected(false);
+				if (j==82|j==99) {
+					rtasten[j-1].setSelected(false);
+					rtasten[j].setSelected(false);
+					rtasten[j+1].setSelected(false);
+				}
+			}
+			
+			break;
+			
+		case 84:
+			
+			int z10 = 15;
+			rtasten[15].setSelected(false);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z10++;
+				rtasten[z10].setSelected(false);
+				z10 = z10+16;
+				rtasten[z10].setSelected(false);
+				}
+			rtasten[67].setSelected(false);	
+			
+			break;
+			
+		case 85:
+			
+			for (int j = 17; j < 103; j=j+17) {
+				rtasten[j].setSelected(false);
+				if (j==85|j==102) {
+					rtasten[j-1].setSelected(false);
+				}
+			}			
+			
+			break;
+			
+			
+			
+			
+		default:
+			break;
+		}
+	
+		
+	}
+
 	private void drueckeButtons(int i) {
 		
 		switch (i) {
 		
 		case 60:
-			for (int j = 1; j < 89; j = j+17) {
+			
+			for (int j = 1; j < 88; j = j+17) {
 				ltasten[j].setSelected(true);;
-				if (j==70|j==87) {
+				if (j==69|j==86) {
 					ltasten[j+1].setSelected(true);
 				}
 				
@@ -137,25 +477,313 @@ public class Gui extends JFrame {
 				z = z+16;
 				ltasten[z].setSelected(true);
 				}
-			ltasten[55].setSelected(true);	
+			ltasten[54].setSelected(true);	
 			
 			break;
 			
 			
 		case 62:
 			
+			for (int j = 4; j < 91; j=j+17) {
+				ltasten[j].setSelected(true);
+				if (j==72|j==89) {
+					ltasten[j-1].setSelected(true);
+					ltasten[j].setSelected(true);
+					ltasten[j+1].setSelected(true);
+				}
+			}
+			
 			break;
-			
-			
-			
-			
-			
-			
 			
 		case 63:
 			
+			int z2 = 5;
+			ltasten[5].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z2++;
+				ltasten[z2].setSelected(true);
+				z2 = z2+16;
+				ltasten[z2].setSelected(true);
+				}
+			ltasten[57].setSelected(true);	
+			
+			break;
+			
+		case 64:
+			
+			for (int j = 7; j < 93; j=j+17) {
+				ltasten[j].setSelected(true);
+				if (j==75|j==92) {
+					ltasten[j-1].setSelected(true);
+				}
+			}			
+			
+			break;
+			
+			
+		case 65:
+			
+			for (int j = 8; j < 95; j = j+17) {
+				ltasten[j].setSelected(true);;
+				if (j==76|j==93) {
+					ltasten[j+1].setSelected(true);
+				}
+				
+			}
+			
+			break;
+			
+		case 66:
+			
+			int z3 = 9;
+			ltasten[9].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z3++;
+				ltasten[z3].setSelected(true);
+				z3 = z3+16;
+				ltasten[z3].setSelected(true);
+				}
+			ltasten[61].setSelected(true);	
+			
+			break;
+			
+		case 67:
+			
+			for (int j = 11; j < 98; j=j+17) {
+				ltasten[j].setSelected(true);
+				if (j==79|j==96) {
+					ltasten[j-1].setSelected(true);
+					ltasten[j].setSelected(true);
+					ltasten[j+1].setSelected(true);
+				}
+			}
+			
+			break;
+			
+		case 68:
+			
+			int z4 = 12;
+			ltasten[12].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z4++;
+				ltasten[z4].setSelected(true);
+				z4 = z4+16;
+				ltasten[z4].setSelected(true);
+				}
+			ltasten[64].setSelected(true);	
+			
 			break;
 
+		case 69:
+			
+			for (int j = 14; j < 101; j=j+17) {
+				ltasten[j].setSelected(true);
+				if (j==82|j==99) {
+					ltasten[j-1].setSelected(true);
+					ltasten[j].setSelected(true);
+					ltasten[j+1].setSelected(true);
+				}
+			}
+			
+			break;
+			
+		case 70:
+			
+			int z5 = 15;
+			ltasten[15].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z5++;
+				ltasten[z5].setSelected(true);
+				z5 = z5+16;
+				ltasten[z5].setSelected(true);
+				}
+			ltasten[67].setSelected(true);	
+			
+			break;
+			
+		case 71:
+			
+			for (int j = 17; j < 103; j=j+17) {
+				ltasten[j].setSelected(true);
+				if (j==85|j==102) {
+					ltasten[j-1].setSelected(true);
+				}
+			}			
+			
+			break;
+			
+			
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			
+			
+			
+		case 74:
+			
+			for (int j = 1; j < 88; j = j+17) {
+				rtasten[j].setSelected(true);;
+				if (j==69|j==86) {
+					rtasten[j+1].setSelected(true);
+				}
+				
+			}
+			break;
+			
+		case 75:
+			
+			int z6 = 2;
+			rtasten[2].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z6++;
+				rtasten[z6].setSelected(true);
+				z6 = z6+16;
+				rtasten[z6].setSelected(true);
+				}
+			rtasten[54].setSelected(true);	
+			
+			break;
+			
+			
+		case 76:
+			
+			for (int j = 4; j < 91; j=j+17) {
+				rtasten[j].setSelected(true);
+				if (j==72|j==89) {
+					rtasten[j-1].setSelected(true);
+					rtasten[j].setSelected(true);
+					rtasten[j+1].setSelected(true);
+				}
+			}
+			
+			break;
+			
+		case 77:
+			
+			int z7 = 5;
+			rtasten[5].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z7++;
+				rtasten[z7].setSelected(true);
+				z7 = z7+16;
+				rtasten[z7].setSelected(true);
+				}
+			rtasten[57].setSelected(true);	
+			
+			break;
+			
+		case 78:
+			
+			for (int j = 7; j < 93; j=j+17) {
+				rtasten[j].setSelected(true);
+				if (j==75|j==92) {
+					rtasten[j-1].setSelected(true);
+				}
+			}			
+			
+			break;
+			
+			
+		case 79:
+			
+			for (int j = 8; j < 95; j = j+17) {
+				rtasten[j].setSelected(true);;
+				if (j==76|j==93) {
+					rtasten[j+1].setSelected(true);
+				}
+				
+			}
+			
+			break;
+			
+		case 80:
+			
+			int z8 = 9;
+			rtasten[9].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z8++;
+				rtasten[z8].setSelected(true);
+				z8 = z8+16;
+				rtasten[z8].setSelected(true);
+				}
+			rtasten[61].setSelected(true);	
+			
+			break;
+			
+		case 81:
+			
+			for (int j = 11; j < 98; j=j+17) {
+				rtasten[j].setSelected(true);
+				if (j==79|j==96) {
+					rtasten[j-1].setSelected(true);
+					rtasten[j].setSelected(true);
+					rtasten[j+1].setSelected(true);
+				}
+			}
+			
+			break;
+			
+		case 82:
+			
+			int z9 = 12;
+			rtasten[12].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z9++;
+				rtasten[z9].setSelected(true);
+				z9 = z9+16;
+				rtasten[z9].setSelected(true);
+				}
+			rtasten[64].setSelected(true);	
+			
+			break;
+
+		case 83:
+			
+			for (int j = 14; j < 101; j=j+17) {
+				rtasten[j].setSelected(true);
+				if (j==82|j==99) {
+					rtasten[j-1].setSelected(true);
+					rtasten[j].setSelected(true);
+					rtasten[j+1].setSelected(true);
+				}
+			}
+			
+			break;
+			
+		case 84:
+			
+			int z10 = 15;
+			rtasten[15].setSelected(true);
+			
+			for (int j = 0; j < 3 ; j++) {
+				z10++;
+				rtasten[z10].setSelected(true);
+				z10 = z10+16;
+				rtasten[z10].setSelected(true);
+				}
+			rtasten[67].setSelected(true);	
+			
+			break;
+			
+		case 85:
+			
+			for (int j = 17; j < 103; j=j+17) {
+				rtasten[j].setSelected(true);
+				if (j==85|j==102) {
+					rtasten[j-1].setSelected(true);
+				}
+			}			
+			
+			break;
+			
+			
+			
 		default:
 			break;
 		}
@@ -165,59 +793,59 @@ public class Gui extends JFrame {
 	private int getIntvonKey(KeyEvent e) {
 		
 		switch (e.getKeyChar()) {
-		case 60:
+		case '<':
 			return 60;
-		case AsciiCode.A:
+		case 'a':
 			return 61;
-		case AsciiCode.Y:
+		case 'y':
 			return 62;
-		case AsciiCode.S:
+		case 's':
 			return 63;
-		case AsciiCode.X:
+		case 'x':
 			return 64;
-		case AsciiCode.C:
+		case 'c':
 			return 65;
-		case AsciiCode.F:
+		case 'f':
 			return 66;
-		case AsciiCode.V:
+		case 'v':
 			return 67;
-		case AsciiCode.G:
+		case 'g':
 			return 68;
-		case AsciiCode.B:
+		case 'b':
 			return 69;
-		case AsciiCode.H:
+		case 'h':
 			return 70;
-		case AsciiCode.N:
+		case 'n':
 			return 71;
-		case AsciiCode.J:
+		case 'j':
 			return 72;
-		case AsciiCode.M:
+		case 'm':
 			return 73;
-		case AsciiCode.T:
+		case 't':
 			return 74;
-		case AsciiCode.ZAHL_6:
+		case '6':
 			return 75;
-		case AsciiCode.Z:
+		case 'z':
 			return 76;
-		case AsciiCode.ZAHL_7:
+		case '7':
 			return 77;
-		case AsciiCode.U:
+		case 'u':
 			return 78;
-		case AsciiCode.I:
+		case 'i':
 			return 79;
-		case KeyEvent.VK_9:
+		case '9':
 			return 80;
-		case AsciiCode.O:
+		case 'o':
 			return 81;
-		case KeyEvent.VK_0:
+		case '0':
 			return 82;
-		case AsciiCode.P:
+		case 'p':
 			return 83;
-		case AsciiCode.Q:
+		case 'ß':
 			return 84;
-		case AsciiCode.SCHARF_S:
+		case 'ü':
 			return 85;
-		case AsciiCode.PLUS:
+		case '+':
 			return 86;
 		default:
 			return 87;

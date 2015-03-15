@@ -1,5 +1,6 @@
-package SoundAbspielen;
 
+
+package SoundAbspielen;
 import java.awt.event.KeyEvent;
 import java.security.KeyException;
 
@@ -21,74 +22,63 @@ public class SoundAbspielen extends Thread {
 		this.gui = gui;
 
 	}
-	
-	/**
-	 * Die Methode sucht zu einer gedrueckten Taste einen bestimmten Int-Wert
-	 * @param e
-	 * Es wird ein KeyEvent uebergeben
-	 * @return
-	 * Es wird ein Int-Wert zurueck gegeben
-	 * @throws KeyException
-	 * Die Methode kann eine KeyExeption werfen
-	 */
-	
 
 	public static int getIntVonKey(KeyEvent e) throws KeyException{
 
 		switch (e.getKeyChar()) {
-		case 60:
+		case '<':
 			return 60;
-		case AsciiCode.A:
+		case 'a':
 			return 61;
-		case AsciiCode.Y:
+		case 'y':
 			return 62;
-		case AsciiCode.S:
+		case 's':
 			return 63;
-		case AsciiCode.X:
+		case 'x':
 			return 64;
-		case AsciiCode.C:
+		case 'c':
 			return 65;
-		case AsciiCode.F:
+		case 'f':
 			return 66;
-		case AsciiCode.V:
+		case 'v':
 			return 67;
-		case AsciiCode.G:
+		case 'g':
 			return 68;
-		case AsciiCode.B:
+		case 'b':
 			return 69;
-		case AsciiCode.H:
+		case 'h':
 			return 70;
-		case AsciiCode.N:
+		case 'n':
 			return 71;
-		case AsciiCode.J:
+		case 'j':
 			return 72;
-		case AsciiCode.M:
+		case 'm':
 			return 73;
-		case AsciiCode.T:
+		case 't':
 			return 74;
-		case AsciiCode.ZAHL_6:
+		case '6':
 			return 75;
-		case AsciiCode.Z:
+		case 'z':
 			return 76;
-		case AsciiCode.ZAHL_7:
+		case '7':
 			return 77;
-		case AsciiCode.U:
+		case 'u':
 			return 78;
-		case AsciiCode.I:
+		case 'i':
 			return 79;
-		case KeyEvent.VK_9:
+		case '9':
 			return 80;
-		case AsciiCode.O:
+		case 'o':
 			return 81;
-		case KeyEvent.VK_0:
+		case '0':
 			return 82;
-		case AsciiCode.P:
+		case 'p':
 			return 83;
-		case AsciiCode.Q:
+		case 'ß':
 			return 84;
-		case AsciiCode.SCHARF_S:
+		case 'ü':
 			return 85;
-		case AsciiCode.PLUS:
+		case '+':
 			return 86;
 		default:
 			return 87;
