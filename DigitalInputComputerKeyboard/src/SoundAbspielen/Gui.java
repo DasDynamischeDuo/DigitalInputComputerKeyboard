@@ -1,6 +1,3 @@
-
-
-
 package SoundAbspielen;
 import java.awt.Frame;
 import java.awt.event.*;
@@ -25,7 +22,7 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 
 		initGui();
 
-		this.soundAbspielens = new Vector<>();
+		this.soundAbspielens = new Vector();
 		this.setFocusable(true);
 		anzTonAbgespielt = 0;
 
@@ -59,11 +56,6 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 	@Override
 	public void keyTyped(KeyEvent e) {
 
-<<<<<<< HEAD
-		spieleTon(e);
-=======
-		spieleTon(e);
->>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git
 
 	}
 

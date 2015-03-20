@@ -28,6 +28,7 @@ public interface AsciiCode {
 	public final int P = 112;
 	public final int Q = 113;
 	public final int SCHARF_S = 225;
+	public final int UE = 129;
 	public final int PLUS = 43;
 
 }

@@ -25,63 +25,63 @@ public class SoundAbspielen extends Thread {
 
 	public static int getIntVonKey(KeyEvent e) throws KeyException{
 
-		switch (e.getKeyChar()) {
-		case '<':
+		switch ((int)e.getKeyChar()) {
+		case AsciiCode.BRACKET_LEFT:
 			return 60;
-		case 'a':
+		case AsciiCode.A:
 			return 61;
-		case 'y':
+		case AsciiCode.Y:
 			return 62;
-		case 's':
+		case AsciiCode.S:
 			return 63;
-		case 'x':
+		case AsciiCode.X:
 			return 64;
-		case 'c':
+		case AsciiCode.C:
 			return 65;
-		case 'f':
+		case AsciiCode.F:
 			return 66;
-		case 'v':
+		case AsciiCode.V:
 			return 67;
-		case 'g':
+		case AsciiCode.G:
 			return 68;
-		case 'b':
+		case AsciiCode.B:
 			return 69;
-		case 'h':
+		case AsciiCode.H:
 			return 70;
-		case 'n':
+		case AsciiCode.N:
 			return 71;
-		case 'j':
+		case AsciiCode.J:
 			return 72;
-		case 'm':
+		case AsciiCode.M:
 			return 73;
-		case 't':
+		case AsciiCode.T:
 			return 74;
-		case '6':
+		case AsciiCode.ZAHL_6:
 			return 75;
-		case 'z':
+		case AsciiCode.Z:
 			return 76;
-		case '7':
+		case AsciiCode.ZAHL_7:
 			return 77;
-		case 'u':
+		case AsciiCode.U:
 			return 78;
-		case 'i':
+		case AsciiCode.I:
 			return 79;
-		case '9':
+		case AsciiCode.ZAHL_9:
 			return 80;
-		case 'o':
+		case AsciiCode.O:
 			return 81;
-		case '0':
+		case AsciiCode.ZAHL_0:
 			return 82;
-		case 'p':
+		case AsciiCode.P:
 			return 83;
-		case 'ß':
+		case AsciiCode.SCHARF_S:
 			return 84;
-		case 'ü':
+		case AsciiCode.UE:
 			return 85;
-		case '+':
+		case AsciiCode.PLUS:
 			return 86;
 		default:
-			return 87;
+			return 1;
 		}
 
 	}
