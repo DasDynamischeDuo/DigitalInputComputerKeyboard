@@ -59,12 +59,12 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 	@Override
 	public void keyTyped(KeyEvent e) {
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 		spieleTon(e);
 =======
+		
+>>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git*/
 		spieleTon(e);
->>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git
-
 	}
 
 	public SoundAbspielen lastElement() {

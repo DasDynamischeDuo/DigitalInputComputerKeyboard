@@ -486,12 +486,12 @@ switch (i) {
 			}
 			
 			break;
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 			
 			
 =======
 >>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git
-			
+			*/
 		case 63:
 			
 			int z2 = 5;
