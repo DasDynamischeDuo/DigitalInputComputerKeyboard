@@ -60,8 +60,6 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 	public void keyTyped(KeyEvent e) {
 
 		spieleTon(e);
-		System.out.println((int)(e.getKeyChar()));
-		System.out.println(KeyEvent.VK_A);
 
 	}
 

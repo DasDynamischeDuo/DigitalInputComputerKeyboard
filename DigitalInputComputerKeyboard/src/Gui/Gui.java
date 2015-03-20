@@ -39,14 +39,6 @@ public class Gui extends JFrame {
 		 
 		 
 		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
 		 contentpane.setLayout(new GridLayout(3,1));
 		 tastenpane.setLayout(new GridLayout(1,2));
 		 
@@ -145,10 +137,6 @@ public class Gui extends JFrame {
 		case 62:
 			
 			break;
-			
-			
-			
-			
 			
 			
 			

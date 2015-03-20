@@ -1,6 +1,5 @@
 package SoundAbspielen;
 
-import java.awt.event.KeyEvent;
 
 public interface AsciiCode {
 	public final int A = 97;
