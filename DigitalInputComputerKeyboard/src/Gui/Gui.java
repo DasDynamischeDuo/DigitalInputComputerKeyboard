@@ -10,13 +10,19 @@ import java.awt.event.KeyListener;
 import java.security.KeyException;
 import java.security.acl.LastOwnerException;
 
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Synthesizer;
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
-import SoundAbspielen.AsciiCode;
+import MidiAbspielen.*;
+
 
 public class Gui extends JFrame {
+	
+	MiditonStarten miditonStarten;
+	
 
 	JLabel label1, label2;
 	JPanel contentpane;
@@ -31,6 +37,13 @@ public class Gui extends JFrame {
 
 		initFrameElemente();
 		initButtons();
+		
+		try {
+			this.miditonStarten = new MiditonStarten();
+		} catch (MidiUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -95,16 +108,29 @@ public class Gui extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 
-				int intVonKey = Klaviertasten.getIntvonKey(e);
-				Klaviertasten.buttonReleased(intVonKey, ltasten, rtasten);
+				try {
+					Klaviertasten.releasButton(MidiAbspielen.MiditonAbspielen.getIntVonKey(e) , ltasten, rtasten);
+				} catch (KeyException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
 
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 
-				int intVonKey = Klaviertasten.getIntvonKey(e);
-				Klaviertasten.buttonPressed(intVonKey, ltasten, rtasten);
+				try {
+					Klaviertasten.pressButton(MidiAbspielen.MiditonAbspielen.getIntVonKey(e), ltasten, rtasten);
+				} catch (KeyException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				miditonStarten.spieleTon(e);
 
 			}
 

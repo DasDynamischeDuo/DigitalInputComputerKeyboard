@@ -1,4 +1,4 @@
-package SoundAbspielen;
+package MidiAbspielen;
 
 
 public interface AsciiCode {

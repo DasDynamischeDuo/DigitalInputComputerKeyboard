@@ -5,11 +5,11 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JToggleButton;
 
-import SoundAbspielen.AsciiCode;
+import MidiAbspielen.AsciiCode;
 
 public class Klaviertasten {
 
-	public static void buttonReleased(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
+	public static void releasButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
 
 		switch (intVonKey) {
 
@@ -342,7 +342,7 @@ public class Klaviertasten {
 
 	}
 
-	public static void buttonPressed(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
+	public static void pressButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
 
 		switch (intVonKey) {
 
@@ -673,69 +673,6 @@ public class Klaviertasten {
 		default:
 			break;
 		}
-	}
-
-	public static int getIntvonKey(KeyEvent e) {
-
-		switch ((int) e.getKeyChar()) {
-		case AsciiCode.BRACKET_LEFT:
-			return 60;
-		case AsciiCode.A:
-			return 61;
-		case AsciiCode.Y:
-			return 62;
-		case AsciiCode.S:
-			return 63;
-		case AsciiCode.X:
-			return 64;
-		case AsciiCode.C:
-			return 65;
-		case AsciiCode.F:
-			return 66;
-		case AsciiCode.V:
-			return 67;
-		case AsciiCode.G:
-			return 68;
-		case AsciiCode.B:
-			return 69;
-		case AsciiCode.H:
-			return 70;
-		case AsciiCode.N:
-			return 71;
-		case AsciiCode.J:
-			return 72;
-		case AsciiCode.M:
-			return 73;
-		case AsciiCode.T:
-			return 74;
-		case AsciiCode.ZAHL_6:
-			return 75;
-		case AsciiCode.Z:
-			return 76;
-		case AsciiCode.ZAHL_7:
-			return 77;
-		case AsciiCode.U:
-			return 78;
-		case AsciiCode.I:
-			return 79;
-		case AsciiCode.ZAHL_9:
-			return 80;
-		case AsciiCode.O:
-			return 81;
-		case AsciiCode.ZAHL_0:
-			return 82;
-		case AsciiCode.P:
-			return 83;
-		case AsciiCode.SCHARF_S:
-			return 84;
-		case AsciiCode.UE:
-			return 85;
-		case AsciiCode.PLUS:
-			return 86;
-		default:
-			return 1;
-		}
-
 	}
 
 	public static void buttonsInitialisieren(JToggleButton rtasten[], JToggleButton ltasten[]) {

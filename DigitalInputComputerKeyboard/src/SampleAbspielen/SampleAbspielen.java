@@ -1,4 +1,4 @@
-package SoundAbspielen;
+package SampleAbspielen;
 
 import java.io.IOException;
 import java.net.URL;
