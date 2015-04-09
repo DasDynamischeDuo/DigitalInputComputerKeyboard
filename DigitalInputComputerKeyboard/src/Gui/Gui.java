@@ -18,11 +18,9 @@ import javax.swing.event.AncestorListener;
 
 import MidiAbspielen.*;
 
+public class Gui extends JFrame implements Runnable {
 
-public class Gui extends JFrame {
-	
 	MiditonStarten miditonStarten;
-	
 
 	JLabel label1, label2;
 	JPanel contentpane;
@@ -30,18 +28,23 @@ public class Gui extends JFrame {
 	JPanel lklav, rklav;
 	JPanel lgrid, rgrid;
 
+	boolean[] istTasteGedrueckt;
+
 	JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt einfuegen
 	JToggleButton[] ltasten = new JToggleButton[103];
 
 	public Gui() {
 
+		this.setFocusable(true);
+
+		istTasteGedrueckt = new boolean[27];
+
 		initFrameElemente();
 		initButtons();
-		
+
 		try {
 			this.miditonStarten = new MiditonStarten();
 		} catch (MidiUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -63,6 +66,7 @@ public class Gui extends JFrame {
 		rgrid = new JPanel();
 
 		contentpane = new JPanel();
+		contentpane.setFocusable(true);
 
 		contentpane.setLayout(new GridLayout(3, 1));
 		tastenpane.setLayout(new GridLayout(1, 2));
@@ -79,6 +83,7 @@ public class Gui extends JFrame {
 		rklav.add(rgrid);
 
 		notenpane.add(label1);
+		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 
 		tastenpane.add(lklav);
@@ -98,7 +103,7 @@ public class Gui extends JFrame {
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
 		Klaviertasten.buttonsKonfig(rtasten, ltasten);
 
-		lgrid.addKeyListener(new KeyListener() {
+		this.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -109,14 +114,11 @@ public class Gui extends JFrame {
 			public void keyReleased(KeyEvent e) {
 
 				try {
-					Klaviertasten.releasButton(MidiAbspielen.MiditonAbspielen.getIntVonKey(e) , ltasten, rtasten);
-				} catch (KeyException e1) {
+					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
+				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
-				
-				
-				
 
 			}
 
@@ -124,13 +126,11 @@ public class Gui extends JFrame {
 			public void keyPressed(KeyEvent e) {
 
 				try {
-					Klaviertasten.pressButton(MidiAbspielen.MiditonAbspielen.getIntVonKey(e), ltasten, rtasten);
-				} catch (KeyException e1) {
+					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
+				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
-				
-				miditonStarten.spieleTon(e);
 
 			}
 
@@ -144,6 +144,34 @@ public class Gui extends JFrame {
 			rgrid.add(rtasten[i]);
 		}
 
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+
+			for (int i = 0; i < istTasteGedrueckt.length; i++) {
+				if (!istTasteGedrueckt[i]) {
+					Klaviertasten.releasButton(i + 60, ltasten, rtasten);
+
+				}
+
+			}
+
+			for (int i = 0; i < istTasteGedrueckt.length; i++) {
+				if (istTasteGedrueckt[i]) {
+					Klaviertasten.pressButton(i + 60, ltasten, rtasten);
+					try {
+						miditonStarten.spieleTon(i + 60);
+					} catch (MidiUnavailableException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+
+			}
+		}
 	}
 
 }

@@ -17,7 +17,6 @@ public class MiditonStarten {
 		
 	}
 	
-	
 	public MiditonAbspielen lastElement() {
 		return miditonAbspielen.lastElement();
 	}
@@ -30,19 +29,13 @@ public class MiditonStarten {
 		return miditonAbspielen.remove(o);
 	}
 	
-	public void spieleTon(KeyEvent e) {
+	public void spieleTon(int taste) throws MidiUnavailableException {
 
 		System.gc();
 
-		try {
-			miditonAbspielen.add(new MiditonAbspielen(MiditonAbspielen.getIntVonKey(e), 10000));
-		} catch (KeyException e1) {
-			System.out.println("Key nicht belegt");
-			e1.printStackTrace();
-		} catch (MidiUnavailableException e1) {
-			System.out.println("Midi nicht erreichbar");
-			e1.printStackTrace();
-		}
+		
+			miditonAbspielen.add(new MiditonAbspielen(taste, 10000));
+		
 
 		miditonAbspielen.lastElement().start();
 
