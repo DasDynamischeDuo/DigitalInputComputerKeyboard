@@ -6,10 +6,22 @@ import java.util.Vector;
 
 import javax.sound.midi.MidiUnavailableException;
 
+/**
+ * Startet einen Miditon
+ * @author Emanuel
+ * @version 0.1
+ */
+
 public class MiditonStarten {
 	
 	Vector<MiditonAbspielen> miditonAbspielen;
 	
+	/**
+	 * Initialisiert einen Vektor aus MiditonAbspielen
+	 * @author Emanuel
+	 * @throws MidiUnavailableException
+	 */
+		
 	public MiditonStarten() throws MidiUnavailableException{
 		
 		this.miditonAbspielen = new Vector<MiditonAbspielen>();
@@ -29,7 +41,14 @@ public class MiditonStarten {
 		return miditonAbspielen.remove(o);
 	}
 	
-	public void spieleTon(int taste) throws MidiUnavailableException {
+	/**
+	 * Startet das letzte Element des Vektors {@link miditonAbspielen}
+	 * @author Emanuel
+	 * @param {@link Integer} taste
+	 * @throws MidiUnavailableException
+	 */
+	
+	public void spieleMiditon(int taste) throws MidiUnavailableException {
 
 		System.gc();
 

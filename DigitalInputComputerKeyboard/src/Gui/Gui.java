@@ -18,6 +18,12 @@ import javax.swing.event.AncestorListener;
 
 import MidiAbspielen.*;
 
+/**
+ * Die Graphische Benutzeroberfläche des Digital Input Computer Keyboard
+ * @author Emanuel
+ * @version 0.1
+ */
+
 public class Gui extends JFrame implements Runnable {
 
 	MiditonStarten miditonStarten;
@@ -32,6 +38,12 @@ public class Gui extends JFrame implements Runnable {
 
 	JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt einfuegen
 	JToggleButton[] ltasten = new JToggleButton[103];
+
+	/**
+	 * Konstruktor der GUI
+	 * @author Emanuel
+	 * 
+	 */
 
 	public Gui() {
 
@@ -149,6 +161,8 @@ public class Gui extends JFrame implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
+			
+			
 
 			for (int i = 0; i < istTasteGedrueckt.length; i++) {
 				if (!istTasteGedrueckt[i]) {
@@ -162,15 +176,18 @@ public class Gui extends JFrame implements Runnable {
 				if (istTasteGedrueckt[i]) {
 					Klaviertasten.pressButton(i + 60, ltasten, rtasten);
 					try {
-						miditonStarten.spieleTon(i + 60);
+						miditonStarten.spieleMiditon(i + 60);
 					} catch (MidiUnavailableException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
 
 			}
+			
+			
+			
 		}
 	}
 

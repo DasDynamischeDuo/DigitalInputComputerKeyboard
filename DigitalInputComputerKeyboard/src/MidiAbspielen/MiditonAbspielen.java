@@ -6,12 +6,26 @@ import java.security.KeyException;
 import javax.sound.midi.*;
 import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
+/**
+ * Kann einen Miditon abspielen
+ * @author Emanuel
+ * @version 0.1
+ */
+
 public class MiditonAbspielen extends Thread {
 
 	int ton;
 	int tonLenght;
 	Synthesizer synthesizer;
 	MiditonStarten miditonStarten;
+	
+	/**
+	 * Erzeugt einen Synthesizer
+	 * @author Emanuel
+	 * @param {@link Integer} ton
+	 * @param {@link Integer} tonLenght
+	 * @throws MidiUnavailableException
+	 */
 	
 	public MiditonAbspielen(int ton, int tonLenght) throws MidiUnavailableException {
 		
@@ -23,7 +37,10 @@ public class MiditonAbspielen extends Thread {
 		
 	}
 
-
+	/**
+	 * Spielt einen Miditon ab
+	 * @author Emanuel
+	 */
 
 	@Override
 	public void run() {
