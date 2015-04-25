@@ -1,14 +1,32 @@
 package Gui;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 
+import java.awt.event.KeyEvent;
+import java.security.KeyException;
+
+import javax.sound.midi.MidiUnavailableException;
 import javax.swing.JToggleButton;
 
-import MidiAbspielen.AsciiCode;
+import MidiAbspielen.*;
+
+/**
+ * In Klaviertasten sind alle Methoden, welche die Klaviertasten betreffen, enthalten
+ * @author Emanuel
+ * @version 0.1
+ */
 
 public class Klaviertasten {
 
+	
+	/**
+	 * Lässt Taste auf dem Bildschirm los, sobald die dazugehörige Taste auf der Tastatur losgelassen wird.
+	 * @author Emanuel
+	 * @param {@link Integer} intVonKey
+	 * @param {@link JToggleButton[]} ltasten
+	 * @param {@link JToggleButton[]} rtasten
+	 */
+	
 	public static void releasButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
 
 		switch (intVonKey) {
@@ -342,11 +360,21 @@ public class Klaviertasten {
 
 	}
 
+	/**
+	 * Betätigt Taste auf dem Bildschirm, sobald die dazugehörige Taste auf der Tastatur losgelassen wird.
+	 * @author Emanuel
+	 * @param {@link Integer} intVonKey
+	 * @param {@link JToggleButton[]} ltasten
+	 * @param {@link JToggleButton[]} rtasten
+	 */
+	
 	public static void pressButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
 
 		switch (intVonKey) {
 
 		case 60:
+
+			System.out.println("<");
 
 			for (int j = 1; j < 88; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -675,6 +703,15 @@ public class Klaviertasten {
 		}
 	}
 
+	/**
+	 * 
+	 * Initalisiert alle Buttons in 2 schleifen. 
+	 * 
+	 * @param rtasten[]
+	 * @param ltasten[]
+	 * 
+	 */
+	
 	public static void buttonsInitialisieren(JToggleButton rtasten[], JToggleButton ltasten[]) {
 
 		for (int i = 1; i < ltasten.length; i++) {
@@ -687,6 +724,18 @@ public class Klaviertasten {
 
 	}
 
+	
+	/**
+	 * 
+	 * F�rbt erst alle Butons wei� und dann bestimmte Buttons schwarz.
+	 * Konfiguriert Buttons(kein Rand) 
+	 * 
+	 * @param rtasten[]
+	 * @param ltasten[]
+	 * 
+	 */
+	
+	
 	public static void buttonsKonfig(JToggleButton rtasten[], JToggleButton ltasten[]) {
 
 		for (int i = 1; i < ltasten.length; i++) {
@@ -782,5 +831,76 @@ public class Klaviertasten {
 		rtasten[67].setBackground(Color.BLACK);
 
 	}
+
+	/**
+	 * Gibt zu einem Zeichen einer Taste den Integer Wert zurück
+	 * @author Emanuel
+	 * @param {@link KeyEvent} e
+	 * @return {@link Integer}
+	 * @throws KeyException
+	 */
 	
+	public static int getIntVonKey(KeyEvent e) throws KeyException {
+
+		switch ((int) e.getKeyChar()) {
+		case AsciiCode.BRACKET_LEFT:
+			return 0;
+		case AsciiCode.A:
+			return 1;
+		case AsciiCode.Y:
+			return 2;
+		case AsciiCode.S:
+			return 3;
+		case AsciiCode.X:
+			return 4;
+		case AsciiCode.C:
+			return 5;
+		case AsciiCode.F:
+			return 6;
+		case AsciiCode.V:
+			return 7;
+		case AsciiCode.G:
+			return 8;
+		case AsciiCode.B:
+			return 9;
+		case AsciiCode.H:
+			return 10;
+		case AsciiCode.N:
+			return 11;
+		case AsciiCode.J:
+			return 12;
+		case AsciiCode.M:
+			return 13;
+		case AsciiCode.T:
+			return 14;
+		case AsciiCode.ZAHL_6:
+			return 15;
+		case AsciiCode.Z:
+			return 16;
+		case AsciiCode.ZAHL_7:
+			return 17;
+		case AsciiCode.U:
+			return 18;
+		case AsciiCode.I:
+			return 19;
+		case AsciiCode.ZAHL_9:
+			return 20;
+		case AsciiCode.O:
+			return 21;
+		case AsciiCode.ZAHL_0:
+			return 22;
+		case AsciiCode.P:
+			return 23;
+		case AsciiCode.SCHARF_S:
+			return 24;
+		case AsciiCode.UE:
+			return 25;
+		case AsciiCode.PLUS:
+			return 26;
+		default:
+			return -1;
+		}
+
+	}
+
 }
