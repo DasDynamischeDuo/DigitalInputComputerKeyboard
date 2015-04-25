@@ -703,7 +703,14 @@ public class Klaviertasten {
 		}
 	}
 
-	
+	/**
+	 * 
+	 * Initalisiert alle Buttons in 2 schleifen. 
+	 * 
+	 * @param rtasten[]
+	 * @param ltasten[]
+	 * 
+	 */
 	
 	public static void buttonsInitialisieren(JToggleButton rtasten[], JToggleButton ltasten[]) {
 
@@ -717,6 +724,18 @@ public class Klaviertasten {
 
 	}
 
+	
+	/**
+	 * 
+	 * F‰rbt erst alle Butons weiﬂ und dann bestimmte Buttons schwarz.
+	 * Konfiguriert Buttons(kein Rand) 
+	 * 
+	 * @param rtasten[]
+	 * @param ltasten[]
+	 * 
+	 */
+	
+	
 	public static void buttonsKonfig(JToggleButton rtasten[], JToggleButton ltasten[]) {
 
 		for (int i = 1; i < ltasten.length; i++) {

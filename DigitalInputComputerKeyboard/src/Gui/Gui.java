@@ -2,6 +2,7 @@ package Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,10 +28,12 @@ import MidiAbspielen.*;
 public class Gui extends JFrame implements Runnable {
 
 	MiditonStarten miditonStarten;
+	
 
 	JLabel label1, label2;
 	JPanel contentpane;
 	JPanel notenpane, buttonpane, tastenpane;
+	JLabel bildSchlüssel;
 	JPanel lklav, rklav;
 	JPanel lgrid, rgrid;
 
@@ -51,9 +54,11 @@ public class Gui extends JFrame implements Runnable {
 
 		istTasteGedrueckt = new boolean[27];
 
+		
 		initFrameElemente();
 		initButtons();
-
+		
+		
 		try {
 			this.miditonStarten = new MiditonStarten();
 		} catch (MidiUnavailableException e) {
@@ -68,6 +73,8 @@ public class Gui extends JFrame implements Runnable {
 		label2 = new JLabel("Verschiedenes");
 
 		notenpane = new JPanel();
+		
+		Notenlinien.NotenschlüsselSetzten(this);
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -109,7 +116,16 @@ public class Gui extends JFrame implements Runnable {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 	}
-
+/**
+ * 
+ * Buttons werden extern initalisiert. Allen Buttons wird ein KeyListener hinzugefügt.
+ * Mithilfe von einem int Wert werden die Tasten identifiziert. Die Tasten werden einem Laben hinzugefügt.
+ * 
+ * {@link Klaviertasten.buttonsInitialisieren}
+ * {@link Klaviertasten.buttonsKonfig}
+ * 
+ * @author Fabian
+ */
 	private void initButtons() {
 
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
