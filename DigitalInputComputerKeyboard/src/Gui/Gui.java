@@ -3,7 +3,13 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -72,9 +78,19 @@ public class Gui extends JFrame implements Runnable {
 		label1 = new JLabel("Noten");
 		label2 = new JLabel("Verschiedenes");
 
-		notenpane = new JPanel();
+		notenpane = new JPanel(new GridLayout(0,2));
 		
-		Notenlinien.NotenschlüsselSetzten(this);
+		
+		
+		try {
+			Notenlinien n = new Notenlinien(this);
+			n.setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+				
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -111,6 +127,10 @@ public class Gui extends JFrame implements Runnable {
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
+		
+		Dimension d = this.getToolkit().getScreenSize();
+		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
+		
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -119,7 +139,7 @@ public class Gui extends JFrame implements Runnable {
 /**
  * 
  * Buttons werden extern initalisiert. Allen Buttons wird ein KeyListener hinzugefügt.
- * Mithilfe von einem int Wert werden die Tasten identifiziert. Die Tasten werden einem Laben hinzugefügt.
+ * Mithilfe von einem int Wert werden die Tasten identifiziert. Die Tasten werden einem Label hinzugefügt.
  * 
  * {@link Klaviertasten.buttonsInitialisieren}
  * {@link Klaviertasten.buttonsKonfig}
