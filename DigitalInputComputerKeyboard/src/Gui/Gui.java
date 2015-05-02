@@ -212,6 +212,8 @@ public class Gui extends JFrame implements Runnable {
 			for (int i = 0; i < istTasteGedrueckt.length; i++) {
 				if (istTasteGedrueckt[i]) {
 					Klaviertasten.pressButton(i + 60, ltasten, rtasten);
+					
+					//Methode
 					try {
 						miditonStarten.spieleMiditon(i + 60);
 					} catch (MidiUnavailableException e) {

@@ -33,7 +33,7 @@ public class NotenlinienLeer extends JPanel{
     	
     	
     	try {
-    		notenlinien = ImageIO.read(getClass().getResource("/Images/notenlinien.png"));
+    		notenlinien = ImageIO.read(getClass().getResource("/Images/NotenLeer.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
