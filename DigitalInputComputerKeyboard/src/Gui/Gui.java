@@ -75,15 +75,15 @@ public class Gui extends JFrame implements Runnable {
 
 	private void initFrameElemente() {
 
-		label1 = new JLabel("Noten");
+		
 		label2 = new JLabel("Verschiedenes");
 
-		notenpane = new JPanel(new GridLayout(0,2));
+		notenpane = new JPanel(new GridLayout(1,15));
 		
 		
 		
 		try {
-			Notenlinien n = new Notenlinien(this);
+			NotenlinienLeer n = new NotenlinienLeer(this);
 			n.setVisible(true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -117,13 +117,14 @@ public class Gui extends JFrame implements Runnable {
 		lklav.add(lgrid);
 		rklav.add(rgrid);
 
-		notenpane.add(label1);
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
+		
+		
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
@@ -134,7 +135,7 @@ public class Gui extends JFrame implements Runnable {
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
 	}
 /**
  * 

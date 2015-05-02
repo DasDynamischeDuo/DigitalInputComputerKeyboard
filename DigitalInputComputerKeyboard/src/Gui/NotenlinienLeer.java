@@ -14,29 +14,44 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Notenlinien extends JPanel{
+public class NotenlinienLeer extends JPanel{
 
     private BufferedImage notenschluessel;
     private BufferedImage notenlinien;
     private JLabel lNotenschl;
-    private JPanel pNotenlinien;
+    private JLabel[] lNotenlinien = new JLabel[14];
 
-    public Notenlinien(Gui g) {
+    public NotenlinienLeer(Gui g) {
        
-    	pNotenlinien = new JPanel();
+    	
     	
     	try {
     		notenschluessel = ImageIO.read(getClass().getResource("/Images/notenschluessel.jpg"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
     	
-    	Image notenlinien = Toolkit.getDefaultToolkit().createImage("Background.png");
+    	try {
+    		notenlinien = ImageIO.read(getClass().getResource("/Images/notenlinien.png"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	for (int i = 0; i < lNotenlinien.length; i++) {
+    		lNotenlinien[i] = new JLabel(new ImageIcon(notenlinien));
+		}
+    	
+    	
     	
     	lNotenschl = new JLabel(new ImageIcon(notenschluessel));
     	g.notenpane.add(lNotenschl);
+    	
+    	for (int i = 0; i < lNotenlinien.length; i++) {
+			g.notenpane.add(lNotenlinien[i]);
+			
+		}
+    	
     	
     	
     }
@@ -46,6 +61,7 @@ public class Notenlinien extends JPanel{
 
       super.paintComponent(g);
           g.drawImage(notenlinien, 0, 0, null);
+          g.drawImage(notenschluessel, 0, 0, null);
   }
    
 }
