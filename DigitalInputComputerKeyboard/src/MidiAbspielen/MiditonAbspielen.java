@@ -12,12 +12,13 @@ import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
  * @version 0.1
  */
 
-public class MiditonAbspielen extends Thread {
+public class MiditonAbspielen implements Runnable {
 
-	int ton;
-	int tonLenght;
-	Synthesizer synthesizer;
-	MiditonStarten miditonStarten;
+	private int ton;
+	private int tonLenght;
+	private Synthesizer synthesizer;
+	private MiditonStarten miditonStarten;
+	private Thread thread;
 	
 	/**
 	 * Erzeugt einen Synthesizer
@@ -34,6 +35,7 @@ public class MiditonAbspielen extends Thread {
 		this.ton = ton;
 		this.tonLenght = tonLenght;
 		this.miditonStarten = new MiditonStarten();
+		this.thread = new Thread(this);
 		
 	}
 
@@ -47,17 +49,26 @@ public class MiditonAbspielen extends Thread {
 
 		MidiChannel[] midiChannels = synthesizer.getChannels();
 
-		midiChannels[0].noteOn(ton, tonLenght);
+		midiChannels[10].noteOn(ton, tonLenght);
 		try {
-			sleep(tonLenght);
+			thread.sleep(tonLenght);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		midiChannels[0].noteOff(ton, tonLenght);
+		midiChannels[10].noteOff(ton, tonLenght);
 		miditonStarten.removeSoundAbspielens(this);
 		synthesizer.close();
-		this.interrupt();
+		
+	}
+	
+	public void start() {
+		
+		if (!thread.isAlive()) {
+			thread.start();
+		}
+		
+		
 	}
 
 }

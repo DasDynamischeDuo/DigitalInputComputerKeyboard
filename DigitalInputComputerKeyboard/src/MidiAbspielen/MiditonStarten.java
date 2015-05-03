@@ -53,7 +53,7 @@ public class MiditonStarten {
 		System.gc();
 
 		
-			miditonAbspielen.add(new MiditonAbspielen(taste, 10000));
+			miditonAbspielen.add(new MiditonAbspielen(taste, 1000));
 		
 
 		miditonAbspielen.lastElement().start();

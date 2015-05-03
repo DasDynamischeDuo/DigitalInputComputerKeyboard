@@ -1,4 +1,4 @@
-package MidiAbspielen;
+package Gui;
 
 
 public interface AsciiCode {

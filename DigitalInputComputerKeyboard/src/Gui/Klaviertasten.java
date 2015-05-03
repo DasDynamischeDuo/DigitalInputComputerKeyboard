@@ -11,22 +11,25 @@ import javax.swing.JToggleButton;
 import MidiAbspielen.*;
 
 /**
- * In Klaviertasten sind alle Methoden, welche die Klaviertasten betreffen, enthalten
+ * In Klaviertasten sind alle Methoden, welche die Klaviertasten betreffen,
+ * enthalten
+ * 
  * @author Emanuel
  * @version 0.1
  */
 
 public class Klaviertasten {
 
-	
 	/**
-	 * Lässt Taste auf dem Bildschirm los, sobald die dazugehörige Taste auf der Tastatur losgelassen wird.
+	 * Lässt Taste auf dem Bildschirm los, sobald die dazugehörige Taste auf der
+	 * Tastatur losgelassen wird.
+	 * 
 	 * @author Emanuel
 	 * @param {@link Integer} intVonKey
 	 * @param {@link JToggleButton[]} ltasten
 	 * @param {@link JToggleButton[]} rtasten
 	 */
-	
+
 	public static void releasButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
 
 		switch (intVonKey) {
@@ -192,7 +195,7 @@ public class Klaviertasten {
 
 			break;
 
-		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 		case 74:
 
 			for (int j = 1; j < 88; j = j + 17) {
@@ -361,20 +364,21 @@ public class Klaviertasten {
 	}
 
 	/**
-	 * Betätigt Taste auf dem Bildschirm, sobald die dazugehörige Taste auf der Tastatur losgelassen wird.
+	 * Betätigt Taste auf dem Bildschirm, sobald die dazugehörige Taste auf der
+	 * Tastatur losgelassen wird.
+	 * 
 	 * @author Emanuel
 	 * @param {@link Integer} intVonKey
 	 * @param {@link JToggleButton[]} ltasten
 	 * @param {@link JToggleButton[]} rtasten
 	 */
-	
+
 	public static void pressButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten) {
 
 		switch (intVonKey) {
 
 		case 60:
 
-			System.out.println("<");
 
 			for (int j = 1; j < 88; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -534,8 +538,6 @@ public class Klaviertasten {
 			}
 
 			break;
-
-		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 		case 74:
 
@@ -705,13 +707,15 @@ public class Klaviertasten {
 
 	/**
 	 * 
-	 * Initalisiert alle Buttons in 2 schleifen. 
+	 * Initalisiert alle Buttons in 2 schleifen.
 	 * 
-	 * @param rtasten[]
-	 * @param ltasten[]
+	 * @param rtasten
+	 *            []
+	 * @param ltasten
+	 *            []
 	 * 
 	 */
-	
+
 	public static void buttonsInitialisieren(JToggleButton rtasten[], JToggleButton ltasten[]) {
 
 		for (int i = 1; i < ltasten.length; i++) {
@@ -724,18 +728,18 @@ public class Klaviertasten {
 
 	}
 
-	
 	/**
 	 * 
-	 * F�rbt erst alle Butons wei� und dann bestimmte Buttons schwarz.
-	 * Konfiguriert Buttons(kein Rand) 
+	 * Faerbt erst alle Butons weiss und dann bestimmte Buttons schwarz.
+	 * Konfiguriert Buttons(kein Rand)
 	 * 
-	 * @param rtasten[]
-	 * @param ltasten[]
+	 * @param rtasten
+	 *            []
+	 * @param ltasten
+	 *            []
 	 * 
 	 */
-	
-	
+
 	public static void buttonsKonfig(JToggleButton rtasten[], JToggleButton ltasten[]) {
 
 		for (int i = 1; i < ltasten.length; i++) {
@@ -834,12 +838,13 @@ public class Klaviertasten {
 
 	/**
 	 * Gibt zu einem Zeichen einer Taste den Integer Wert zurück
+	 * 
 	 * @author Emanuel
 	 * @param {@link KeyEvent} e
 	 * @return {@link Integer}
 	 * @throws KeyException
 	 */
-	
+
 	public static int getIntVonKey(KeyEvent e) throws KeyException {
 
 		switch ((int) e.getKeyChar()) {
@@ -898,7 +903,7 @@ public class Klaviertasten {
 		case AsciiCode.PLUS:
 			return 26;
 		default:
-			return -1;
+			return 0;
 		}
 
 	}

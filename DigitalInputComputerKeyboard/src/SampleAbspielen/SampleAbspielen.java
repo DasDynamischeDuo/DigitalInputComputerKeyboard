@@ -1,6 +1,8 @@
 package SampleAbspielen;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.sound.sampled.*;
@@ -40,8 +42,27 @@ public class SampleAbspielen {
 			e.printStackTrace();
 		}
 		
-		URL soundURL = SampleAbspielen.class.getResource("/SoundAbspielen/Clap.wav");
-
+		File file = new File("/DigitalInputComputerKeyboard/src/SampleAbspielen/clap-analog.wav");
+		AudioFileFormat audiofile = null;
+		
+		try {
+			audiofile = AudioSystem.getAudioFileFormat(file);
+		} catch (UnsupportedAudioFileException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		System.out.println(audiofile);
+		
+		
+		URL soundURL = SampleAbspielen.class.getResource(file.getAbsolutePath());
+		
+		System.out.println(soundURL);			
+		
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
 			clip.open(audioInputStream);

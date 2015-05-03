@@ -21,29 +21,32 @@ import MidiAbspielen.*;
 
 /**
  * Die Graphische BenutzeroberflÃ¤che des Digital Input Computer Keyboard
+ * 
  * @author Emanuel
  * @version 0.1
  */
 
-public class Gui extends JFrame implements Runnable {
+public class Gui extends JFrame {
 
-	MiditonStarten miditonStarten;
-	
+	private MiditonStarten miditonStarten;
 
-	JLabel label1, label2;
-	JPanel contentpane;
-	JPanel notenpane, buttonpane, tastenpane;
-	JLabel bildSchlüssel;
-	JPanel lklav, rklav;
-	JPanel lgrid, rgrid;
+	private JLabel label1, label2;
+	private JPanel contentpane;
+	private JPanel notenpane, buttonpane, tastenpane;
+	private JLabel bildSchluessel;
+	private JPanel lklav, rklav;
+	private JPanel lgrid, rgrid;
+	private TastenListener tastenListener;
 
-	boolean[] istTasteGedrueckt;
+	private boolean[] istTasteGedrueckt;
 
-	JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt einfuegen
-	JToggleButton[] ltasten = new JToggleButton[103];
+	private JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt
+																// einfuegen
+	private JToggleButton[] ltasten = new JToggleButton[103];
 
 	/**
 	 * Konstruktor der GUI
+	 * 
 	 * @author Emanuel
 	 * 
 	 */
@@ -54,16 +57,23 @@ public class Gui extends JFrame implements Runnable {
 
 		istTasteGedrueckt = new boolean[27];
 
-		
 		initFrameElemente();
 		initButtons();
-		
-		
+
 		try {
 			this.miditonStarten = new MiditonStarten();
 		} catch (MidiUnavailableException e) {
 			e.printStackTrace();
 		}
+
+		try {
+			this.tastenListener = new TastenListener(this);
+		} catch (MidiUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		tastenListener.start();
 
 	}
 
@@ -73,8 +83,8 @@ public class Gui extends JFrame implements Runnable {
 		label2 = new JLabel("Verschiedenes");
 
 		notenpane = new JPanel();
-		
-		Notenlinien.NotenschlüsselSetzten(this);
+
+		Notenlinien.NotenschluesselSetzten(this);
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -116,16 +126,18 @@ public class Gui extends JFrame implements Runnable {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 	}
-/**
- * 
- * Buttons werden extern initalisiert. Allen Buttons wird ein KeyListener hinzugefügt.
- * Mithilfe von einem int Wert werden die Tasten identifiziert. Die Tasten werden einem Laben hinzugefügt.
- * 
- * {@link Klaviertasten.buttonsInitialisieren}
- * {@link Klaviertasten.buttonsKonfig}
- * 
- * @author Fabian
- */
+
+	/**
+	 * 
+	 * Buttons werden extern initalisiert. Allen Buttons wird ein KeyListener
+	 * hinzugefuegt. Mithilfe von einem int Wert werden die Tasten
+	 * identifiziert. Die Tasten werden einem Laben hinzugefuegt.
+	 * 
+	 * {@link Klaviertasten.buttonsInitialisieren}
+	 * {@link Klaviertasten.buttonsKonfig}
+	 * 
+	 * @author Fabian
+	 */
 	private void initButtons() {
 
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
@@ -135,33 +147,60 @@ public class Gui extends JFrame implements Runnable {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-
+				
+				
 			}
+
+			
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-
+				
+				System.out.println("test");
+/*
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
-				} catch (KeyException e2) {
+				} catch (KeyException e1) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					e1.printStackTrace();
 				}
-
+				
+				try {
+					System.out.println(istTasteGedrueckt[Klaviertasten.getIntVonKey(e)]);
+					System.out.println(Klaviertasten.getIntVonKey(e));
+				} catch (KeyException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+*/
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-
+				
+				
+				
+				/*
+				
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
 				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
+				
+				try {
+					System.out.println(istTasteGedrueckt[Klaviertasten.getIntVonKey(e)]);
+					System.out.println(Klaviertasten.getIntVonKey(e));
+				} catch (KeyException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+*/
 
 			}
-
 		});
 
 		for (int i = 1; i < ltasten.length; i++) {
@@ -174,37 +213,24 @@ public class Gui extends JFrame implements Runnable {
 
 	}
 
-	@Override
-	public void run() {
-		while (true) {
-			
-			
+	public boolean[] getIstTasteGedrueckt() {
+		return istTasteGedrueckt;
+	}
 
-			for (int i = 0; i < istTasteGedrueckt.length; i++) {
-				if (!istTasteGedrueckt[i]) {
-					Klaviertasten.releasButton(i + 60, ltasten, rtasten);
+	public JToggleButton[] getRtasten() {
+		return rtasten;
+	}
 
-				}
+	public JToggleButton[] getLtasten() {
+		return ltasten;
+	}
 
-			}
-
-			for (int i = 0; i < istTasteGedrueckt.length; i++) {
-				if (istTasteGedrueckt[i]) {
-					Klaviertasten.pressButton(i + 60, ltasten, rtasten);
-					try {
-						miditonStarten.spieleMiditon(i + 60);
-					} catch (MidiUnavailableException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-			}
-			
-			
-			
-		}
+	public JPanel getNotenpane() {
+		return notenpane;
+	}
+	
+	public boolean getIstTasteGedrueckt(int stelle) {
+		return istTasteGedrueckt[stelle];
 	}
 
 }
