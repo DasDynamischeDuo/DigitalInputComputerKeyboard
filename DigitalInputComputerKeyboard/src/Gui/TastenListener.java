@@ -3,12 +3,14 @@ package Gui;
 import javax.sound.midi.MidiUnavailableException;
 
 import MidiAbspielen.MiditonStarten;
+import SampleAbspielen.SampleStarten;
 
 public class TastenListener implements Runnable {
 
 	private Thread thread;
 	private Gui gui;
 	private MiditonStarten miditonStarten;
+	private SampleStarten sampleStarten;
 	
 	private boolean[] istTonAbgespielt;
 
@@ -20,7 +22,8 @@ public class TastenListener implements Runnable {
 		this.istTonAbgespielt = new boolean[27];
 		
 		this.miditonStarten = new MiditonStarten();
-
+		this.sampleStarten = new SampleStarten();
+		
 	}
 
 	@Override
@@ -41,14 +44,21 @@ public class TastenListener implements Runnable {
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
 				if (gui.getIstTasteGedrueckt(i) && !istTonAbgespielt[i]) {
 					Klaviertasten.pressButton(i + 60, gui.getLtasten(), gui.getRtasten());
-					/*
-					try {
-						miditonStarten.spieleMiditon(i + 60);
-					} catch (MidiUnavailableException e) {
-						// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					
+					if (gui.getRbSample1().isSelected()) {
+						sampleStarten.spieleSampleton(0);
+					} else {
+						
+						try {
+							miditonStarten.spieleMiditon(i + 60);
+						} catch (MidiUnavailableException e) {
+							// TODO Auto-generated catch block
+						e.printStackTrace();
+						}
+						
 					}
-					*/
+					
 					
 					istTonAbgespielt[i] = true;
 

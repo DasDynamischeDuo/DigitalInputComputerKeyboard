@@ -27,13 +27,14 @@ public class SampleAbspielen {
 		
 		Mixer.Info[] mixerInfos = AudioSystem.getMixerInfo();
 		
+		/*
+		for (int i = 0; i < mixerInfos.length; i++) {
+			System.out.println(mixerInfos[i] +"----" +mixerInfos[i].getDescription());
+		}
+		*/
 		
-		//for (int i = 0; i < mixerInfos.length; i++) {
-		//	System.out.println(mixerInfos[i] +"----" +mixerInfos[i].getDescription());
-		//}
 		
-		
-		mixer = AudioSystem.getMixer(mixerInfos[1]);
+		mixer = AudioSystem.getMixer(mixerInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
 		
 		try {
@@ -41,27 +42,10 @@ public class SampleAbspielen {
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
+			
 		
-		File file = new File("/DigitalInputComputerKeyboard/src/SampleAbspielen/clap-analog.wav");
-		AudioFileFormat audiofile = null;
-		
-		try {
-			audiofile = AudioSystem.getAudioFileFormat(file);
-		} catch (UnsupportedAudioFileException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		System.out.println(audiofile);
-		
-		
-		URL soundURL = SampleAbspielen.class.getResource(file.getAbsolutePath());
-		
-		System.out.println(soundURL);			
+		URL soundURL = SampleAbspielen.class.getResource("/SampleAbspielen/Clap.wav");
+
 		
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);

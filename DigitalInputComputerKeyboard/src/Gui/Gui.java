@@ -36,6 +36,10 @@ public class Gui extends JFrame {
 	private JLabel bildSchluessel;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
+	private JRadioButton rbSample1;
+	private JRadioButton rbMidi;
+	private ButtonGroup groupRadioButton;
+	
 	private TastenListener tastenListener;
 
 	private boolean[] istTasteGedrueckt;
@@ -93,7 +97,15 @@ public class Gui extends JFrame {
 
 		lgrid = new JPanel();
 		rgrid = new JPanel();
-
+		
+		rbSample1 = new JRadioButton("Clap");
+		rbMidi = new JRadioButton("Piano");
+		rbSample1.setSelected(true);
+		
+		rbMidi.setFocusable(false);
+		rbSample1.setFocusable(false);
+		
+		
 		contentpane = new JPanel();
 		contentpane.setFocusable(true);
 
@@ -111,16 +123,23 @@ public class Gui extends JFrame {
 		lklav.add(lgrid);
 		rklav.add(rgrid);
 
+		groupRadioButton = new ButtonGroup();
+		groupRadioButton.add(rbSample1);
+		groupRadioButton.add(rbMidi);
+		
 		notenpane.add(label1);
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
-
+		buttonpane.add(rbSample1);
+		buttonpane.add(rbMidi);
+			
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
+
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -147,42 +166,24 @@ public class Gui extends JFrame {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				
-			}
 
-			
+			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
-				System.out.println("test");
-/*
+
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
 				} catch (KeyException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				try {
-					System.out.println(istTasteGedrueckt[Klaviertasten.getIntVonKey(e)]);
-					System.out.println(Klaviertasten.getIntVonKey(e));
-				} catch (KeyException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-*/
+
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
-				
-				
-				/*
-				
+
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
 				} catch (KeyException e2) {
@@ -190,16 +191,6 @@ public class Gui extends JFrame {
 					e2.printStackTrace();
 				}
 				
-				try {
-					System.out.println(istTasteGedrueckt[Klaviertasten.getIntVonKey(e)]);
-					System.out.println(Klaviertasten.getIntVonKey(e));
-				} catch (KeyException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-*/
-
 			}
 		});
 
@@ -221,6 +212,14 @@ public class Gui extends JFrame {
 		return rtasten;
 	}
 
+	public JRadioButton getRbSample1() {
+		return rbSample1;
+	}
+
+	public JRadioButton getRbMidi() {
+		return rbMidi;
+	}
+
 	public JToggleButton[] getLtasten() {
 		return ltasten;
 	}
@@ -228,7 +227,7 @@ public class Gui extends JFrame {
 	public JPanel getNotenpane() {
 		return notenpane;
 	}
-	
+
 	public boolean getIstTasteGedrueckt(int stelle) {
 		return istTasteGedrueckt[stelle];
 	}
