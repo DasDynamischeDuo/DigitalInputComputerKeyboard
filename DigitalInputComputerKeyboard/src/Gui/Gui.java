@@ -34,6 +34,8 @@ import MidiAbspielen.*;
 public class Gui extends JFrame implements Runnable {
 
 	MiditonStarten miditonStarten;
+	NotenlinienNeu NL;
+	
 	
 
 	JLabel label1, label2;
@@ -56,8 +58,11 @@ public class Gui extends JFrame implements Runnable {
 
 	public Gui() {
 
+		
+		
+		
 		this.setFocusable(true);
-
+		
 		istTasteGedrueckt = new boolean[27];
 
 		
@@ -70,6 +75,7 @@ public class Gui extends JFrame implements Runnable {
 		} catch (MidiUnavailableException e) {
 			e.printStackTrace();
 		}
+		
 
 	}
 
@@ -82,13 +88,10 @@ public class Gui extends JFrame implements Runnable {
 		
 		
 		
-		try {
-			NotenlinienLeer n = new NotenlinienLeer(this);
-			n.setVisible(true);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		
+		
+		
 		
 				
 		buttonpane = new JPanel();
@@ -132,6 +135,8 @@ public class Gui extends JFrame implements Runnable {
 		Dimension d = this.getToolkit().getScreenSize();
 		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
 		
+		NL = new NotenlinienNeu(this);
+		NL.NotenLinienLaufen();
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -176,6 +181,7 @@ public class Gui extends JFrame implements Runnable {
 
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
+					NL.BilderSetzen(Klaviertasten.getIntVonKey(e));
 				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
