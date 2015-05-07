@@ -3,6 +3,7 @@ package Gui;
 import javax.sound.midi.MidiUnavailableException;
 
 import MidiAbspielen.MiditonStarten;
+import SampleAbspielen.SampleAbspielen;
 import SampleAbspielen.SampleStarten;
 
 public class TastenListener implements Runnable {
@@ -47,7 +48,7 @@ public class TastenListener implements Runnable {
 					
 					
 					if (gui.getRbSample1().isSelected()) {
-						sampleStarten.spieleSampleton(0);
+						sampleStarten.spieleSampleton(1);
 					} else {
 						
 						try {

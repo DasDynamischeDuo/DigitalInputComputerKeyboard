@@ -72,9 +72,11 @@ public class SampleStarten {
 	public void spieleSampleton(int taste) {
 
 		System.gc();
-
-		sampleAbspielen.add(new SampleAbspielen());
+		
+		sampleAbspielen.add(new SampleAbspielen(this));
 		sampleAbspielen.lastElement().clapAbspielen();
+		
+		System.out.println(sampleAbspielen);
 
 	}
 

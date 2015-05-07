@@ -1,10 +1,7 @@
 package MidiAbspielen;
 
-import java.awt.event.KeyEvent;
-import java.security.KeyException;
 
 import javax.sound.midi.*;
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 /**
  * Kann einen Miditon abspielen

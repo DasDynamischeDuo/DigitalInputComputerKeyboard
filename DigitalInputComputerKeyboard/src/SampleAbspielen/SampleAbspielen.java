@@ -1,11 +1,11 @@
 package SampleAbspielen;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.sound.sampled.*;
+import SampleAbspielen.SampleStarten;
+
 
 /**
  * Spielt ein Sample ab
@@ -17,15 +17,38 @@ public class SampleAbspielen {
 	
 	private Mixer mixer;
 	private Clip clip;
+	private DataLine.Info dataInfo;
+	private Mixer.Info[] mixerInfos;
+	private URL soundURL;
+	private SampleStarten sampleStarten;
 	
 	/**
 	 * Spielt einen Clap-Ton ab
 	 * @author Emanuel
 	 */
 	
+	
+		public SampleAbspielen(SampleStarten sampleStarten) {
+			
+		this.sampleStarten = sampleStarten;
+		this.mixerInfos = AudioSystem.getMixerInfo();
+		this.mixer = AudioSystem.getMixer(mixerInfos[0]);
+		this.dataInfo= new DataLine.Info(Clip.class, null);
+		
+		try {
+			clip = (Clip)mixer.getLine(this.dataInfo);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+	
+	
 	public void clapAbspielen() {
 		
-		Mixer.Info[] mixerInfos = AudioSystem.getMixerInfo();
 		
 		/*
 		for (int i = 0; i < mixerInfos.length; i++) {
@@ -33,18 +56,7 @@ public class SampleAbspielen {
 		}
 		*/
 		
-		
-		mixer = AudioSystem.getMixer(mixerInfos[0]);
-		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
-		
-		try {
-			clip = (Clip)mixer.getLine(dataInfo);
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
-			
-		
-		URL soundURL = SampleAbspielen.class.getResource("/SampleAbspielen/Clap.wav");
+		soundURL = SampleAbspielen.class.getResource("/SampleAbspielen/Clap.wav");
 
 		
 		try {
@@ -60,20 +72,11 @@ public class SampleAbspielen {
 			e.printStackTrace();
 		}
 		
-		clip.start();
-		
-		
-		do {
+			clip.start();
 			
-			try {
-				Thread.sleep(50);
-			} catch (Exception e) {
-				
-			}
+		
+		
 			
-		} while (clip.isActive());
-		
-		
 	}
 	
 
