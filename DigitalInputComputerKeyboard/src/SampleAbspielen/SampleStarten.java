@@ -69,12 +69,12 @@ public class SampleStarten {
 	 * @param {@link Integer} taste
 	 */
 
-	public void spieleSampleton(int taste) {
+	public void spieleSampleton(int taste, int instrument) {
 
 		System.gc();
 		
 		sampleAbspielen.add(new SampleAbspielen(this));
-		sampleAbspielen.lastElement().clapAbspielen();
+		sampleAbspielen.lastElement().tonAbspielen(taste, instrument);
 		
 		System.out.println(sampleAbspielen);
 

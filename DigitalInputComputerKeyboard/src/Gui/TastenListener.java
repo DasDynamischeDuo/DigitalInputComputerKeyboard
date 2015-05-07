@@ -1,28 +1,22 @@
 package Gui;
 
-import javax.sound.midi.MidiUnavailableException;
 
-import MidiAbspielen.MiditonStarten;
-import SampleAbspielen.SampleAbspielen;
 import SampleAbspielen.SampleStarten;
 
 public class TastenListener implements Runnable {
 
 	private Thread thread;
 	private Gui gui;
-	private MiditonStarten miditonStarten;
 	private SampleStarten sampleStarten;
 	
 	private boolean[] istTonAbgespielt;
 
-	public TastenListener(Gui gui) throws MidiUnavailableException {
+	public TastenListener(Gui gui) {
 
 		this.thread = new Thread(this);
 		this.gui = gui;
 
 		this.istTonAbgespielt = new boolean[27];
-		
-		this.miditonStarten = new MiditonStarten();
 		this.sampleStarten = new SampleStarten();
 		
 	}
@@ -48,16 +42,9 @@ public class TastenListener implements Runnable {
 					
 					
 					if (gui.getRbSample1().isSelected()) {
-						sampleStarten.spieleSampleton(1);
+						sampleStarten.spieleSampleton(i, 0);
 					} else {
-						
-						try {
-							miditonStarten.spieleMiditon(i + 60);
-						} catch (MidiUnavailableException e) {
-							// TODO Auto-generated catch block
-						e.printStackTrace();
-						}
-						
+						sampleStarten.spieleSampleton(i, 1);						
 					}
 					
 					

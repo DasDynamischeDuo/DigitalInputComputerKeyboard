@@ -1,23 +1,12 @@
 package Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.KeyException;
-import java.security.acl.LastOwnerException;
 
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Synthesizer;
 import javax.swing.*;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
-
-import MidiAbspielen.*;
 
 /**
  * Die Graphische Benutzeroberfläche des Digital Input Computer Keyboard
@@ -28,8 +17,6 @@ import MidiAbspielen.*;
 
 public class Gui extends JFrame {
 
-	private MiditonStarten miditonStarten;
-
 	private JLabel label1, label2;
 	private JPanel contentpane;
 	private JPanel notenpane, buttonpane, tastenpane;
@@ -39,7 +26,7 @@ public class Gui extends JFrame {
 	private JRadioButton rbSample1;
 	private JRadioButton rbMidi;
 	private ButtonGroup groupRadioButton;
-	
+
 	private TastenListener tastenListener;
 
 	private boolean[] istTasteGedrueckt;
@@ -64,19 +51,7 @@ public class Gui extends JFrame {
 		initFrameElemente();
 		initButtons();
 
-		try {
-			this.miditonStarten = new MiditonStarten();
-		} catch (MidiUnavailableException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			this.tastenListener = new TastenListener(this);
-		} catch (MidiUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		this.tastenListener = new TastenListener(this);
 		tastenListener.start();
 
 	}
@@ -97,15 +72,14 @@ public class Gui extends JFrame {
 
 		lgrid = new JPanel();
 		rgrid = new JPanel();
-		
-		rbSample1 = new JRadioButton("Clap");
+
+		rbSample1 = new JRadioButton("Drum");
 		rbMidi = new JRadioButton("Piano");
 		rbSample1.setSelected(true);
-		
+
 		rbMidi.setFocusable(false);
 		rbSample1.setFocusable(false);
-		
-		
+
 		contentpane = new JPanel();
 		contentpane.setFocusable(true);
 
@@ -126,20 +100,19 @@ public class Gui extends JFrame {
 		groupRadioButton = new ButtonGroup();
 		groupRadioButton.add(rbSample1);
 		groupRadioButton.add(rbMidi);
-		
+
 		notenpane.add(label1);
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 		buttonpane.add(rbSample1);
 		buttonpane.add(rbMidi);
-			
+
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
-
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -190,7 +163,7 @@ public class Gui extends JFrame {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-				
+
 			}
 		});
 

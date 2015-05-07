@@ -8,7 +8,6 @@ import java.security.KeyException;
 import javax.sound.midi.MidiUnavailableException;
 import javax.swing.JToggleButton;
 
-import MidiAbspielen.*;
 
 /**
  * In Klaviertasten sind alle Methoden, welche die Klaviertasten betreffen,
@@ -21,7 +20,7 @@ import MidiAbspielen.*;
 public class Klaviertasten {
 
 	/**
-	 * Lässt Taste auf dem Bildschirm los, sobald die dazugehörige Taste auf der
+	 * Lässt Taste auf dem Bildschirm los, sobald die dazugehaerige Taste auf der
 	 * Tastatur losgelassen wird.
 	 * 
 	 * @author Emanuel
