@@ -57,7 +57,7 @@ public class MiditonAbspielen extends Thread {
 		midiChannels[0].noteOff(ton, tonLenght);
 		miditonStarten.removeSoundAbspielens(this);
 		synthesizer.close();
-		this.interrupt();
+		
 	}
 
 }

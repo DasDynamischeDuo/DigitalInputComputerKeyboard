@@ -3,7 +3,13 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -28,6 +34,8 @@ import MidiAbspielen.*;
 public class Gui extends JFrame implements Runnable {
 
 	MiditonStarten miditonStarten;
+	NotenlinienNeu NL;
+	
 	
 
 	JLabel label1, label2;
@@ -50,8 +58,11 @@ public class Gui extends JFrame implements Runnable {
 
 	public Gui() {
 
+		
+		
+		
 		this.setFocusable(true);
-
+		
 		istTasteGedrueckt = new boolean[27];
 
 		
@@ -64,17 +75,25 @@ public class Gui extends JFrame implements Runnable {
 		} catch (MidiUnavailableException e) {
 			e.printStackTrace();
 		}
+		
 
 	}
 
 	private void initFrameElemente() {
 
-		label1 = new JLabel("Noten");
+		
 		label2 = new JLabel("Verschiedenes");
 
-		notenpane = new JPanel();
+		notenpane = new JPanel(new GridLayout(1,15));
 		
-		Notenlinien.NotenschlüsselSetzten(this);
+		
+		
+		
+		
+		
+		
+		
+				
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -101,25 +120,32 @@ public class Gui extends JFrame implements Runnable {
 		lklav.add(lgrid);
 		rklav.add(rgrid);
 
-		notenpane.add(label1);
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
+		
+		
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
+		
+		Dimension d = this.getToolkit().getScreenSize();
+		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
+		
+		NL = new NotenlinienNeu(this);
+		NL.NotenLinienLaufen();
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
 	}
 /**
  * 
  * Buttons werden extern initalisiert. Allen Buttons wird ein KeyListener hinzugefügt.
- * Mithilfe von einem int Wert werden die Tasten identifiziert. Die Tasten werden einem Laben hinzugefügt.
+ * Mithilfe von einem int Wert werden die Tasten identifiziert. Die Tasten werden einem Label hinzugefügt.
  * 
  * {@link Klaviertasten.buttonsInitialisieren}
  * {@link Klaviertasten.buttonsKonfig}
@@ -155,6 +181,7 @@ public class Gui extends JFrame implements Runnable {
 
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
+					NL.BilderSetzen(Klaviertasten.getIntVonKey(e));
 				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -191,6 +218,8 @@ public class Gui extends JFrame implements Runnable {
 			for (int i = 0; i < istTasteGedrueckt.length; i++) {
 				if (istTasteGedrueckt[i]) {
 					Klaviertasten.pressButton(i + 60, ltasten, rtasten);
+					
+					//Methode
 					try {
 						miditonStarten.spieleMiditon(i + 60);
 					} catch (MidiUnavailableException e) {
