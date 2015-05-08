@@ -33,7 +33,7 @@ public class Klaviertasten {
 
 		switch (intVonKey) {
 
-		case 60:
+		case 0:
 
 			for (int i = 1; i < 88; i = i + 17) {
 				ltasten[i].setSelected(false);
@@ -45,7 +45,7 @@ public class Klaviertasten {
 			}
 			break;
 
-		case 61:
+		case 1:
 
 			int z = 2;
 			ltasten[2].setSelected(false);
@@ -60,7 +60,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 62:
+		case 2:
 
 			for (int j = 4; j < 91; j = j + 17) {
 				ltasten[j].setSelected(false);
@@ -73,7 +73,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 63:
+		case 3:
 
 			int z2 = 5;
 			ltasten[5].setSelected(false);
@@ -88,7 +88,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 64:
+		case 4:
 
 			for (int j = 7; j < 93; j = j + 17) {
 				ltasten[j].setSelected(false);
@@ -99,7 +99,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 65:
+		case 5:
 
 			for (int j = 8; j < 95; j = j + 17) {
 				ltasten[j].setSelected(false);
@@ -112,7 +112,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 66:
+		case 6:
 
 			int z3 = 9;
 			ltasten[9].setSelected(false);
@@ -127,7 +127,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 67:
+		case 7:
 
 			for (int j = 11; j < 98; j = j + 17) {
 				ltasten[j].setSelected(false);
@@ -140,7 +140,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 68:
+		case 8:
 
 			int z4 = 12;
 			ltasten[12].setSelected(false);
@@ -155,7 +155,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 69:
+		case 9:
 
 			for (int j = 14; j < 101; j = j + 17) {
 				ltasten[j].setSelected(false);
@@ -168,7 +168,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 70:
+		case 10:
 
 			int z5 = 15;
 			ltasten[15].setSelected(false);
@@ -183,7 +183,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 71:
+		case 11:
 
 			for (int j = 17; j < 103; j = j + 17) {
 				ltasten[j].setSelected(false);
@@ -195,7 +195,7 @@ public class Klaviertasten {
 			break;
 
 
-		case 74:
+		case 12:
 
 			for (int j = 1; j < 88; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -207,7 +207,7 @@ public class Klaviertasten {
 			}
 			break;
 
-		case 75:
+		case 13:
 
 			int z6 = 2;
 			rtasten[2].setSelected(false);
@@ -222,7 +222,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 76:
+		case 14:
 
 			for (int j = 4; j < 91; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -235,7 +235,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 77:
+		case 15:
 
 			int z7 = 5;
 			rtasten[5].setSelected(false);
@@ -250,7 +250,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 78:
+		case 16:
 
 			for (int j = 7; j < 93; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -261,7 +261,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 79:
+		case 17:
 
 			for (int j = 8; j < 95; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -274,7 +274,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 80:
+		case 18:
 
 			int z8 = 9;
 			rtasten[9].setSelected(false);
@@ -289,7 +289,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 81:
+		case 19:
 
 			for (int j = 11; j < 98; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -302,7 +302,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 82:
+		case 20:
 
 			int z9 = 12;
 			rtasten[12].setSelected(false);
@@ -317,7 +317,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 83:
+		case 21:
 
 			for (int j = 14; j < 101; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -330,7 +330,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 84:
+		case 22:
 
 			int z10 = 15;
 			rtasten[15].setSelected(false);
@@ -345,7 +345,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 85:
+		case 23:
 
 			for (int j = 17; j < 103; j = j + 17) {
 				rtasten[j].setSelected(false);
@@ -376,7 +376,7 @@ public class Klaviertasten {
 
 		switch (intVonKey) {
 
-		case 60:
+		case 0:
 
 
 			for (int j = 1; j < 88; j = j + 17) {
@@ -389,7 +389,7 @@ public class Klaviertasten {
 			}
 			break;
 
-		case 61:
+		case 1:
 
 			int z = 2;
 			ltasten[2].setSelected(true);
@@ -404,7 +404,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 62:
+		case 2:
 
 			for (int j = 4; j < 91; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -417,7 +417,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 63:
+		case 3:
 
 			int z2 = 5;
 			ltasten[5].setSelected(true);
@@ -432,7 +432,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 64:
+		case 4:
 
 			for (int j = 7; j < 93; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -443,7 +443,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 65:
+		case 5:
 
 			for (int j = 8; j < 95; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -456,7 +456,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 66:
+		case 6:
 
 			int z3 = 9;
 			ltasten[9].setSelected(true);
@@ -471,7 +471,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 67:
+		case 7:
 
 			for (int j = 11; j < 98; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -484,7 +484,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 68:
+		case 8:
 
 			int z4 = 12;
 			ltasten[12].setSelected(true);
@@ -499,7 +499,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 69:
+		case 9:
 
 			for (int j = 14; j < 101; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -512,7 +512,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 70:
+		case 10:
 
 			int z5 = 15;
 			ltasten[15].setSelected(true);
@@ -527,7 +527,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 71:
+		case 11:
 
 			for (int j = 17; j < 103; j = j + 17) {
 				ltasten[j].setSelected(true);
@@ -538,7 +538,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 74:
+		case 12:
 
 			for (int j = 1; j < 88; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -550,7 +550,7 @@ public class Klaviertasten {
 			}
 			break;
 
-		case 75:
+		case 13:
 
 			int z6 = 2;
 			rtasten[2].setSelected(true);
@@ -565,7 +565,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 76:
+		case 14:
 
 			for (int j = 4; j < 91; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -578,7 +578,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 77:
+		case 15:
 
 			int z7 = 5;
 			rtasten[5].setSelected(true);
@@ -593,7 +593,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 78:
+		case 16:
 
 			for (int j = 7; j < 93; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -604,7 +604,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 79:
+		case 17:
 
 			for (int j = 8; j < 95; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -617,7 +617,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 80:
+		case 18:
 
 			int z8 = 9;
 			rtasten[9].setSelected(true);
@@ -632,7 +632,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 81:
+		case 19:
 
 			for (int j = 11; j < 98; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -645,7 +645,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 82:
+		case 20:
 
 			int z9 = 12;
 			rtasten[12].setSelected(true);
@@ -660,7 +660,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 83:
+		case 21:
 
 			for (int j = 14; j < 101; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -673,7 +673,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 84:
+		case 22:
 
 			int z10 = 15;
 			rtasten[15].setSelected(true);
@@ -688,7 +688,7 @@ public class Klaviertasten {
 
 			break;
 
-		case 85:
+		case 23:
 
 			for (int j = 17; j < 103; j = j + 17) {
 				rtasten[j].setSelected(true);
@@ -846,61 +846,55 @@ public class Klaviertasten {
 
 	public static int getIntVonKey(KeyEvent e) throws KeyException {
 
-		switch ((int) e.getKeyChar()) {
-		case AsciiCode.BRACKET_LEFT:
+		switch ((int)e.getKeyChar()) {
+		case (int) '<':
 			return 0;
-		case AsciiCode.A:
+		case (int) 'a':
 			return 1;
-		case AsciiCode.Y:
+		case (int) 'y':
 			return 2;
-		case AsciiCode.S:
+		case (int) 's':
 			return 3;
-		case AsciiCode.X:
+		case (int) 'x':
 			return 4;
-		case AsciiCode.C:
+		case (int) 'c':
 			return 5;
-		case AsciiCode.F:
+		case (int) 'f':
 			return 6;
-		case AsciiCode.V:
+		case (int) 'v':
 			return 7;
-		case AsciiCode.G:
+		case (int) 'g':
 			return 8;
-		case AsciiCode.B:
+		case (int) 'b':
 			return 9;
-		case AsciiCode.H:
+		case (int) 'h':
 			return 10;
-		case AsciiCode.N:
+		case (int) 'n':
 			return 11;
-		case AsciiCode.J:
+		case (int) 'z':
 			return 12;
-		case AsciiCode.M:
+		case (int) '7':
 			return 13;
-		case AsciiCode.T:
+		case (int) 'u':
 			return 14;
-		case AsciiCode.ZAHL_6:
+		case (int) '8':
 			return 15;
-		case AsciiCode.Z:
+		case (int) 'i':
 			return 16;
-		case AsciiCode.ZAHL_7:
+		case (int) 'o':
 			return 17;
-		case AsciiCode.U:
+		case (int) '0':
 			return 18;
-		case AsciiCode.I:
+		case (int) 'p':
 			return 19;
-		case AsciiCode.ZAHL_9:
+		case (int) 'ß':
 			return 20;
-		case AsciiCode.O:
+		case (int) 'ü':
 			return 21;
-		case AsciiCode.ZAHL_0:
+		case (int) '´':
 			return 22;
-		case AsciiCode.P:
+		case (int) '+':
 			return 23;
-		case AsciiCode.SCHARF_S:
-			return 24;
-		case AsciiCode.UE:
-			return 25;
-		case AsciiCode.PLUS:
-			return 26;
 		default:
 			return 0;
 		}

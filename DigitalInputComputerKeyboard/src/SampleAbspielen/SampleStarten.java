@@ -75,8 +75,7 @@ public class SampleStarten {
 		
 		sampleAbspielen.add(new SampleAbspielen(this));
 		sampleAbspielen.lastElement().tonAbspielen(taste, instrument);
-		
-		System.out.println(sampleAbspielen);
+	
 
 	}
 

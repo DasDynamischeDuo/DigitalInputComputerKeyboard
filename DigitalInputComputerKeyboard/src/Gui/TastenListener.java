@@ -29,7 +29,7 @@ public class TastenListener implements Runnable {
 			
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
 				if (!gui.getIstTasteGedrueckt(i) && istTonAbgespielt[i]) {
-					Klaviertasten.releasButton(i + 60, gui.getLtasten(), gui.getRtasten());
+					Klaviertasten.releasButton(i, gui.getLtasten(), gui.getRtasten());
 					istTonAbgespielt[i] = false;
 
 				}
@@ -38,7 +38,7 @@ public class TastenListener implements Runnable {
 
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
 				if (gui.getIstTasteGedrueckt(i) && !istTonAbgespielt[i]) {
-					Klaviertasten.pressButton(i + 60, gui.getLtasten(), gui.getRtasten());
+					Klaviertasten.pressButton(i, gui.getLtasten(), gui.getRtasten());
 					
 					
 					if (gui.getRbSample1().isSelected()) {

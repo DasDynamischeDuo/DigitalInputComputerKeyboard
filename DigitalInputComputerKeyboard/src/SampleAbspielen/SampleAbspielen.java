@@ -52,39 +52,124 @@ public class SampleAbspielen {
 	public void tonAbspielen(int ton, int instrument) {
 
 		String source = "";
+		
+		
+		
 
 		if (instrument == 0) {
 			source = "/SchalgzeugSample/Closed-Hi-Hat.wav";
-			switch (ton) {
-			case 0:
-				source = "/SchalgzeugSample/Clap.wav";
-				break;
-
-			case 1:
+			if (ton <= 7) {
 				source = "/SchalgzeugSample/Kick.wav";
-				break;
-
-			case 2:
+			} else if (8 <= ton && ton <= 16 ) {
+				source = "/SchalgzeugSample/Clap.wav";
+			} else {
 				source = "/SchalgzeugSample/Closed-Hi-Hat.wav";
-				;
-				break;
-
-			default:
-				break;
+			} {
+				
 			}
+			
+			
 
 		} else {
-			source = "/PianoSample/PianoD2.wav";
+			source = "/PianoSample/PianoC4.wav";
 			switch (ton) {
 
 			case 0:
-				source = "/PianoSample/PianoC5.wav";
+				source = "/PianoSample/PianoC4.wav";
 				break;
 				
 			case 1:
+				source = "/PianoSample/PianoCis4.wav";
+				break;	
+				
+			case 2:
+				source = "/PianoSample/PianoD4.wav";
+				break;	
+				
+			case 3:
+				source = "/PianoSample/PianoDis4.wav";
+				break;	
+				
+			case 4:
+				source = "/PianoSample/PianoE4.wav";
+				break;	
+				
+			case 5:
+				source = "/PianoSample/PianoF4.wav";
+				break;
+				
+			case 6:
+				source = "/PianoSample/PianoFis4.wav";
+				break;
+				
+			case 7:
+				source = "/PianoSample/PianoG4.wav";
+				break;
+				
+			case 8:
+				source = "/PianoSample/PianoGis4.wav";
+				break;
+				
+			case 9:
+				source = "/PianoSample/PianoA4.wav";
+				break;
+				
+			case 10:
+				source = "/PianoSample/PianoAis4.wav";
+				break;
+				
+			case 11:
+				source = "/PianoSample/PianoB4.wav";
+				break;
+				
+			case 12:
+				source = "/PianoSample/PianoC5.wav";
+				break;
+				
+			case 13:
+				source = "/PianoSample/PianoCis5.wav";
+				break;	
+				
+			case 14:
 				source = "/PianoSample/PianoD5.wav";
 				break;	
-
+				
+			case 15:
+				source = "/PianoSample/PianoDis5.wav";
+				break;	
+				
+			case 16:
+				source = "/PianoSample/PianoE5.wav";
+				break;	
+				
+			case 17:
+				source = "/PianoSample/PianoF5.wav";
+				break;
+				
+			case 18:
+				source = "/PianoSample/PianoFis5.wav";
+				break;
+				
+			case 19:
+				source = "/PianoSample/PianoG5.wav";
+				break;
+				
+			case 20:
+				source = "/PianoSample/PianoGis5.wav";
+				break;
+				
+			case 21:
+				source = "/PianoSample/PianoA5.wav";
+				break;
+				
+			case 22:
+				source = "/PianoSample/PianoAis5.wav";
+				break;
+				
+			case 23:
+				source = "/PianoSample/PianoB5.wav";
+				break;
+				
 			default:
 				break;
 			}
@@ -107,6 +192,9 @@ public class SampleAbspielen {
 		}
 
 		clip.start();
+		
+		sampleStarten.removeSoundAbspielens(this);
+		
 
 	}
 
