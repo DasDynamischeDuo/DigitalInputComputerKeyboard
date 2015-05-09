@@ -35,7 +35,7 @@ public class Gui extends JFrame {
 
 
 	MiditonAbspielen miditonStarten;
-	NotenlinienNeu NL;
+	Notenlinien NL = new Notenlinien();
 	
 	private JLabel label1, label2;
 	private JPanel contentpane;
@@ -145,9 +145,8 @@ public class Gui extends JFrame {
 		Dimension d = this.getToolkit().getScreenSize();
 		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
 		
-		NL = new NotenlinienNeu(this);
+		NL.NotenlinienSchluesselSetzenLeer(this);
 		NL.NotenLinienLaufen();
-
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
