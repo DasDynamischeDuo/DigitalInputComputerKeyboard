@@ -1,73 +1,94 @@
 package Gui;
 
 import java.awt.BorderLayout;
+
+
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.KeyException;
-import java.security.acl.LastOwnerException;
 
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Synthesizer;
 import javax.swing.*;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
-import MidiAbspielen.*;
+import MidiAbspielen.MiditonAbspielen;
 
 /**
  * Die Graphische BenutzeroberflÃ¤che des Digital Input Computer Keyboard
+ * 
  * @author Emanuel
  * @version 0.1
  */
 
-public class Gui extends JFrame implements Runnable {
+public class Gui extends JFrame {
 
-	MiditonStarten miditonStarten;
 
-	JLabel label1, label2;
-	JPanel contentpane;
-	JPanel notenpane, buttonpane, tastenpane;
-	JPanel lklav, rklav;
-	JPanel lgrid, rgrid;
+	MiditonAbspielen miditonStarten;
+	Notenlinien NL = new Notenlinien();
+	
+	private JLabel label1, label2;
+	private JPanel contentpane;
+	public JPanel notenpane, buttonpane, tastenpane;
+	private JLabel bildSchluessel;
+	private JPanel lklav, rklav;
+	private JPanel lgrid, rgrid;
+	private JRadioButton rbSample1;
+	private JRadioButton rbMidi;
+	private ButtonGroup groupRadioButton;
 
-	boolean[] istTasteGedrueckt;
 
-	JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt einfuegen
-	JToggleButton[] ltasten = new JToggleButton[103];
+	private TastenListener tastenListener;
+
+	private boolean[] istTasteGedrueckt;
+
+	private JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt
+																// einfuegen
+	private JToggleButton[] ltasten = new JToggleButton[103];
 
 	/**
 	 * Konstruktor der GUI
+	 * 
 	 * @author Emanuel
 	 * 
 	 */
 
 	public Gui() {
 
+		
+		
+		
 		this.setFocusable(true);
-
+		
 		istTasteGedrueckt = new boolean[27];
 
 		initFrameElemente();
 		initButtons();
 
-		try {
-			this.miditonStarten = new MiditonStarten();
-		} catch (MidiUnavailableException e) {
-			e.printStackTrace();
-		}
+
+		this.tastenListener = new TastenListener(this);
+		tastenListener.start();
+
 
 	}
 
 	private void initFrameElemente() {
 
-		label1 = new JLabel("Noten");
+		
 		label2 = new JLabel("Verschiedenes");
 
-		notenpane = new JPanel();
+
+		notenpane = new JPanel(new GridLayout(1,15));
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -76,6 +97,13 @@ public class Gui extends JFrame implements Runnable {
 
 		lgrid = new JPanel();
 		rgrid = new JPanel();
+
+		rbSample1 = new JRadioButton("Drum");
+		rbMidi = new JRadioButton("Piano");
+		rbSample1.setSelected(true);
+
+		rbMidi.setFocusable(false);
+		rbSample1.setFocusable(false);
 
 		contentpane = new JPanel();
 		contentpane.setFocusable(true);
@@ -94,21 +122,48 @@ public class Gui extends JFrame implements Runnable {
 		lklav.add(lgrid);
 		rklav.add(rgrid);
 
-		notenpane.add(label1);
+
+		groupRadioButton = new ButtonGroup();
+		groupRadioButton.add(rbSample1);
+		groupRadioButton.add(rbMidi);
+
+
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
+		buttonpane.add(rbSample1);
+		buttonpane.add(rbMidi);
 
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
+		
+		
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
-
+		
+		Dimension d = this.getToolkit().getScreenSize();
+		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
+		
+		NL.NotenlinienSchluesselSetzenLeer(this);
+		NL.NotenLinienLaufen(this);
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
 	}
+
+
+	/**
+	 * 
+	 * Buttons werden extern initalisiert. Allen Buttons wird ein KeyListener
+	 * hinzugefuegt. Mithilfe von einem int Wert werden die Tasten
+	 * identifiziert. Die Tasten werden einem Laben hinzugefuegt.
+	 * 
+	 * {@link Klaviertasten.buttonsInitialisieren}
+	 * {@link Klaviertasten.buttonsKonfig}
+	 * 
+	 * @author Fabian
+	 */
 
 	private void initButtons() {
 
@@ -127,9 +182,9 @@ public class Gui extends JFrame implements Runnable {
 
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
-				} catch (KeyException e2) {
+				} catch (KeyException e1) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					e1.printStackTrace();
 				}
 
 			}
@@ -143,11 +198,10 @@ public class Gui extends JFrame implements Runnable {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-
+				
 			}
-
 		});
-
+	}
 		
 	protected void releaseButtons(int i) {
 
@@ -877,9 +931,9 @@ public class Gui extends JFrame implements Runnable {
 			return 82;
 		case 'p':
 			return 83;
-		case 'ï¿½':
+		case 'ß':
 			return 84;
-		case 'ï¿½':
+		case 'ü':
 			return 85;
 		case '+':
 			return 86;
@@ -914,7 +968,7 @@ public class Gui extends JFrame implements Runnable {
 
 	private void buttonsinitialisieren(JToggleButton rtasten[], JToggleButton ltasten[]  ) {
 			
->>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git
+//>>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git
 		for (int i = 1; i < ltasten.length; i++) {
 			lgrid.add(ltasten[i]);
 		}
@@ -925,37 +979,34 @@ public class Gui extends JFrame implements Runnable {
 
 	}
 
-	@Override
-	public void run() {
-		while (true) {
-			
-			
+	public boolean[] getIstTasteGedrueckt() {
+		return istTasteGedrueckt;
+	}
 
-			for (int i = 0; i < istTasteGedrueckt.length; i++) {
-				if (!istTasteGedrueckt[i]) {
-					Klaviertasten.releasButton(i + 60, ltasten, rtasten);
+	public JToggleButton[] getRtasten() {
+		return rtasten;
+	}
 
-				}
+	public JRadioButton getRbSample1() {
+		return rbSample1;
+	}
 
-			}
+	public JRadioButton getRbMidi() {
+		return rbMidi;
+	}
 
-			for (int i = 0; i < istTasteGedrueckt.length; i++) {
-				if (istTasteGedrueckt[i]) {
-					Klaviertasten.pressButton(i + 60, ltasten, rtasten);
-					try {
-						miditonStarten.spieleMiditon(i + 60);
-					} catch (MidiUnavailableException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 
-				}
+	public JToggleButton[] getLtasten() {
+		return ltasten;
+	}
 
-			}
-			
-			
-			
-		}
+
+	public JPanel getNotenpane() {
+		return notenpane;
+	}
+
+	public boolean getIstTasteGedrueckt(int stelle) {
+		return istTasteGedrueckt[stelle];
 	}
 
 }

@@ -17,7 +17,7 @@ public class MiditonAbspielen extends Thread {
 	int ton;
 	int tonLenght;
 	Synthesizer synthesizer;
-	MiditonStarten miditonStarten;
+	MiditonAbspielen miditonStarten;
 	
 	/**
 	 * Erzeugt einen Synthesizer
@@ -33,7 +33,7 @@ public class MiditonAbspielen extends Thread {
 		synthesizer.open();
 		this.ton = ton;
 		this.tonLenght = tonLenght;
-		this.miditonStarten = new MiditonStarten();
+		this.miditonStarten = new MiditonAbspielen(0, 0);
 		
 	}
 
@@ -55,9 +55,14 @@ public class MiditonAbspielen extends Thread {
 			e.printStackTrace();
 		}
 		midiChannels[0].noteOff(ton, tonLenght);
-		miditonStarten.removeSoundAbspielens(this);
+		MiditonAbspielen.removeSoundAbspielens(this);
 		synthesizer.close();
-		this.interrupt();
+		
+	}
+
+	private static void removeSoundAbspielens(MiditonAbspielen miditonAbspielen) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

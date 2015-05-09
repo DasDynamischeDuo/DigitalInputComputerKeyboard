@@ -12,10 +12,12 @@ import javax.sound.midi.MidiUnavailableException;
 import javax.swing.*;
 import javax.xml.ws.handler.MessageContext;
 
+import SampleAbspielen.SampleAbspielen;
+
 public class Gui extends JFrame implements KeyListener, Runnable {
 
 	JPanel contentPane;
-	private Vector<SoundAbspielen> soundAbspielens;
+	private Vector<SampleAbspielen> soundAbspielens;
 	private int anzTonAbgespielt;
 	JButton[] btest;
 
@@ -25,7 +27,7 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 
 		initGui();
 
-		this.soundAbspielens = new Vector<>();
+		this.soundAbspielens = new Vector<SampleAbspielen>();
 		this.setFocusable(true);
 		anzTonAbgespielt = 0;
 
@@ -60,10 +62,10 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 	public void keyTyped(KeyEvent e) {
 
 /*<<<<<<< HEAD ======= >>>>>>> branch 'master' of https://github.com/DasDynamischeDuo/DigitalInputComputerKeyboard.git*/
-		spieleTon(e);
+		
 	}
 
-	public SoundAbspielen lastElement() {
+	public SampleAbspielen lastElement() {
 		return soundAbspielens.lastElement();
 	}
 
@@ -77,33 +79,7 @@ public class Gui extends JFrame implements KeyListener, Runnable {
 
 	
 	
-	public void spieleTon(KeyEvent e) {
-		
-		System.gc();
-		
-		try {
-			soundAbspielens.add(new SoundAbspielen(SoundAbspielen.getIntVonKey(e), 10000, this));
-		} catch (KeyException e1) {
-			System.out.println("Key nicht belegt");
-			e1.printStackTrace();
-		} catch (MidiUnavailableException e1) {
-			System.out.println("Midi nicht erreichbar");
-			e1.printStackTrace();
-		}
-
-
-		soundAbspielens.lastElement().start();
-
-		try {
-			btest[SoundAbspielen.getIntVonKey(e) - 60].doClick();
-		} catch (KeyException e1) {
-			System.out.println("Key nicht belegt test2");
-			e1.printStackTrace();
-		}
-		
-		
-
-	}
+	
 
 	@Override
 	public void run() {
