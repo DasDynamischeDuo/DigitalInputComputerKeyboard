@@ -25,15 +25,21 @@ public class Notenlinien extends JPanel{
     private JLabel[] lNotenlinien = new JLabel[15];
     
     
+    
+    /**
+     * Konstruktor der Notenlinien Klasse
+     * @author Fabian
+     */
+    
     public Notenlinien() {
 		// TODO Auto-generated constructor stub
 	}
+    
     
     /**
      * Erzeugt einen Notenschlüssel und leere Notenlinien
      * @param g
      */
-    
     
     public void NotenlinienSchluesselSetzenLeer(Gui g) {
         
@@ -89,6 +95,11 @@ public class Notenlinien extends JPanel{
 		}
 		
 		lNotenlinien[14] = new JLabel(new ImageIcon(notenlinien));
+		for (int j = 0; j < lNotenlinien.length; j++) {
+			
+			
+		}
+		
 			break;
 
 		default:
@@ -97,7 +108,14 @@ public class Notenlinien extends JPanel{
     	
     }
     
-    protected void NotenLinienLaufen(){
+    
+    /**
+     * Ersetzt die einzelnen Bilder der Notenlinien in einem bestimmten abstand durch das vorherige
+     * @author Fabian
+     */
+    
+    
+    protected void NotenLinienLaufen(Gui g){
     	System.out.println("läuft");
     	for (int i = 0; i < lNotenlinien.length; i++) {
     		if (i==lNotenlinien.length-1) {
@@ -109,7 +127,10 @@ public class Notenlinien extends JPanel{
     			}
     			break;
 			}
-			lNotenlinien[i] = lNotenlinien[i+1];
+			lNotenlinien[i] = lNotenlinien[i+1];		
+			
+			
+			
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

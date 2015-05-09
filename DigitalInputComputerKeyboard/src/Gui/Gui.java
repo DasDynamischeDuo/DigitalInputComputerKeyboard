@@ -146,7 +146,7 @@ public class Gui extends JFrame {
 		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
 		
 		NL.NotenlinienSchluesselSetzenLeer(this);
-		NL.NotenLinienLaufen();
+		NL.NotenLinienLaufen(this);
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -194,7 +194,6 @@ public class Gui extends JFrame {
 
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
-					NL.BilderSetzen(Klaviertasten.getIntVonKey(e));
 				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
