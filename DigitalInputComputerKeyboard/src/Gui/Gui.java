@@ -2,6 +2,7 @@ package Gui;
 
 import java.awt.BorderLayout;
 import java.awt.DefaultKeyboardFocusManager;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.KeyEventPostProcessor;
 import java.awt.event.ActionEvent;
@@ -12,10 +13,10 @@ import java.io.IOException;
 import java.security.KeyException;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 
 import Rekorder.Player;
 import Rekorder.Rekorder;
+import MidiAbspielen.MiditonAbspielen;
 
 /**
  * Die Graphische Benutzeroberfläche des Digital Input Computer Keyboard
@@ -26,9 +27,12 @@ import Rekorder.Rekorder;
 
 public class Gui extends JFrame {
 
+	MiditonAbspielen miditonStarten;
+	Notenlinien NL = new Notenlinien();
+
 	private JLabel label1, label2;
 	private JPanel contentpane;
-	private JPanel notenpane, buttonpane, tastenpane;
+	public JPanel notenpane, buttonpane, tastenpane;
 	private JLabel bildSchluessel;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
@@ -38,8 +42,6 @@ public class Gui extends JFrame {
 	private JTextField tfDateiname, tfTempo;
 	private JButton bAufnehmen, bStop, bPlay;
 	private JFileChooser jFileChooser;
-
-
 	private Rekorder rekorder;
 	private Player player;
 
@@ -69,19 +71,14 @@ public class Gui extends JFrame {
 
 		this.tastenListener = new TastenListener(this);
 		tastenListener.start();
-		
 
-		
 	}
 
 	private void initFrameElemente() {
 
-		label1 = new JLabel("Noten");
 		label2 = new JLabel("Verschiedenes");
 
-		notenpane = new JPanel();
-
-		Notenlinien.NotenschluesselSetzten(this);
+		notenpane = new JPanel(new GridLayout(1, 15));
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -128,7 +125,6 @@ public class Gui extends JFrame {
 		groupRadioButton.add(rbSample1);
 		groupRadioButton.add(rbDrum);
 
-		notenpane.add(label1);
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 		buttonpane.add(rbSample1);
@@ -138,7 +134,7 @@ public class Gui extends JFrame {
 		buttonpane.add(bAufnehmen);
 		buttonpane.add(bStop);
 		buttonpane.add(bPlay);
-		
+
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
@@ -146,12 +142,20 @@ public class Gui extends JFrame {
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
 
+		Dimension d = this.getToolkit().getScreenSize();
+		this.setLocation((int) ((d.getWidth() - this.getWidth()) / 4),
+				(int) ((d.getHeight() - this.getHeight()) / 4));
+
+		NL.NotenlinienSchluesselSetzenLeer(this);
+		NL.NotenLinienLaufen(this);
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+
 		jFileChooser = new JFileChooser();
-		jFileChooser.setCurrentDirectory(new File("C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"));
-		
+		jFileChooser
+				.setCurrentDirectory(new File(
+						"C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"));
+
 	}
 
 	/**
@@ -165,9 +169,9 @@ public class Gui extends JFrame {
 	 * 
 	 * @author Fabian
 	 */
+
 	private void initButtons() {
 
-		
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
 		Klaviertasten.buttonsKonfig(rtasten, ltasten);
 
@@ -178,17 +182,16 @@ public class Gui extends JFrame {
 		for (int i = 1; i < rtasten.length; i++) {
 			rgrid.add(rtasten[i]);
 		}
-		
+
 		KeyEventPostProcessor postProcessor = new KeyEventPostProcessor() {
 			public boolean postProcessKeyEvent(KeyEvent e) {
-				
+
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					requestFocusInWindow();
 				}
-				
-				
+
 				if (e.getID() == KeyEvent.KEY_PRESSED) {
-					
+
 					try {
 						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
 					} catch (KeyException e2) {
@@ -210,8 +213,8 @@ public class Gui extends JFrame {
 			}
 		};
 
-		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(postProcessor);
-
+		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager()
+				.addKeyEventPostProcessor(postProcessor);
 
 		bAufnehmen.addActionListener(new ActionListener() {
 
@@ -247,14 +250,14 @@ public class Gui extends JFrame {
 
 			}
 		});
-		
-		
+
 		bPlay.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jFileChooser.showOpenDialog(bPlay);
-				File file = new File(jFileChooser.getSelectedFile().getAbsolutePath());
+				File file = new File(jFileChooser.getSelectedFile()
+						.getAbsolutePath());
 				try {
 					player = new Player();
 					player.abspielen(file);
