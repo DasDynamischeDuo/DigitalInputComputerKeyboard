@@ -1,6 +1,8 @@
 package Gui;
 
 
+import java.io.IOException;
+
 import SampleAbspielen.SampleStarten;
 
 public class TastenListener implements Runnable {
@@ -41,10 +43,22 @@ public class TastenListener implements Runnable {
 					Klaviertasten.pressButton(i, gui.getLtasten(), gui.getRtasten());
 					
 					
-					if (gui.getRbSample1().isSelected()) {
-						sampleStarten.spieleSampleton(i, 0);
-					} else {
-						sampleStarten.spieleSampleton(i, 1);						
+					try {
+						if (gui.getRbSample1().isSelected()) {
+							sampleStarten.spieleSampleton(i, 0);
+							if (gui.getRekorder() != null) {
+								gui.getRekorder().aufnehmen(i);
+							}
+							
+						} else {
+							if (gui.getRekorder() != null) {
+								gui.getRekorder().aufnehmen(i);
+							}
+							sampleStarten.spieleSampleton(i, 1);						
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
 					

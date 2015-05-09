@@ -1,12 +1,21 @@
 package Gui;
 
 import java.awt.BorderLayout;
+import java.awt.DefaultKeyboardFocusManager;
 import java.awt.GridLayout;
+import java.awt.KeyEventPostProcessor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.security.KeyException;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+
+import Rekorder.Player;
+import Rekorder.Rekorder;
 
 /**
  * Die Graphische Benutzeroberfläche des Digital Input Computer Keyboard
@@ -24,8 +33,15 @@ public class Gui extends JFrame {
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
 	private JRadioButton rbSample1;
-	private JRadioButton rbMidi;
+	private JRadioButton rbDrum;
 	private ButtonGroup groupRadioButton;
+	private JTextField tfDateiname, tfTempo;
+	private JButton bAufnehmen, bStop, bPlay;
+	private JFileChooser jFileChooser;
+
+
+	private Rekorder rekorder;
+	private Player player;
 
 	private TastenListener tastenListener;
 
@@ -53,7 +69,9 @@ public class Gui extends JFrame {
 
 		this.tastenListener = new TastenListener(this);
 		tastenListener.start();
+		
 
+		
 	}
 
 	private void initFrameElemente() {
@@ -74,11 +92,20 @@ public class Gui extends JFrame {
 		rgrid = new JPanel();
 
 		rbSample1 = new JRadioButton("Drum");
-		rbMidi = new JRadioButton("Piano");
+		rbDrum = new JRadioButton("Piano");
 		rbSample1.setSelected(true);
 
-		rbMidi.setFocusable(false);
+		rbDrum.setFocusable(false);
 		rbSample1.setFocusable(false);
+
+		tfDateiname = new JTextField("Dateiname");
+		tfTempo = new JTextField("Tempo");
+		bAufnehmen = new JButton("Aufnehmen");
+		bStop = new JButton("Stop");
+		bPlay = new JButton("Play");
+
+		bAufnehmen.setFocusable(false);
+		bStop.setFocusable(false);
 
 		contentpane = new JPanel();
 		contentpane.setFocusable(true);
@@ -99,14 +126,19 @@ public class Gui extends JFrame {
 
 		groupRadioButton = new ButtonGroup();
 		groupRadioButton.add(rbSample1);
-		groupRadioButton.add(rbMidi);
+		groupRadioButton.add(rbDrum);
 
 		notenpane.add(label1);
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 		buttonpane.add(rbSample1);
-		buttonpane.add(rbMidi);
-
+		buttonpane.add(rbDrum);
+		buttonpane.add(tfDateiname);
+		buttonpane.add(tfTempo);
+		buttonpane.add(bAufnehmen);
+		buttonpane.add(bStop);
+		buttonpane.add(bPlay);
+		
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
@@ -116,7 +148,10 @@ public class Gui extends JFrame {
 
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
+		jFileChooser = new JFileChooser();
+		jFileChooser.setCurrentDirectory(new File("C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"));
+		
 	}
 
 	/**
@@ -132,40 +167,9 @@ public class Gui extends JFrame {
 	 */
 	private void initButtons() {
 
+		
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
 		Klaviertasten.buttonsKonfig(rtasten, ltasten);
-
-		this.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-
-				try {
-					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
-				} catch (KeyException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-
-				try {
-					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
-				} catch (KeyException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				
-			}
-		});
 
 		for (int i = 1; i < ltasten.length; i++) {
 			lgrid.add(ltasten[i]);
@@ -174,7 +178,97 @@ public class Gui extends JFrame {
 		for (int i = 1; i < rtasten.length; i++) {
 			rgrid.add(rtasten[i]);
 		}
+		
+		KeyEventPostProcessor postProcessor = new KeyEventPostProcessor() {
+			public boolean postProcessKeyEvent(KeyEvent e) {
+				
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					requestFocusInWindow();
+				}
+				
+				
+				if (e.getID() == KeyEvent.KEY_PRESSED) {
+					
+					try {
+						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
+					} catch (KeyException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 
+				} else if (e.getID() == KeyEvent.KEY_RELEASED) {
+
+					try {
+						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
+					} catch (KeyException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+
+				return true;
+			}
+		};
+
+		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(postProcessor);
+
+
+		bAufnehmen.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int instrument = 0;
+
+				if (rbDrum.isSelected()) {
+					instrument = 1;
+				}
+
+				try {
+					rekorder = new Rekorder(tfDateiname.getText(), Integer
+							.parseInt(tfTempo.getText()), instrument);
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		bStop.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				rekorder.setIstRekorderAktiv(false);
+				rekorder = null;
+
+			}
+		});
+		
+		
+		bPlay.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jFileChooser.showOpenDialog(bPlay);
+				File file = new File(jFileChooser.getSelectedFile().getAbsolutePath());
+				try {
+					player = new Player();
+					player.abspielen(file);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+	}
+
+	public Rekorder getRekorder() {
+		return rekorder;
 	}
 
 	public boolean[] getIstTasteGedrueckt() {
@@ -190,7 +284,7 @@ public class Gui extends JFrame {
 	}
 
 	public JRadioButton getRbMidi() {
-		return rbMidi;
+		return rbDrum;
 	}
 
 	public JToggleButton[] getLtasten() {

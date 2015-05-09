@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Gui.Notenblatt;
 import SampleAbspielen.SampleStarten;
 
 public class Player implements Runnable {
@@ -16,19 +17,20 @@ public class Player implements Runnable {
 	private String str;
 	private int tempo, instrument;
 	private SampleStarten sampleStarten;
+	private Notenblatt notenblatt;
+	private String noten;
 
 	public Player() {
 
 		this.thread = new Thread(this);
 		this.sampleStarten = new SampleStarten();
+		this.notenblatt = new Notenblatt();
+		notenblatt.setVisible(true);
 
 	}
 
-	public void abspielen(String name) throws IOException {
-
-		file = new File(
-				"C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"
-						+ name + ".txt");
+	public void abspielen(File file) throws IOException {
+		
 		fileReader = new FileReader(file);
 		bufferedReader = new BufferedReader(fileReader);
 
@@ -42,7 +44,7 @@ public class Player implements Runnable {
 
 	@Override
 	public void run() {
-		int pause = (tempo * 100) / 24;
+		int pause = 15000 / tempo;
 		int taste[] = new int[3];
 		String[] einzelTon = new String[3];
 
@@ -56,12 +58,13 @@ public class Player implements Runnable {
 								einzelTon[i] = "" +str.charAt(i * 2) +str.charAt(i * 2 + 1);
 								taste[i] = Integer.parseInt(einzelTon[i]);
 								sampleStarten.spieleSampleton(taste[i], instrument);
-								System.out.print(taste[i] +", ");
+								noten += taste[i];
+								
 							
 							i++;
 						}
-
-						System.out.println("-");
+						noten += " - ";
+						notenblatt.getlNoten().setText(noten);
 						thread.sleep(pause);
 						
 					}
