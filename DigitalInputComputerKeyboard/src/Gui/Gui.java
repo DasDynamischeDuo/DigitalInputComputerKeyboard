@@ -201,6 +201,15 @@ public class Gui extends JFrame {
 				
 			}
 		});
+		
+		for (int i = 1; i < ltasten.length; i++) {
+			lgrid.add(ltasten[i]);
+		}
+
+		for (int i = 1; i < rtasten.length; i++) {
+			rgrid.add(rtasten[i]);
+		}
+		
 	}
 		
 	
