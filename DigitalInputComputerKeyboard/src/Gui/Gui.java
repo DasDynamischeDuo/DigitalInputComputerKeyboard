@@ -1,12 +1,28 @@
 package Gui;
 
 import java.awt.BorderLayout;
+
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.KeyException;
 
 import javax.swing.*;
+
+import MidiAbspielen.MiditonAbspielen;
 
 /**
  * Die Graphische Benutzeroberfläche des Digital Input Computer Keyboard
@@ -17,15 +33,20 @@ import javax.swing.*;
 
 public class Gui extends JFrame {
 
+
+	MiditonAbspielen miditonStarten;
+	Notenlinien NL = new Notenlinien();
+	
 	private JLabel label1, label2;
 	private JPanel contentpane;
-	private JPanel notenpane, buttonpane, tastenpane;
+	public JPanel notenpane, buttonpane, tastenpane;
 	private JLabel bildSchluessel;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
 	private JRadioButton rbSample1;
 	private JRadioButton rbMidi;
 	private ButtonGroup groupRadioButton;
+
 
 	private TastenListener tastenListener;
 
@@ -44,26 +65,30 @@ public class Gui extends JFrame {
 
 	public Gui() {
 
+		
+		
+		
 		this.setFocusable(true);
-
+		
 		istTasteGedrueckt = new boolean[27];
 
 		initFrameElemente();
 		initButtons();
 
+
 		this.tastenListener = new TastenListener(this);
 		tastenListener.start();
+
 
 	}
 
 	private void initFrameElemente() {
 
-		label1 = new JLabel("Noten");
+		
 		label2 = new JLabel("Verschiedenes");
 
-		notenpane = new JPanel();
 
-		Notenlinien.NotenschluesselSetzten(this);
+		notenpane = new JPanel(new GridLayout(1,15));
 		buttonpane = new JPanel();
 		tastenpane = new JPanel();
 
@@ -97,11 +122,12 @@ public class Gui extends JFrame {
 		lklav.add(lgrid);
 		rklav.add(rgrid);
 
+
 		groupRadioButton = new ButtonGroup();
 		groupRadioButton.add(rbSample1);
 		groupRadioButton.add(rbMidi);
 
-		notenpane.add(label1);
+
 		notenpane.setFocusable(true);
 		buttonpane.add(label2);
 		buttonpane.add(rbSample1);
@@ -110,14 +136,22 @@ public class Gui extends JFrame {
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
+		
+		
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
-
+		
+		Dimension d = this.getToolkit().getScreenSize();
+		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
+		
+		NL.NotenlinienSchluesselSetzenLeer(this);
+		NL.NotenLinienLaufen(this);
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
 	}
+
 
 	/**
 	 * 
@@ -130,6 +164,7 @@ public class Gui extends JFrame {
 	 * 
 	 * @author Fabian
 	 */
+
 	private void initButtons() {
 
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
@@ -193,9 +228,11 @@ public class Gui extends JFrame {
 		return rbMidi;
 	}
 
+
 	public JToggleButton[] getLtasten() {
 		return ltasten;
 	}
+
 
 	public JPanel getNotenpane() {
 		return notenpane;
