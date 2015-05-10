@@ -116,7 +116,6 @@ public class Notenlinien extends JPanel{
     
     
     protected void NotenLinienLaufen(Gui g){
-    	System.out.println("läuft");
     	for (int i = 0; i < lNotenlinien.length; i++) {
     		if (i==lNotenlinien.length-1) {
 				

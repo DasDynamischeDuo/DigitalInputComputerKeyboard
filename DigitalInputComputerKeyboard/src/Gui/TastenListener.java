@@ -26,10 +26,11 @@ public class TastenListener implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			
+
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
 				if (!gui.getIstTasteGedrueckt(i) && istTonAbgespielt[i]) {
-					Klaviertasten.releasButton(i, gui.getLtasten(), gui.getRtasten());
+					Klaviertasten.releasButton(i, gui.getLtasten(),
+							gui.getRtasten());
 					istTonAbgespielt[i] = false;
 
 				}
@@ -38,38 +39,42 @@ public class TastenListener implements Runnable {
 
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
 				if (gui.getIstTasteGedrueckt(i) && !istTonAbgespielt[i]) {
-					Klaviertasten.pressButton(i, gui.getLtasten(), gui.getRtasten());
-					
-					
+					Klaviertasten.pressButton(i, gui.getLtasten(),
+							gui.getRtasten());
+
 					try {
-						if (gui.getRbSample1().isSelected()) {
+						if (gui.getRbDrum().isSelected()) {
 							sampleStarten.spieleSampleton(i, 1);
-							if (gui.getRekorder() != null) {
+							if (gui.getRekorder() != null && anzToeneGleichzeitig == 0) {
 								gui.getRekorder().aufnehmen(i);
-								if (gui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 1) {
-									gui.getRekorder().gleichzeitigerTonSchreiben(i);
-									anzToeneGleichzeitig++;
-								}
+								anzToeneGleichzeitig++;
+
+							} else if (gui.getRekorder() != null && gui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 2) {
+								gui.getRekorder().gleichzeitigerTonSchreiben(i);
+								anzToeneGleichzeitig++;
 							}
-							
-						} else {
-							sampleStarten.spieleSampleton(i, 2);
-							
-							if (gui.getRekorder() != null) {
-								gui.getRekorder().aufnehmen(i);
-								if (gui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 1) {
-									gui.getRekorder().gleichzeitigerTonSchreiben(i);
-									anzToeneGleichzeitig++;
-								}
-							}
-													
+
 						}
+
+						if (gui.getRbPiano().isSelected()) {
+							sampleStarten.spieleSampleton(i, 2);
+
+							if (gui.getRekorder() != null && anzToeneGleichzeitig == 0) {
+								gui.getRekorder().aufnehmen(i);
+								anzToeneGleichzeitig++;
+								
+							} else if (gui.getRekorder() != null && gui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 2) {
+								gui.getRekorder().gleichzeitigerTonSchreiben(i);
+								anzToeneGleichzeitig++;
+							}
+
+						}
+
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					
+
 					istTonAbgespielt[i] = true;
 
 				}

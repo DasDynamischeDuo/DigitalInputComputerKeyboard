@@ -49,6 +49,26 @@ public class Player implements Runnable {
 		int taste[] = new int[3];
 		String[] einzelTon = new String[3];
 
+		while (notenblatt.isIstPausiert()) {
+			try {
+				thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			sampleStarten.spieleSampleton(-1, 0);
+			try {
+				thread.sleep(pause*3);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 		while (str != null) {
 			
 			try {

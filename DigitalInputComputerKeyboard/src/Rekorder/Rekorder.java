@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.Thread.State;
 
 import Gui.TastenListener;
+import SampleAbspielen.SampleStarten;
 
 public class Rekorder implements Runnable {
 
@@ -18,6 +19,7 @@ public class Rekorder implements Runnable {
 	private boolean istTonGespieltwurden;
 	private int taste, tempo;
 	private TastenListener tastenListener;
+	private SampleStarten sampleStarten;
 
 	public Rekorder(String name, int tempo, int instrument, TastenListener tastenListener) throws IOException {
 
@@ -26,6 +28,8 @@ public class Rekorder implements Runnable {
 
 		file = new File(name);
 		file.createNewFile();
+		
+		sampleStarten = new SampleStarten();
 
 		fileWriter = new FileWriter(file);
 		bufferedWriter = new BufferedWriter(fileWriter);
@@ -74,6 +78,7 @@ public class Rekorder implements Runnable {
 	
 	@Override
 	public void run() {
+		
 		while (istRekorderAktiv) {
 			
 			if (istTonGespieltwurden) {

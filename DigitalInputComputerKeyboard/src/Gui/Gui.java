@@ -33,8 +33,8 @@ public class Gui extends JFrame {
 	private JLabel bildSchluessel;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
-	private JRadioButton rbSample1;
 	private JRadioButton rbDrum;
+	private JRadioButton rbPiano;
 	private ButtonGroup groupRadioButton;
 	private JTextField tfDateiname, tfTempo;
 	private JButton bAufnehmen, bStop, bPlay;
@@ -85,12 +85,12 @@ public class Gui extends JFrame {
 		lgrid = new JPanel();
 		rgrid = new JPanel();
 
-		rbSample1 = new JRadioButton("Drum");
-		rbDrum = new JRadioButton("Piano");
-		rbSample1.setSelected(true);
+		rbDrum = new JRadioButton("Drum");
+		rbPiano = new JRadioButton("Piano");
+		rbDrum.setSelected(true);
 
+		rbPiano.setFocusable(false);
 		rbDrum.setFocusable(false);
-		rbSample1.setFocusable(false);
 
 		tfDateiname = new JTextField("Dateiname");
 		tfTempo = new JTextField("Tempo");
@@ -119,12 +119,12 @@ public class Gui extends JFrame {
 		rklav.add(rgrid);
 
 		groupRadioButton = new ButtonGroup();
-		groupRadioButton.add(rbSample1);
 		groupRadioButton.add(rbDrum);
+		groupRadioButton.add(rbPiano);
 
 		notenpane.setFocusable(true);
-		buttonpane.add(rbSample1);
 		buttonpane.add(rbDrum);
+		buttonpane.add(rbPiano);
 		buttonpane.add(tfDateiname);
 		buttonpane.add(tfTempo);
 		buttonpane.add(bAufnehmen);
@@ -223,7 +223,7 @@ public class Gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int instrument = 1;
 
-				if (rbDrum.isSelected()) {
+				if (rbPiano.isSelected()) {
 					instrument = 2;
 				}
 
@@ -286,12 +286,12 @@ public class Gui extends JFrame {
 		return rtasten;
 	}
 
-	public JRadioButton getRbSample1() {
-		return rbSample1;
+	public JRadioButton getRbDrum() {
+		return rbDrum;
 	}
 
-	public JRadioButton getRbMidi() {
-		return rbDrum;
+	public JRadioButton getRbPiano() {
+		return rbPiano;
 	}
 
 	public JToggleButton[] getLtasten() {
