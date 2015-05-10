@@ -1,6 +1,5 @@
 package Gui;
 
-
 import java.io.IOException;
 
 import SampleAbspielen.SampleStarten;
@@ -10,7 +9,8 @@ public class TastenListener implements Runnable {
 	private Thread thread;
 	private Gui gui;
 	private SampleStarten sampleStarten;
-	
+	private int anzToeneGleichzeitig = 0;
+
 	private boolean[] istTonAbgespielt;
 
 	public TastenListener(Gui gui) {
@@ -20,14 +20,12 @@ public class TastenListener implements Runnable {
 
 		this.istTonAbgespielt = new boolean[27];
 		this.sampleStarten = new SampleStarten();
-		
+
 	}
 
 	@Override
 	public void run() {
 		while (true) {
-
-			
 			
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
 				if (!gui.getIstTasteGedrueckt(i) && istTonAbgespielt[i]) {
@@ -45,16 +43,26 @@ public class TastenListener implements Runnable {
 					
 					try {
 						if (gui.getRbSample1().isSelected()) {
-							sampleStarten.spieleSampleton(i, 0);
+							sampleStarten.spieleSampleton(i, 1);
 							if (gui.getRekorder() != null) {
 								gui.getRekorder().aufnehmen(i);
+								if (gui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 1) {
+									gui.getRekorder().gleichzeitigerTonSchreiben(i);
+									anzToeneGleichzeitig++;
+								}
 							}
 							
 						} else {
+							sampleStarten.spieleSampleton(i, 2);
+							
 							if (gui.getRekorder() != null) {
 								gui.getRekorder().aufnehmen(i);
+								if (gui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 1) {
+									gui.getRekorder().gleichzeitigerTonSchreiben(i);
+									anzToeneGleichzeitig++;
+								}
 							}
-							sampleStarten.spieleSampleton(i, 1);						
+													
 						}
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -77,6 +85,10 @@ public class TastenListener implements Runnable {
 			thread.start();
 		}
 
+	}
+
+	public void setAnzToeneGleichzeitig(int anzToeneGleichzeitig) {
+		this.anzToeneGleichzeitig = anzToeneGleichzeitig;
 	}
 
 }

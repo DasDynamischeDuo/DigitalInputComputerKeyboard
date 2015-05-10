@@ -16,10 +16,9 @@ import javax.swing.*;
 
 import Rekorder.Player;
 import Rekorder.Rekorder;
-import MidiAbspielen.MiditonAbspielen;
 
 /**
- * Die Graphische Benutzeroberfläche des Digital Input Computer Keyboard
+ * Die Graphische Benutzeroberflaeche des Digital Input Computer Keyboard
  * 
  * @author Emanuel
  * @version 0.1
@@ -27,10 +26,8 @@ import MidiAbspielen.MiditonAbspielen;
 
 public class Gui extends JFrame {
 
-	MiditonAbspielen miditonStarten;
 	Notenlinien NL = new Notenlinien();
 
-	private JLabel label1, label2;
 	private JPanel contentpane;
 	public JPanel notenpane, buttonpane, tastenpane;
 	private JLabel bildSchluessel;
@@ -76,7 +73,7 @@ public class Gui extends JFrame {
 
 	private void initFrameElemente() {
 
-		label2 = new JLabel("Verschiedenes");
+	
 
 		notenpane = new JPanel(new GridLayout(1, 15));
 		buttonpane = new JPanel();
@@ -126,7 +123,6 @@ public class Gui extends JFrame {
 		groupRadioButton.add(rbDrum);
 
 		notenpane.setFocusable(true);
-		buttonpane.add(label2);
 		buttonpane.add(rbSample1);
 		buttonpane.add(rbDrum);
 		buttonpane.add(tfDateiname);
@@ -189,7 +185,12 @@ public class Gui extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					requestFocusInWindow();
 				}
+				
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					
+				}
 
+				
 				if (e.getID() == KeyEvent.KEY_PRESSED) {
 
 					try {
@@ -220,15 +221,15 @@ public class Gui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int instrument = 0;
+				int instrument = 1;
 
 				if (rbDrum.isSelected()) {
-					instrument = 1;
+					instrument = 2;
 				}
 
 				try {
 					rekorder = new Rekorder(tfDateiname.getText(), Integer
-							.parseInt(tfTempo.getText()), instrument);
+							.parseInt(tfTempo.getText()), instrument, tastenListener);
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -255,16 +256,20 @@ public class Gui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jFileChooser.showOpenDialog(bPlay);
-				File file = new File(jFileChooser.getSelectedFile()
-						.getAbsolutePath());
-				try {
-					player = new Player();
-					player.abspielen(file);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				int ret = jFileChooser.showSaveDialog(bPlay);
+				if (ret == 0) {
+					File file = new File(jFileChooser.getSelectedFile()
+							.getAbsolutePath());
+
+					try {
+						player = new Player();
+						player.abspielen(file);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
+
 			}
 		});
 

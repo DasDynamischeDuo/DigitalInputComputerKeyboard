@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.Thread.State;
+
+import Gui.TastenListener;
 
 public class Rekorder implements Runnable {
 
@@ -14,8 +17,9 @@ public class Rekorder implements Runnable {
 	private boolean istRekorderAktiv = false;
 	private boolean istTonGespieltwurden;
 	private int taste, tempo;
+	private TastenListener tastenListener;
 
-	public Rekorder(String name, int tempo, int instrument) throws IOException {
+	public Rekorder(String name, int tempo, int instrument, TastenListener tastenListener) throws IOException {
 
 		name = "C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"
 				+ name + ".txt";
@@ -27,6 +31,7 @@ public class Rekorder implements Runnable {
 		bufferedWriter = new BufferedWriter(fileWriter);
 
 		this.tempo = tempo;
+		this.tastenListener = tastenListener;
 
 		thread = new Thread(this);
 
@@ -35,6 +40,12 @@ public class Rekorder implements Runnable {
 		bufferedWriter.write(Integer.toString(instrument));
 		bufferedWriter.newLine();
 		bufferedWriter.newLine();
+		
+		for (int i = 0; i < 4; i++) {
+			bufferedWriter.write(Integer.toString(0));
+			bufferedWriter.newLine();
+		}
+		
 		istRekorderAktiv = true;
 		thread.start();
 
@@ -49,7 +60,23 @@ public class Rekorder implements Runnable {
 	public void aufnahmeBeenden() throws IOException {
 		bufferedWriter.close();
 	}
+	
+	public void gleichzeitigerTonSchreiben(int taste) {
+		
+		try {
+			if (taste < 10) {
+				bufferedWriter.write("0" +Integer.toString(taste));
+			} else {
+				bufferedWriter.write(Integer.toString(taste));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
+	
 	@Override
 	public void run() {
 		while (istRekorderAktiv) {
@@ -58,10 +85,8 @@ public class Rekorder implements Runnable {
 				try {
 				if (taste < 10) {
 					bufferedWriter.write("0" +Integer.toString(taste));
-					System.out.print("0" +Integer.toString(taste));
 				} else {
 					bufferedWriter.write(Integer.toString(taste));
-					System.out.print(Integer.toString(taste));
 				}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -71,7 +96,7 @@ public class Rekorder implements Runnable {
 				try {
 					bufferedWriter.write("-");
 					bufferedWriter.newLine();
-					System.out.println("-");
+					tastenListener.setAnzToeneGleichzeitig(0);
 					istTonGespieltwurden = false;
 					Thread.sleep((15000/tempo));
 				} catch (IOException e) {
@@ -106,6 +131,17 @@ public class Rekorder implements Runnable {
 			thread.run();
 		}
 
+	}
+	
+	
+	public boolean isRekorderAsleep() {
+		
+		if (thread.getState() == State.TIMED_WAITING) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 }

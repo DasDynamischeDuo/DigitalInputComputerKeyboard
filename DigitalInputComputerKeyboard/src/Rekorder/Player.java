@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.Thread.State;
 
 import Gui.Notenblatt;
 import SampleAbspielen.SampleStarten;
@@ -49,9 +50,14 @@ public class Player implements Runnable {
 		String[] einzelTon = new String[3];
 
 		while (str != null) {
+			
 			try {
 				str = bufferedReader.readLine();
 				if (str != null) {
+					while(notenblatt.isIstPausiert()) {
+						thread.sleep(50);
+					}
+					
 					int i = 0;
 						while (i*2+1 < str.length() && str.charAt(i * 2 + 1) != '-') {
 				

@@ -53,10 +53,12 @@ public class SampleAbspielen {
 
 		String source = "";
 		
-		
-		
+		switch (instrument) {
+		case 0:
+			source = "/SonstigeSample/Metronom.wav";
+			break;
 
-		if (instrument == 0) {
+		case 1:
 			source = "/SchalgzeugSample/Closed-Hi-Hat.wav";
 			if (ton <= 7) {
 				source = "/SchalgzeugSample/Kick.wav";
@@ -67,10 +69,9 @@ public class SampleAbspielen {
 			} {
 				
 			}
+			break;
 			
-			
-
-		} else {
+		case 2:
 			source = "/PianoSample/PianoC4.wav";
 			switch (ton) {
 
@@ -173,7 +174,12 @@ public class SampleAbspielen {
 			default:
 				break;
 			}
+			break;
+			
+		default:
+			break;
 		}
+			
 
 		soundURL = SampleAbspielen.class.getResource(source);
 
