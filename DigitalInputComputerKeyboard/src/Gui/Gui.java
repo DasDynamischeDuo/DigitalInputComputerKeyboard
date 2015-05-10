@@ -35,7 +35,7 @@ public class Gui extends JFrame {
 
 
 	MiditonAbspielen miditonStarten;
-	Notenlinien NL = new Notenlinien();
+	Notenlinien NL = new Notenlinien(this);
 	
 	private JLabel label1, label2;
 	private JPanel contentpane;
@@ -50,7 +50,7 @@ public class Gui extends JFrame {
 
 	private TastenListener tastenListener;
 
-	private boolean[] istTasteGedrueckt;
+	public boolean[] istTasteGedrueckt = new boolean[27];
 
 	private JToggleButton[] rtasten = new JToggleButton[103];// Buttonanzahlt
 																// einfuegen
@@ -65,12 +65,13 @@ public class Gui extends JFrame {
 
 	public Gui() {
 
-		
+		for (int i = 0; i < istTasteGedrueckt.length; i++) {
+			istTasteGedrueckt[i]=false;
+		}
 		
 		
 		this.setFocusable(true);
 		
-		istTasteGedrueckt = new boolean[27];
 
 		initFrameElemente();
 		initButtons();
@@ -145,8 +146,12 @@ public class Gui extends JFrame {
 		Dimension d = this.getToolkit().getScreenSize();
 		this.setLocation((int) ((d.getWidth() - this.getWidth())/4 ), (int) ((d.getHeight() - this.getHeight())/4));
 		
-		NL.NotenlinienSchluesselSetzenLeer(this);
-		NL.NotenLinienLaufen(this);
+		NL.NotenlinienSchluesselSetzenLeer();
+		NL.NotenlinienLaufen();
+		
+		
+		
+		
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -194,6 +199,10 @@ public class Gui extends JFrame {
 
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
+					NL.zeichneNote(Klaviertasten.getIntVonKey(e));
+					
+					
+					
 				} catch (KeyException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
