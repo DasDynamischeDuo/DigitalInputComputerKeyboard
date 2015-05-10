@@ -228,8 +228,7 @@ public class Gui extends JFrame {
 				}
 
 				try {
-					rekorder = new Rekorder(tfDateiname.getText(), Integer
-							.parseInt(tfTempo.getText()), instrument, tastenListener);
+					rekorder = new Rekorder(tfDateiname.getText(), Integer.parseInt(tfTempo.getText()), instrument, tastenListener);
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

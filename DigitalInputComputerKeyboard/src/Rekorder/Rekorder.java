@@ -41,11 +41,6 @@ public class Rekorder implements Runnable {
 		bufferedWriter.newLine();
 		bufferedWriter.newLine();
 		
-		for (int i = 0; i < 4; i++) {
-			bufferedWriter.write(Integer.toString(0));
-			bufferedWriter.newLine();
-		}
-		
 		istRekorderAktiv = true;
 		thread.start();
 
