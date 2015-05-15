@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.Thread.State;
 
 import Gui.Notenblatt;
 import SampleAbspielen.SampleStarten;
@@ -13,7 +12,6 @@ public class Player implements Runnable {
 
 	private FileReader fileReader;
 	private BufferedReader bufferedReader;
-	private File file;
 	private Thread thread;
 	private String str;
 	private int tempo, instrument;
@@ -53,7 +51,6 @@ public class Player implements Runnable {
 			try {
 				thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -63,7 +60,6 @@ public class Player implements Runnable {
 			try {
 				thread.sleep(pause*3);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

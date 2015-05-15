@@ -30,7 +30,6 @@ public class Gui extends JFrame {
 
 	private JPanel contentpane;
 	public JPanel notenpane, buttonpane, tastenpane;
-	private JLabel bildSchluessel;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
 	private JRadioButton rbDrum;
@@ -171,6 +170,7 @@ public class Gui extends JFrame {
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
 		Klaviertasten.buttonsKonfig(rtasten, ltasten);
 
+
 		for (int i = 1; i < ltasten.length; i++) {
 			lgrid.add(ltasten[i]);
 		}
@@ -178,6 +178,7 @@ public class Gui extends JFrame {
 		for (int i = 1; i < rtasten.length; i++) {
 			rgrid.add(rtasten[i]);
 		}
+
 
 		KeyEventPostProcessor postProcessor = new KeyEventPostProcessor() {
 			public boolean postProcessKeyEvent(KeyEvent e) {
@@ -196,7 +197,6 @@ public class Gui extends JFrame {
 					try {
 						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
 					} catch (KeyException e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 
@@ -205,7 +205,6 @@ public class Gui extends JFrame {
 					try {
 						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
 					} catch (KeyException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -230,10 +229,8 @@ public class Gui extends JFrame {
 				try {
 					rekorder = new Rekorder(tfDateiname.getText(), Integer.parseInt(tfTempo.getText()), instrument, tastenListener);
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -264,7 +261,6 @@ public class Gui extends JFrame {
 						player = new Player();
 						player.abspielen(file);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -276,8 +272,10 @@ public class Gui extends JFrame {
 
 	public Rekorder getRekorder() {
 		return rekorder;
-	}
 
+	}
+		
+	
 	public boolean[] getIstTasteGedrueckt() {
 		return istTasteGedrueckt;
 	}

@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.security.KeyException;
 
-import javax.sound.midi.MidiUnavailableException;
 import javax.swing.JToggleButton;
 
 
