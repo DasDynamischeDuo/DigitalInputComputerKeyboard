@@ -199,6 +199,7 @@ public class Gui extends JFrame {
 
 				try {
 					istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
+					System.out.println(Klaviertasten.getIntVonKey(e));
 					NL.zeichneNote(Klaviertasten.getIntVonKey(e));
 					
 					

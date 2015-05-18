@@ -71,7 +71,7 @@ public class SampleAbspielen {
 			
 
 		} else {
-			source = "/PianoSample/PianoC4.wav";
+			
 			switch (ton) {
 
 			case 0:
@@ -168,6 +168,10 @@ public class SampleAbspielen {
 				
 			case 23:
 				source = "/PianoSample/PianoB5.wav";
+				break;
+				
+			case 25:
+				source = " ";
 				break;
 				
 			default:

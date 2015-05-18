@@ -20,7 +20,7 @@ public class Notenlinien extends JPanel{
 	
 	
     private BufferedImage notenschluessel;
-    private BufferedImage[] Noten = new BufferedImage[50];
+    private BufferedImage[] Noten = new BufferedImage[25];
     private JLabel lNotenBild;
     
     private JLabel lNotenschl;
@@ -97,7 +97,7 @@ public class Notenlinien extends JPanel{
 		
 		case 0:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[2]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[1]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -107,7 +107,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 1:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[3]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[2]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -117,7 +117,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 2:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[4]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[3]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -127,7 +127,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 3:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[5]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[4]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -137,7 +137,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 4:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[6]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[5]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -147,7 +147,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 5:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[7]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[6]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -157,7 +157,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 6:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[8]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[7]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -167,7 +167,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 7:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[9]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[8]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -177,7 +177,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 8:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[10]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[9]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -187,7 +187,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 9:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[11]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[10]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -197,7 +197,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 10:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[12]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[11]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -207,7 +207,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 11:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[13]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[12]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -217,7 +217,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 12:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[14]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[13]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -227,7 +227,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 13:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[15]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[14]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -237,7 +237,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 14:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[16]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[15]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -247,7 +247,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 15:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[17]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[16]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -257,7 +257,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 16:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[18]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[17]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -267,7 +267,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 17:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[19]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[18]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -277,7 +277,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 18:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[20]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[19]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -287,7 +287,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 19:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[21]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[20]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -297,7 +297,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 20:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[22]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[21]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -307,7 +307,7 @@ public class Notenlinien extends JPanel{
 			break;
 		case 21:			
 			try {
-				lNotenBild = new JLabel(new ImageIcon (Noten[23]));
+				lNotenBild = new JLabel(new ImageIcon (Noten[22]));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -316,6 +316,16 @@ public class Notenlinien extends JPanel{
 			g.revalidate();
 			break;
 		case 22:			
+			try {
+				lNotenBild = new JLabel(new ImageIcon (Noten[23]));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+				g.notenpane.remove(1);
+				g.notenpane.add(lNotenBild);			
+			g.revalidate();
+			break;
+		case 23:			
 			try {
 				lNotenBild = new JLabel(new ImageIcon (Noten[24]));
 			} catch (Exception e) {
@@ -343,7 +353,7 @@ public class Notenlinien extends JPanel{
 	public void NotenArrayFuellen() {
 		
 		try {
-    		notenschluessel = ImageIO.read(getClass().getResource("/Images/notenschluessel.jpg"));
+    		notenschluessel = ImageIO.read(getClass().getResource("/Images/Notenschluessel.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -355,131 +365,127 @@ public class Notenlinien extends JPanel{
 		}
 		
 		try {
-    		Noten[1] = ImageIO.read(getClass().getResource("/Images/Noten/1unteresH.png"));
+    		Noten[1] = ImageIO.read(getClass().getResource("/Images/Noten/unteresC.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[2] = ImageIO.read(getClass().getResource("/Images/Noten/2unteresC.png"));
+    		Noten[2] = ImageIO.read(getClass().getResource("/Images/Noten/unteresCis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[3] = ImageIO.read(getClass().getResource());// Hier Cis
+    		Noten[3] = ImageIO.read(getClass().getResource("/Images/Noten/unteresD.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[4] = ImageIO.read(getClass().getResource("/Images/Noten/3unteresD.png"));
+    		Noten[4] = ImageIO.read(getClass().getResource("/Images/Noten/unteresDis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[5] = ImageIO.read(getClass().getResource());// Hier Dis
+    		Noten[5] = ImageIO.read(getClass().getResource("/Images/Noten/unteresE.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[6] = ImageIO.read(getClass().getResource("/Images/Noten/4unteresE.png"));
+    		Noten[6] = ImageIO.read(getClass().getResource("/Images/Noten/unteresF.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[7] = ImageIO.read(getClass().getResource("/Images/Noten/5unteresF.png"));
+    		Noten[7] = ImageIO.read(getClass().getResource("/Images/Noten/unteresFis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[8] = ImageIO.read(getClass().getResource());// Hier Fis
+    		Noten[8] = ImageIO.read(getClass().getResource("/Images/Noten/unteresG.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[9] = ImageIO.read(getClass().getResource("/Images/Noten/6unteresG.png"));
+    		Noten[9] = ImageIO.read(getClass().getResource("/Images/Noten/unteresGis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[10] = ImageIO.read(getClass().getResource());// Hier Gis
+    		Noten[10] = ImageIO.read(getClass().getResource("/Images/Noten/unteresA.png"));
     		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[11] = ImageIO.read(getClass().getResource("/Images/Noten/7unteresA.png"));
+    		Noten[11] = ImageIO.read(getClass().getResource("/Images/Noten/unteresAis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[12] = ImageIO.read(getClass().getResource());// Hier Ais
+    		Noten[12] = ImageIO.read(getClass().getResource("/Images/Noten/unteresH.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[13] = ImageIO.read(getClass().getResource("/Images/Noten/8mittleresH.png"));
+    		Noten[13] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresC.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[14] = ImageIO.read(getClass().getResource("/Images/Noten/9mittleresC.png"));
+    		Noten[14] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresCis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 		try {
-    		//Noten[15] = ImageIO.read(getClass().getResource());// Hier Cis
+    		Noten[15] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresD.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 		try {
-    		Noten[16] = ImageIO.read(getClass().getResource("/Images/Noten/10mittleresD.png"));
+    		Noten[16] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresDis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[17] = ImageIO.read(getClass().getResource());// Hier Dis
+    		Noten[17] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresE.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 		try {
-    		Noten[18] = ImageIO.read(getClass().getResource("/Images/Noten/11mittleresE.png"));
+    		Noten[18] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresF.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[19] = ImageIO.read(getClass().getResource("/Images/Noten/12mittleresF.png"));
+    		Noten[19] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresFis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[20] = ImageIO.read(getClass().getResource());// Hier Fis
+    		Noten[20] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresG.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[21] = ImageIO.read(getClass().getResource("/Images/Noten/13mittleresG.png"));
+    		Noten[21] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresGis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[22] = ImageIO.read(getClass().getResource());// Hier Gis
+    		Noten[22] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresA.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		Noten[23] = ImageIO.read(getClass().getResource("/Images/Noten/14mittleresA.png"));
+    		Noten[23] = ImageIO.read(getClass().getResource("/Images/Noten/mittleresAis.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-    		//Noten[24] = ImageIO.read(getClass().getResource());// Hier Ais
+    		Noten[24] = ImageIO.read(getClass().getResource("/Images/Noten/hohesH.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		try {
-    		Noten[25] = ImageIO.read(getClass().getResource("/Images/Noten/15oberesH.png"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		
 		
 	}
