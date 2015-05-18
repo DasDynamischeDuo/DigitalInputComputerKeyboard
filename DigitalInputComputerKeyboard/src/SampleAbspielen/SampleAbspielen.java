@@ -71,8 +71,10 @@ public class SampleAbspielen {
 			}
 			break;
 			
+
 		case 2:
 			source = "/PianoSample/PianoC4.wav";
+
 			switch (ton) {
 
 			case 0:
@@ -171,6 +173,10 @@ public class SampleAbspielen {
 				source = "/PianoSample/PianoB5.wav";
 				break;
 				
+			case 25:
+				source = " ";
+				break;
+				
 			default:
 				break;
 			}
@@ -178,7 +184,15 @@ public class SampleAbspielen {
 			
 		default:
 			break;
-		}
+			
+
+		} 
+		
+		
+			
+
+			
+		
 			
 
 		soundURL = SampleAbspielen.class.getResource(source);

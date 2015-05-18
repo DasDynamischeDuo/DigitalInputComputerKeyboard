@@ -895,7 +895,7 @@ public class Klaviertasten {
 		case (int) '+':
 			return 23;
 		default:
-			return 0;
+			return 25;
 		}
 
 	}
