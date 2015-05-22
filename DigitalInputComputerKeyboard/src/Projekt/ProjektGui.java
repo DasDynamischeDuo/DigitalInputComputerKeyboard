@@ -3,6 +3,7 @@ package Projekt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -32,7 +33,7 @@ public class ProjektGui extends JFrame {
 	private Gui gui;
 
 	public ProjektGui(Gui gui, BenutzerProjekt benutzerProjekt) {
-		
+
 		this.benutzerProjekt = benutzerProjekt;
 
 		this.player = new Vector<Player>();
@@ -41,14 +42,13 @@ public class ProjektGui extends JFrame {
 
 		contentpane = new JPanel();
 		setContentPane(contentpane);
-		
+
 		tfDateiname = new JTextField("Dateiname");
 		tfTempo = new JTextField("Tempo");
 		bAufnehmen = new JButton("Aufnehmen");
 		bStop = new JButton("Stop");
 		bPlay = new JButton("Play");
 		cbSamples = new JComboBox<String>();
-		cbSamples.addItem("test");
 
 		bAufnehmen.setFocusable(false);
 		bStop.setFocusable(false);
@@ -60,8 +60,25 @@ public class ProjektGui extends JFrame {
 		contentpane.add(bAufnehmen);
 		contentpane.add(bStop);
 		contentpane.add(bPlay);
-		
-		
+
+		File file = new File(benutzerProjekt.getUrlSamples());
+		String[] sampels = file.list(new FilenameFilter() {
+
+			@Override
+			public boolean accept(File dir, String name) {
+
+				return new File(dir, name).isDirectory();
+			}
+		});
+
+		if (sampels.length != 0) {
+			for (int i = 0; i < sampels.length; i++) {
+				cbSamples.addItem(sampels[i]);
+			}
+		} else {
+			cbSamples.addItem("Keine Sampels");
+		}
+
 		setTitle(benutzerProjekt.getProjektName());
 
 		bAufnehmen.addActionListener(new ActionListener() {
@@ -69,11 +86,13 @@ public class ProjektGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int instrument = 1;
-				String dateipfad = getBenutzerProjekt().getUrlAufnahmen() +"/" +tfDateiname.getText();
-				
+				String dateipfad = getBenutzerProjekt().getUrlAufnahmen() + "/"
+						+ tfDateiname.getText();
 
 				try {
-					rekorder = new Rekorder(dateipfad, Integer.parseInt(tfTempo.getText()), instrument, getGui().getTastenListener());
+					rekorder = new Rekorder(dateipfad, Integer.parseInt(tfTempo
+							.getText()), instrument, getGui()
+							.getTastenListener());
 					rekorder.setProjektGui(getProjektGui());
 				} catch (NumberFormatException e1) {
 					e1.printStackTrace();
@@ -100,10 +119,12 @@ public class ProjektGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jFileChooser = new JFileChooser();
-				jFileChooser.setCurrentDirectory(new File(getBenutzerProjekt().getUrlAufnahmen()));
+				jFileChooser.setCurrentDirectory(new File(getBenutzerProjekt()
+						.getUrlAufnahmen()));
 				int ret = jFileChooser.showSaveDialog(bPlay);
 				if (ret == 0) {
-					File file = new File(jFileChooser.getSelectedFile().getAbsolutePath());
+					File file = new File(jFileChooser.getSelectedFile()
+							.getAbsolutePath());
 
 					try {
 						Player neuerPlayer = new Player(getProjektGui());
@@ -138,8 +159,8 @@ public class ProjektGui extends JFrame {
 	public Gui getGui() {
 		return gui;
 	}
-	
-	public BenutzerProjekt getBenutzerProjekt(){
+
+	public BenutzerProjekt getBenutzerProjekt() {
 		return benutzerProjekt;
 	}
 
