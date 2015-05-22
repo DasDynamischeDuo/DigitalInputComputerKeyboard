@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ public class ProjektGui extends JFrame {
 	private JTextField tfDateiname, tfTempo;
 	private JButton bAufnehmen, bStop, bPlay;
 	private JFileChooser jFileChooser;
+	private JComboBox<String> cbSamples;
 
 	private Vector<Player> player;
 	private Rekorder rekorder;
@@ -45,16 +47,20 @@ public class ProjektGui extends JFrame {
 		bAufnehmen = new JButton("Aufnehmen");
 		bStop = new JButton("Stop");
 		bPlay = new JButton("Play");
+		cbSamples = new JComboBox<String>();
+		cbSamples.addItem("test");
 
 		bAufnehmen.setFocusable(false);
 		bStop.setFocusable(false);
 		bPlay.setFocusable(false);
 
+		contentpane.add(cbSamples);
 		contentpane.add(tfDateiname);
 		contentpane.add(tfTempo);
 		contentpane.add(bAufnehmen);
 		contentpane.add(bStop);
 		contentpane.add(bPlay);
+		
 		
 		setTitle(benutzerProjekt.getProjektName());
 

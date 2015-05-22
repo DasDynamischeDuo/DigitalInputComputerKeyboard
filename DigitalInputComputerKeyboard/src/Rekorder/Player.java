@@ -35,8 +35,6 @@ public class Player implements Runnable {
 
 	public void abspielen(File file) throws IOException {
 
-	
-
 		notenblatt.setTitle(file.getName());
 
 		fileReader = new FileReader(file);
@@ -121,7 +119,7 @@ public class Player implements Runnable {
 
 	}
 
-	public void setIstPausiert(boolean istPausiert){
+	public void setIstPausiert(boolean istPausiert) {
 		notenblatt.setIstPausiert(istPausiert);
 	}
 
