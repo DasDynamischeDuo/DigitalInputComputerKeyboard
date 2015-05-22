@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.Thread.State;
 
 import Gui.TastenListener;
+import Projekt.ProjektGui;
 
 public class Rekorder implements Runnable {
 
@@ -19,12 +20,9 @@ public class Rekorder implements Runnable {
 	private int taste, tempo;
 	private TastenListener tastenListener;
 
-	public Rekorder(String name, int tempo, int instrument, TastenListener tastenListener) throws IOException {
-
-		name = "C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"
-				+ name + ".txt";
-
-		file = new File(name);
+	public Rekorder(String dateipfad, int tempo, int instrument, TastenListener tastenListener) throws IOException {
+		
+		file = new File(dateipfad);
 		file.createNewFile();
 		
 
@@ -139,6 +137,10 @@ public class Rekorder implements Runnable {
 			return false;
 		}
 		
+	}
+	
+	public void setProjektGui(ProjektGui projektGui){
+		tastenListener.setProjektGui(projektGui);
 	}
 
 }
