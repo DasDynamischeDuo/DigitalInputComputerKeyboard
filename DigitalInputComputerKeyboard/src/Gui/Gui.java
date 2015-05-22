@@ -198,13 +198,15 @@ public class Gui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				String name = JOptionPane.showInputDialog("Bitte Geben sie den Namen des Projektes ein");
+				
 				jFileChooser = new JFileChooser();
 				jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int ret = jFileChooser.showSaveDialog(miNewProject);
 				if (ret == 0) {
 					String str = jFileChooser.getSelectedFile().getAbsolutePath();
 					str = str.replace("\\", "/");
-					benutzerProjekt = new BenutzerProjekt(str, "test");
+					benutzerProjekt = new BenutzerProjekt(str, name);
 				}
 
 			}
