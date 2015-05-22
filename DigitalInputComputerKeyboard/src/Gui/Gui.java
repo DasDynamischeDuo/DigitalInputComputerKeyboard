@@ -177,6 +177,7 @@ public class Gui extends JFrame {
 						objectInputStream = new ObjectInputStream(fileInputStream);
 						projektGui = new ProjektGui(getGui(), (BenutzerProjekt)objectInputStream.readObject());
 						projektGui.setVisible(true);
+						projektGui.pack();
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -207,6 +208,9 @@ public class Gui extends JFrame {
 					String str = jFileChooser.getSelectedFile().getAbsolutePath();
 					str = str.replace("\\", "/");
 					benutzerProjekt = new BenutzerProjekt(str, name);
+					projektGui = new ProjektGui(getGui(), benutzerProjekt);
+					projektGui.setVisible(true);
+					projektGui.pack();
 				}
 
 			}
