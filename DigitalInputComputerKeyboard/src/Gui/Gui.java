@@ -3,6 +3,7 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.DefaultKeyboardFocusManager;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.KeyEventPostProcessor;
 import java.awt.event.ActionEvent;
@@ -35,14 +36,16 @@ public class Gui extends JFrame {
 	public JPanel notenpane, buttonpane, tastenpane;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
-	private JRadioButton rbDrum;
-	private JRadioButton rbPiano;
+	public JRadioButton rbDrum;
+	public JRadioButton rbPiano;
 	private ButtonGroup groupRadioButton;
 	private JTextField tfDateiname, tfTempo;
-	private JButton bAufnehmen, bStop, bPlay;
+	public JButton bAufnehmen, bStop, bPlay;
 	private JFileChooser jFileChooser;
 	private Rekorder rekorder;
 	private Player player;
+	
+	private JLabel[] beschreibungNoten = new JLabel[12];
 
 	private TastenListener tastenListener;
 
@@ -83,6 +86,7 @@ public class Gui extends JFrame {
 	private void initFrameElemente() {
 
 	
+		beschreibungsArrayfuellen();
 
 		notenpane = new JPanel(new GridLayout(1, 15));
 		buttonpane = new JPanel();
@@ -139,13 +143,17 @@ public class Gui extends JFrame {
 		buttonpane.add(bAufnehmen);
 		buttonpane.add(bStop);
 		buttonpane.add(bPlay);
-
+		
+		
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
+		GlassPane glassPane = new GlassPane(this);
+		this.setGlassPane(glassPane);
+		this.getGlassPane().setVisible(true);
 
 		Dimension d = this.getToolkit().getScreenSize();
 
@@ -315,5 +323,34 @@ public class Gui extends JFrame {
 	public boolean getIstTasteGedrueckt(int stelle) {
 		return istTasteGedrueckt[stelle];
 	}
-
+	
+	private void beschreibungsArrayfuellen(){
+		
+		beschreibungNoten[0] = new JLabel(new ImageIcon("/Images/C.png"));
+		beschreibungNoten[0].setOpaque(false);
+		this.revalidate();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 }

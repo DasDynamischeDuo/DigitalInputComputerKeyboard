@@ -15,7 +15,6 @@ public class Notenlinien extends JPanel{
     private BufferedImage notenschluessel;
     private BufferedImage[] Noten = new BufferedImage[25];
     private JLabel lNotenBild;
-    
     private JLabel lNotenschl;
     private JLabel[] lNotenlinien = new JLabel[15];
     
@@ -55,7 +54,8 @@ public class Notenlinien extends JPanel{
     
     public void NotenlinienSchluesselSetzenLeer() {
         
-    	g.notenpane.add(lNotenschl = new JLabel(new ImageIcon(notenschluessel)));
+    	
+		g.notenpane.add(lNotenschl = new JLabel(new ImageIcon(notenschluessel)));
     	for (int i = 0; i < lNotenlinien.length; i++) {
 			g.notenpane.add(lNotenlinien[i]);
 			
@@ -63,22 +63,8 @@ public class Notenlinien extends JPanel{
     }
 
     
-    /**
-     * Zeichnet Bilder auf die Oberfläche
-     * @author Fabian
-     */
-    
-    @Override
-    protected void paintComponent(Graphics g) {
-
-      super.paintComponent(g);
-      for (int i = 0; i < Noten.length; i++) {
-    	  g.drawImage(Noten[i], 0, 0, null);
-	}
-         
-          g.drawImage(notenschluessel, 0, 0, null);
-  }
-
+   
+  
 /**
  * Löscht das erste Bild der Notenlinien und fügt das der gespielten Note am ende hinzu.
  * @author Fabian
