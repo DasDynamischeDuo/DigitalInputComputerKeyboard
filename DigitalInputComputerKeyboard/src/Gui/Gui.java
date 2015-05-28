@@ -9,14 +9,19 @@ import java.awt.KeyEventPostProcessor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.security.KeyException;
+import java.util.Vector;
 
 import javax.swing.*;
 
+import Projekt.BenutzerProjekt;
+import Projekt.ProjektGui;
 import Rekorder.Player;
-import Rekorder.Rekorder;
+import SampleAbspielen.SampleAbspielen;
 
 /**
  * Die Graphische Benutzeroberflaeche des Digital Input Computer Keyboard
@@ -27,25 +32,32 @@ import Rekorder.Rekorder;
 
 public class Gui extends JFrame {
 
-
-
 	Notenlinien NL = new Notenlinien(this);
-	
 
 	private JPanel contentpane;
 	public JPanel notenpane, buttonpane, tastenpane;
 	private JPanel lklav, rklav;
 	private JPanel lgrid, rgrid;
+
 	public JRadioButton rbDrum;
 	public JRadioButton rbPiano;
+
+	private JRadioButton rbEigenes;
+
 	private ButtonGroup groupRadioButton;
-	private JTextField tfDateiname, tfTempo;
-	public JButton bAufnehmen, bStop, bPlay;
+
 	private JFileChooser jFileChooser;
-	private Rekorder rekorder;
-	private Player player;
+
 	
+	private ObjectInputStream objectInputStream;
 	
+	private ProjektGui projektGui;
+	private BenutzerProjekt benutzerProjekt;
+
+	private JMenuBar menuBar;
+	private JMenu mProjekt, mHilfe;
+	private JMenuItem miNewProject, miOpenProject, miHilfe;
+
 
 	private TastenListener tastenListener;
 
@@ -64,16 +76,11 @@ public class Gui extends JFrame {
 
 	public Gui() {
 
-
 		for (int i = 0; i < istTasteGedrueckt.length; i++) {
-			istTasteGedrueckt[i]=false;
+			istTasteGedrueckt[i] = false;
 		}
-		
-		
-
 
 		istTasteGedrueckt = new boolean[27];
-
 
 		initFrameElemente();
 		initButtons();
@@ -81,12 +88,12 @@ public class Gui extends JFrame {
 		this.tastenListener = new TastenListener(this);
 		tastenListener.start();
 
+		this.setTitle("DigitalInputComputerKeyboard");
+
 	}
 
 	private void initFrameElemente() {
 
-	
-		
 
 		notenpane = new JPanel(new GridLayout(1, 15));
 		buttonpane = new JPanel();
@@ -100,19 +107,25 @@ public class Gui extends JFrame {
 
 		rbDrum = new JRadioButton("Drum");
 		rbPiano = new JRadioButton("Piano");
-		rbDrum.setSelected(true);
+		rbEigenes = new JRadioButton("Eigenes Sample");
+		rbPiano.setSelected(true);
 
 		rbPiano.setFocusable(false);
 		rbDrum.setFocusable(false);
+		rbEigenes.setFocusable(false);
 
-		tfDateiname = new JTextField("Dateiname");
-		tfTempo = new JTextField("Tempo");
-		bAufnehmen = new JButton("Aufnehmen");
-		bStop = new JButton("Stop");
-		bPlay = new JButton("Play");
-
-		bAufnehmen.setFocusable(false);
-		bStop.setFocusable(false);
+		menuBar = new JMenuBar();
+		mProjekt = new JMenu("Projekt");
+		mHilfe = new JMenu("Hilfe");
+		miNewProject = new JMenuItem("Neues Projekt");
+		miOpenProject = new JMenuItem("Projekt Öffnen");
+		miHilfe = new JMenuItem("Hilfe");
+		mProjekt.add(miOpenProject);
+		mProjekt.add(miNewProject);
+		mHilfe.add(miHilfe);
+		menuBar.add(mProjekt);
+		menuBar.add(mHilfe);
+		this.setJMenuBar(menuBar);
 
 		contentpane = new JPanel();
 		contentpane.setFocusable(true);
@@ -134,17 +147,15 @@ public class Gui extends JFrame {
 		groupRadioButton = new ButtonGroup();
 		groupRadioButton.add(rbDrum);
 		groupRadioButton.add(rbPiano);
+		groupRadioButton.add(rbEigenes);
 
 		notenpane.setFocusable(true);
-		buttonpane.add(rbDrum);
 		buttonpane.add(rbPiano);
-		buttonpane.add(tfDateiname);
-		buttonpane.add(tfTempo);
-		buttonpane.add(bAufnehmen);
-		buttonpane.add(bStop);
-		buttonpane.add(bPlay);
-		
-		
+
+		buttonpane.add(rbDrum);
+		buttonpane.add(rbEigenes);
+
+
 		tastenpane.add(lklav);
 		tastenpane.add(rklav);
 
@@ -161,15 +172,63 @@ public class Gui extends JFrame {
 		this.setLocation((int) ((d.getWidth() - this.getWidth()) / 4),
 				(int) ((d.getHeight() - this.getHeight()) / 4));
 
-		
 		NL.NotenlinienSchluesselSetzenLeer();
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-		jFileChooser = new JFileChooser();
-		jFileChooser
-				.setCurrentDirectory(new File(
-						"C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"));
+		
+		miOpenProject.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				jFileChooser = new JFileChooser();
+				int ret = jFileChooser.showSaveDialog(miOpenProject);
+				if (ret == 0) {
+					
+					try {
+						FileInputStream fileInputStream = new FileInputStream(jFileChooser.getSelectedFile());
+						objectInputStream = new ObjectInputStream(fileInputStream);
+						projektGui = new ProjektGui(getGui(), (BenutzerProjekt)objectInputStream.readObject());
+						projektGui.setVisible(true);
+						projektGui.pack();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+
+			}
+		});
+
+		miNewProject.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String name = JOptionPane.showInputDialog("Bitte Geben sie den Namen des Projektes ein");
+				
+				jFileChooser = new JFileChooser();
+				jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int ret = jFileChooser.showSaveDialog(miNewProject);
+				if (ret == 0) {
+					String str = jFileChooser.getSelectedFile().getAbsolutePath();
+					str = str.replace("\\", "/");
+					benutzerProjekt = new BenutzerProjekt(str, name);
+					projektGui = new ProjektGui(getGui(), benutzerProjekt);
+					projektGui.setVisible(true);
+					projektGui.pack();
+				}
+
+			}
+		});
 
 	}
 
@@ -190,7 +249,6 @@ public class Gui extends JFrame {
 		Klaviertasten.buttonsInitialisieren(rtasten, ltasten);
 		Klaviertasten.buttonsKonfig(rtasten, ltasten);
 
-
 		for (int i = 1; i < ltasten.length; i++) {
 			lgrid.add(ltasten[i]);
 		}
@@ -199,19 +257,23 @@ public class Gui extends JFrame {
 			rgrid.add(rtasten[i]);
 		}
 
-
 		KeyEventPostProcessor postProcessor = new KeyEventPostProcessor() {
 			public boolean postProcessKeyEvent(KeyEvent e) {
 
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					requestFocusInWindow();
-				}
-				
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					
+					projektGui.requestFocusInWindow();
 				}
 
-				
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					Vector<Player> player = projektGui.getPlayer();
+
+					for (int i = 0; i < player.size(); i++) {
+						player.elementAt(i).setIstPausiert(false);
+					}
+
+					player.lastElement().setIstPausiert(false);
+				}
+
 				if (e.getID() == KeyEvent.KEY_PRESSED) {
 
 					try {
@@ -234,69 +296,17 @@ public class Gui extends JFrame {
 			}
 		};
 
-		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager()
-				.addKeyEventPostProcessor(postProcessor);
+		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(postProcessor);
 
-		bAufnehmen.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int instrument = 1;
-
-				if (rbPiano.isSelected()) {
-					instrument = 2;
-				}
-
-				try {
-					rekorder = new Rekorder(tfDateiname.getText(), Integer.parseInt(tfTempo.getText()), instrument, tastenListener);
-				} catch (NumberFormatException e1) {
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-			}
-		});
-
-		bStop.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				rekorder.setIstRekorderAktiv(false);
-				rekorder = null;
-
-			}
-		});
-
-		bPlay.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int ret = jFileChooser.showSaveDialog(bPlay);
-				if (ret == 0) {
-					File file = new File(jFileChooser.getSelectedFile()
-							.getAbsolutePath());
-
-					try {
-						player = new Player();
-						player.abspielen(file);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				}
-
-			}
-		});
-
-	}
-
-	public Rekorder getRekorder() {
-		return rekorder;
-
-	}
 		
-	
+
+	}
+
+
+	public Gui getGui() {
+		return this;
+	}
+
 	public boolean[] getIstTasteGedrueckt() {
 		return istTasteGedrueckt;
 	}
@@ -324,8 +334,17 @@ public class Gui extends JFrame {
 	public boolean getIstTasteGedrueckt(int stelle) {
 		return istTasteGedrueckt[stelle];
 	}
+
+
+	public TastenListener getTastenListener() {
+		return tastenListener;
+	}
+
+	public JRadioButton getRbEigenes() {
+		return rbEigenes;
+	}
 	
 	
-	
-	
+
+
 }

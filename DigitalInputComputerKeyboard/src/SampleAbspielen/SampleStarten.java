@@ -2,6 +2,8 @@ package SampleAbspielen;
 
 import java.util.Vector;
 
+import Projekt.BenutzerProjekt;
+
 /**
  * Startet ein Sample
  * 
@@ -78,5 +80,7 @@ public class SampleStarten {
 	
 
 	}
+	
+	
 
 }

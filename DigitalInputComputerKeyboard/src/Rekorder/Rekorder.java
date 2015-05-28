@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.lang.Thread.State;
 
 import Gui.TastenListener;
+import Projekt.ProjektGui;
+import SampleAbspielen.SampleStarten;
 
 public class Rekorder implements Runnable {
 
@@ -18,15 +20,14 @@ public class Rekorder implements Runnable {
 	private boolean istTonGespieltwurden;
 	private int taste, tempo;
 	private TastenListener tastenListener;
+	private SampleStarten sampleStarten;
 
-	public Rekorder(String name, int tempo, int instrument, TastenListener tastenListener) throws IOException {
-
-		name = "C:/Users/Emanuel/git/DigitalInputComputerKeyboard/DigitalInputComputerKeyboard/Aufnahmen/"
-				+ name + ".txt";
-
-		file = new File(name);
+	public Rekorder(String dateipfad, int tempo, int instrument, TastenListener tastenListener) throws IOException {
+		
+		file = new File(dateipfad);
 		file.createNewFile();
 		
+		sampleStarten = new SampleStarten();
 
 		fileWriter = new FileWriter(file);
 		bufferedWriter = new BufferedWriter(fileWriter);
@@ -75,6 +76,17 @@ public class Rekorder implements Runnable {
 	
 	@Override
 	public void run() {
+		
+		int pause = 15000 / tempo;
+		
+		for (int i = 0; i < 4; i++) {
+			sampleStarten.spieleSampleton(-1, 0);
+			try {
+				thread.sleep(pause * 3);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		while (istRekorderAktiv) {
 			
@@ -139,6 +151,10 @@ public class Rekorder implements Runnable {
 			return false;
 		}
 		
+	}
+	
+	public void setProjektGui(ProjektGui projektGui){
+		tastenListener.setProjektGui(projektGui);
 	}
 
 }

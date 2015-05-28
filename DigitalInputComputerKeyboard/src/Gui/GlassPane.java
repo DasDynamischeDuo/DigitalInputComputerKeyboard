@@ -134,15 +134,7 @@ class GlassPane extends JPanel {
 			Component component = SwingUtilities.getDeepestComponentAt(
 					container, containerPoint.x, containerPoint.y);
 
-			if ((component != null) && (component.equals(g.bAufnehmen))) {
-				g.bAufnehmen.doClick();
-			}
-			if ((component != null) && (component.equals(g.bPlay))) {
-				g.bPlay.doClick();
-			}
-			if ((component != null) && (component.equals(g.bStop))) {
-				g.bStop.doClick();
-			}
+			
 			if ((component != null) && (component.equals(g.rbDrum))) {
 				g.rbDrum.doClick();
 			}
