@@ -45,7 +45,7 @@ public class Gui extends JFrame {
 	private Rekorder rekorder;
 	private Player player;
 	
-	private JLabel[] beschreibungNoten = new JLabel[12];
+	
 
 	private TastenListener tastenListener;
 
@@ -86,7 +86,7 @@ public class Gui extends JFrame {
 	private void initFrameElemente() {
 
 	
-		beschreibungsArrayfuellen();
+		
 
 		notenpane = new JPanel(new GridLayout(1, 15));
 		buttonpane = new JPanel();
@@ -151,6 +151,7 @@ public class Gui extends JFrame {
 		contentpane.add(notenpane);
 		contentpane.add(buttonpane);
 		contentpane.add(tastenpane);
+		
 		GlassPane glassPane = new GlassPane(this);
 		this.setGlassPane(glassPane);
 		this.getGlassPane().setVisible(true);
@@ -324,33 +325,7 @@ public class Gui extends JFrame {
 		return istTasteGedrueckt[stelle];
 	}
 	
-	private void beschreibungsArrayfuellen(){
-		
-		beschreibungNoten[0] = new JLabel(new ImageIcon("/Images/C.png"));
-		beschreibungNoten[0].setOpaque(false);
-		this.revalidate();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+	
 	
 	
 }

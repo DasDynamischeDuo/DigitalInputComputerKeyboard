@@ -1,33 +1,29 @@
 package Gui;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Point;
 
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
-import java.io.IOException;
-
 import javax.swing.*;
-
-import Rekorder.Rekorder;
 
 class GlassPane extends JPanel {
 	Gui g;
+	private JLabel[] beschreibungNoten = new JLabel[12];
 
 	public GlassPane(Gui g) {
 		this.g = g;
+		beschreibungsArrayfuellen();
+
+		this.add(beschreibungNoten[0]);
 
 		setOpaque(false);
 		setBackground(new Color(0, 0, 0, 0));
+		this.revalidate();
 
 		addMouseListener(new MouseListener() {
 
@@ -59,7 +55,7 @@ class GlassPane extends JPanel {
 
 				System.out.println(m.getPoint());
 				if (m.getY() > 360) {
-					
+
 					System.out.println("Y");
 				} else {
 					System.out.println("N");
@@ -106,5 +102,11 @@ class GlassPane extends JPanel {
 				g.rbPiano.doClick();
 			}
 		}
+	}
+
+	private void beschreibungsArrayfuellen() {
+
+		beschreibungNoten[0] = new JLabel(new ImageIcon("/Images/C.png"));
+
 	}
 }
