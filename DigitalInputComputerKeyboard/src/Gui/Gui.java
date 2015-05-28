@@ -42,7 +42,7 @@ public class Gui extends JFrame {
 	public JRadioButton rbDrum;
 	public JRadioButton rbPiano;
 
-	private JRadioButton rbEigenes;
+	public JRadioButton rbEigenes;
 
 	private ButtonGroup groupRadioButton;
 
@@ -54,9 +54,9 @@ public class Gui extends JFrame {
 	private ProjektGui projektGui;
 	private BenutzerProjekt benutzerProjekt;
 
-	private JMenuBar menuBar;
-	private JMenu mProjekt, mHilfe;
-	private JMenuItem miNewProject, miOpenProject, miHilfe;
+	public JMenuBar menuBar;
+	public JMenu mProjekt, mHilfe;
+	public JMenuItem miNewProject, miOpenProject, miHilfe;
 
 
 	private TastenListener tastenListener;

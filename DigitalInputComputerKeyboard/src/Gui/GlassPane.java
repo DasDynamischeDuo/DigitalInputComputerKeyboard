@@ -49,8 +49,7 @@ class GlassPane extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent m) {
-				// TODO Auto-generated method stub
-
+			
 			}
 
 			@Override
@@ -59,9 +58,9 @@ class GlassPane extends JPanel {
 				System.out.println(m.getPoint());
 				if (m.getY() > 360) {
 
-					System.out.println("Y");
+					
 				} else {
-					System.out.println("N");
+					
 					redispatchMouseEvent(m);
 				}
 
@@ -128,6 +127,16 @@ class GlassPane extends JPanel {
 		Point containerPoint = SwingUtilities.convertPoint(this,
 				glassPanePoint, g.getContentPane());
 		if (containerPoint.y < 0) { // we're not in the content pane
+			Component component = SwingUtilities.getDeepestComponentAt(
+					container, containerPoint.x, containerPoint.y);
+			Point componentPoint = SwingUtilities.convertPoint(
+                    this, glassPanePoint, component);
+            component.dispatchEvent(new MouseEvent(component, e
+                    .getID(), e.getWhen(), e.getModifiers(),
+                    componentPoint.x, componentPoint.y, e
+                            .getClickCount(), e.isPopupTrigger()));
+			
+			
 		} else {
 			// The mouse event is probably over the content pane.
 			// Find out exactly which component it's over.
@@ -141,6 +150,10 @@ class GlassPane extends JPanel {
 			if ((component != null) && (component.equals(g.rbPiano))) {
 				g.rbPiano.doClick();
 			}
+			if ((component != null) && (component.equals(g.rbEigenes))) {
+				g.rbEigenes.doClick();
+			}
+			
 		}
 	}
 
