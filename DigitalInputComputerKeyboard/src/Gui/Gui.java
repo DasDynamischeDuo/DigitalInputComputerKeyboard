@@ -55,7 +55,7 @@ public class Gui extends JFrame {
 	private BenutzerProjekt benutzerProjekt;
 
 	public JMenuBar menuBar;
-	public JMenu mProjekt, mHilfe;
+	public JMenu mProjektOpen, mHilfe, mProjektNeu;
 	public JMenuItem miNewProject, miOpenProject, miHilfe;
 
 
@@ -115,15 +115,17 @@ public class Gui extends JFrame {
 		rbEigenes.setFocusable(false);
 
 		menuBar = new JMenuBar();
-		mProjekt = new JMenu("Projekt");
+		mProjektNeu = new JMenu("Neues Projekt");
+		mProjektOpen = new JMenu("Projekt Öffnen");
 		mHilfe = new JMenu("Hilfe");
+		
+		
 		miNewProject = new JMenuItem("Neues Projekt");
 		miOpenProject = new JMenuItem("Projekt Öffnen");
 		miHilfe = new JMenuItem("Hilfe");
-		mProjekt.add(miOpenProject);
-		mProjekt.add(miNewProject);
-		mHilfe.add(miHilfe);
-		menuBar.add(mProjekt);
+		
+		menuBar.add(mProjektNeu);
+		menuBar.add(mProjektOpen);
 		menuBar.add(mHilfe);
 		this.setJMenuBar(menuBar);
 

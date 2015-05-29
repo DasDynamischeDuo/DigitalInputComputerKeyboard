@@ -32,37 +32,30 @@ class GlassPane extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent m) {
-
+				
 			}
 
 			@Override
 			public void mousePressed(MouseEvent m) {
-				// TODO Auto-generated method stub
+				
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent m) {
-				// TODO Auto-generated method stub
+			
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent m) {
-			
+				
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent m) {
-
-				System.out.println(m.getPoint());
-				if (m.getY() > 360) {
-
-					
-				} else {
-					
 					redispatchMouseEvent(m);
-				}
+				
 
 			}
 		});
@@ -126,16 +119,26 @@ class GlassPane extends JPanel {
 		Container container = g.getContentPane();
 		Point containerPoint = SwingUtilities.convertPoint(this,
 				glassPanePoint, g.getContentPane());
-		if (containerPoint.y < 0) { // we're not in the content pane
-			Component component = SwingUtilities.getDeepestComponentAt(
-					container, containerPoint.x, containerPoint.y);
-			Point componentPoint = SwingUtilities.convertPoint(
-                    this, glassPanePoint, component);
-            component.dispatchEvent(new MouseEvent(component, e
-                    .getID(), e.getWhen(), e.getModifiers(),
-                    componentPoint.x, componentPoint.y, e
-                            .getClickCount(), e.isPopupTrigger()));
+		
+		if (e.getY()<20) {
+			if ((e.getX()<100)&&(e.getX()>0)) {
+				g.mProjektNeu.doClick();
+				g.miNewProject.doClick();
+			}
+			if ((e.getX()<200)&&(e.getX()>100)) {
+				g.mProjektOpen.doClick();
+				g.miOpenProject.doClick();
+			}
+			if ((e.getX()<300)&&(e.getX()>200)) {
+				g.mHilfe.doClick();
+				g.miHilfe.doClick();
+			}
 			
+		}
+		
+		
+		if (containerPoint.y < 0) { // we're not in the content pane
+						
 			
 		} else {
 			// The mouse event is probably over the content pane.
