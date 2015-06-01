@@ -11,6 +11,7 @@ public class StartKlasse {
 		gui.setVisible(true);
 		gui.pack();
 		gui.setSize(1000, 600);
+		gui.setResizable(false);
 	}
 
 }

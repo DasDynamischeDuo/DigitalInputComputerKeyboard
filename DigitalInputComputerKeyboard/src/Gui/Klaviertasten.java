@@ -870,29 +870,29 @@ public class Klaviertasten {
 			return 10;
 		case (int) 'n':
 			return 11;
-		case (int) 'z':
+		case (int) 't':
 			return 12;
-		case (int) '7':
+		case (int) '6':
 			return 13;
-		case (int) 'u':
+		case (int) 'z':
 			return 14;
-		case (int) '8':
+		case (int) '7':
 			return 15;
-		case (int) 'i':
+		case (int) 'u':
 			return 16;
-		case (int) 'o':
+		case (int) 'i':
 			return 17;
-		case (int) '0':
+		case (int) '9':
 			return 18;
-		case (int) 'p':
+		case (int) 'o':
 			return 19;
-		case (int) 'ß':
+		case (int) '0':
 			return 20;
-		case (int) 'ü':
+		case (int) 'p':
 			return 21;
-		case (int) '´':
+		case (int) 'ß':
 			return 22;
-		case (int) '+':
+		case (int) 'ü':
 			return 23;
 		default:
 			return 25;
