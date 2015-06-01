@@ -85,14 +85,12 @@ public class ProjektGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int instrument = 1;
+				int instrument = getGui().getSelectedRB();
 				String dateipfad = getBenutzerProjekt().getUrlAufnahmen() + "/"
 						+ tfDateiname.getText();
 
 				try {
-					rekorder = new Rekorder(dateipfad, Integer.parseInt(tfTempo
-							.getText()), instrument, getGui()
-							.getTastenListener());
+					rekorder = new Rekorder(dateipfad, Integer.parseInt(tfTempo.getText()), instrument, getGui().getTastenListener());
 					rekorder.setProjektGui(getProjektGui());
 				} catch (NumberFormatException e1) {
 					e1.printStackTrace();
@@ -163,5 +161,17 @@ public class ProjektGui extends JFrame {
 	public BenutzerProjekt getBenutzerProjekt() {
 		return benutzerProjekt;
 	}
+	
+	public void close() {
+		
+		this.dispose();
+
+	}
+
+	public JComboBox<String> getCbSamples() {
+		return cbSamples;
+	}
+	
+	
 
 }

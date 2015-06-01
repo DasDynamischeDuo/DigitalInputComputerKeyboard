@@ -1,11 +1,13 @@
 package SampleAbspielen;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.sound.sampled.*;
 
 import Projekt.BenutzerProjekt;
+import Projekt.ProjektGui;
 import SampleAbspielen.SampleStarten;
 
 /**
@@ -24,6 +26,7 @@ public class SampleAbspielen {
 	private URL soundURL;
 	private SampleStarten sampleStarten;
 	private BenutzerProjekt benutzerProjekt;
+	private ProjektGui projektGui;
 
 	/**
 	 * Spielt einen Clap-Ton ab
@@ -51,15 +54,38 @@ public class SampleAbspielen {
 		 */
 
 	}
+	
+	public SampleAbspielen(SampleStarten sampleStarten, BenutzerProjekt benutzerProjekt, ProjektGui projektGui) {
+
+		this.sampleStarten = sampleStarten;
+		this.mixerInfos = AudioSystem.getMixerInfo();
+		this.mixer = AudioSystem.getMixer(mixerInfos[0]);
+		this.dataInfo = new DataLine.Info(Clip.class, null);
+		this.benutzerProjekt = benutzerProjekt;
+		this.projektGui = projektGui;
+
+		try {
+			clip = (Clip) mixer.getLine(this.dataInfo);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+
+		/*
+		 * for (int i = 0; i < mixerInfos.length; i++) {
+		 * System.out.println(mixerInfos[i] +"----"
+		 * +mixerInfos[i].getDescription()); }
+		 */
+
+	}
 
 	public void tonAbspielen(int ton, int instrument) {
 
-		soundURL = SampleAbspielen.class.getResource(dateipfadVonTon(ton,
-				instrument));
+		File file;
+		
+		soundURL = SampleAbspielen.class.getResource(dateipfadVonTon(ton, instrument));
 
 		try {
-			AudioInputStream audioInputStream = AudioSystem
-					.getAudioInputStream(soundURL);
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
 			clip.open(audioInputStream);
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -180,9 +206,11 @@ public class SampleAbspielen {
 				break;
 			}
 
-		case -1:
+		case 3:
 
-			source = benutzerProjekt.getUrlSamples();
+			source = benutzerProjekt.getUrlSamples() +"/" +projektGui.getCbSamples().getSelectedItem();
+
+			System.out.println(source);
 
 			switch (ton) {
 			case 0:
@@ -277,4 +305,13 @@ public class SampleAbspielen {
 		this.benutzerProjekt = benutzerProjekt;
 
 	}
+
+	public void setProjektGui(ProjektGui projektGui) {
+		
+		this.projektGui = projektGui;
+		
+	}
+
+
+	
 }

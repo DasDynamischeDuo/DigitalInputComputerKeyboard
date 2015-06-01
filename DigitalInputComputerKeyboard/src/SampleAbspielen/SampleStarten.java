@@ -3,6 +3,7 @@ package SampleAbspielen;
 import java.util.Vector;
 
 import Projekt.BenutzerProjekt;
+import Projekt.ProjektGui;
 
 /**
  * Startet ein Sample
@@ -79,6 +80,26 @@ public class SampleStarten {
 		sampleAbspielen.lastElement().tonAbspielen(taste, instrument);
 	
 
+	}
+	
+	public void spieleSampleton(int taste, int instrument, BenutzerProjekt benutzerProjekt, ProjektGui projektGui) {
+
+		System.gc();
+		
+		sampleAbspielen.add(new SampleAbspielen(this, benutzerProjekt, projektGui));
+		sampleAbspielen.lastElement().tonAbspielen(taste, instrument);
+	
+
+	}
+	
+	public void setProjektGuiinAspielen(ProjektGui projektGui) {
+	
+		for (int i = 0; i < sampleAbspielen.size(); i++) {
+			
+			sampleAbspielen.elementAt(i).setProjektGui(projektGui);
+			
+		}
+		
 	}
 	
 	

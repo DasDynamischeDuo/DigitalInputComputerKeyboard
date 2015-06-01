@@ -32,7 +32,7 @@ import SampleAbspielen.SampleAbspielen;
 
 public class Gui extends JFrame {
 
-	Notenlinien NL = new Notenlinien(this);
+	private Notenlinien notenlinien;
 
 	private JPanel contentpane;
 	public JPanel notenpane, buttonpane, tastenpane;
@@ -81,6 +81,8 @@ public class Gui extends JFrame {
 		}
 
 		istTasteGedrueckt = new boolean[27];
+		
+		notenlinien = new Notenlinien(this);
 
 		initFrameElemente();
 		initButtons();
@@ -89,6 +91,7 @@ public class Gui extends JFrame {
 		tastenListener.start();
 
 		this.setTitle("DigitalInputComputerKeyboard");
+		
 
 	}
 
@@ -174,7 +177,7 @@ public class Gui extends JFrame {
 		this.setLocation((int) ((d.getWidth() - this.getWidth()) / 4),
 				(int) ((d.getHeight() - this.getHeight()) / 4));
 
-		NL.NotenlinienSchluesselSetzenLeer();
+		notenlinien.NotenlinienSchluesselSetzenLeer();
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -189,9 +192,17 @@ public class Gui extends JFrame {
 				if (ret == 0) {
 					
 					try {
+						
+						if (projektGui != null) {
+							
+							projektGui.close();
+							
+						}
+						
 						FileInputStream fileInputStream = new FileInputStream(jFileChooser.getSelectedFile());
 						objectInputStream = new ObjectInputStream(fileInputStream);
-						projektGui = new ProjektGui(getGui(), (BenutzerProjekt)objectInputStream.readObject());
+						benutzerProjekt = (BenutzerProjekt)objectInputStream.readObject();
+						projektGui = new ProjektGui(getGui(), benutzerProjekt);
 						projektGui.setVisible(true);
 						projektGui.pack();
 					} catch (FileNotFoundException e1) {
@@ -280,7 +291,6 @@ public class Gui extends JFrame {
 
 					try {
 						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
-						NL.zeichneNote(Klaviertasten.getIntVonKey(e));
 					} catch (KeyException e2) {
 						e2.printStackTrace();
 					}
@@ -345,8 +355,32 @@ public class Gui extends JFrame {
 	public JRadioButton getRbEigenes() {
 		return rbEigenes;
 	}
+
+	public Notenlinien getNotenlinien() {
+		return notenlinien;
+	}
+
+	public BenutzerProjekt getBenutzerProjekt() {
+		return benutzerProjekt;
+	}
+
+	public ProjektGui getProjektGui() {
+		return projektGui;
+	}
 	
+	public int getSelectedRB() {
+		
+		if (rbDrum.isSelected()) {
+			return 1;
+		} else if (rbPiano.isSelected()) {
+			return 2;
+		} else if (rbEigenes.isSelected()) {
+			return 3;
+		}
 	
+		return 0;
+		
+	}
 
 
 }

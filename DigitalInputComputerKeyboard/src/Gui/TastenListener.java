@@ -2,6 +2,7 @@ package Gui;
 
 import java.io.IOException;
 
+import Projekt.BenutzerProjekt;
 import Projekt.ProjektGui;
 import SampleAbspielen.SampleStarten;
 
@@ -48,18 +49,22 @@ public class TastenListener implements Runnable {
 						if (gui.getRbDrum().isSelected()) {
 							
 							instrument = 1;
+							sampleStarten.spieleSampleton(i, instrument);
 
 						} else if (gui.getRbPiano().isSelected()) {
 							
 							instrument = 2;
+							sampleStarten.spieleSampleton(i, instrument);
 							
 						} else if (gui.getRbEigenes().isSelected()) {
 							
-							instrument = -1;
+							instrument = 3;
+							sampleStarten.spieleSampleton(i, instrument, gui.getBenutzerProjekt(), gui.getProjektGui());
 							
 						}
 						
-						sampleStarten.spieleSampleton(i, instrument);
+						
+						gui.getNotenlinien().zeichneNote(i);
 						
 						if (projektGui != null && projektGui.getRekorder() != null && anzToeneGleichzeitig == 0) {
 							projektGui.getRekorder().aufnehmen(i);
