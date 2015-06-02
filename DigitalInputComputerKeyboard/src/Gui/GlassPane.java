@@ -14,6 +14,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+/**
+ * Klasse glassPane erbt von JPanel. Ersetzt die vorhandene GlassPane der Gui durch eine eigene.
+ * @author Fabian
+ *
+ */
+
 class GlassPane extends JPanel {
 	Gui g;
 	private Image[] beschreibungNoten = new Image[14];
@@ -63,6 +69,14 @@ class GlassPane extends JPanel {
 		setFocusTraversalKeysEnabled(false);
 	}
 
+	/**
+	 * 
+	 * überschreibt die paintComponentMethode. Bilder werden jetzt auf die GlassPane gezeichnet.
+	 * Beschriftung ist mit Position angegeben wohin gezeichnet werden soll
+	 * 
+	 * @author Fabian
+	 */
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.setColor(getBackground());
@@ -112,7 +126,12 @@ class GlassPane extends JPanel {
        
     }
 	
-	
+	/**
+	 * Gibt MouseEvents auf der GlassPane an die Gui weiter bzw. löst die aktion aus.
+	 * 
+	 * @author Fabian
+	 * @param e
+	 */
 
 	private void redispatchMouseEvent(MouseEvent e) {
 		Point glassPanePoint = e.getPoint();
@@ -159,6 +178,14 @@ class GlassPane extends JPanel {
 			
 		}
 	}
+	
+	
+	/**
+	 * 
+	 * Füllt ein Array mit der beschriftung der Tasten.
+	 * 
+	 * @author Fabian
+	 */
 
 	private void beschreibungsArrayfuellen() {
 
