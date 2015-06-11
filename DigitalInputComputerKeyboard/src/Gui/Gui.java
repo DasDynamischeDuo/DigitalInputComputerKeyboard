@@ -94,6 +94,11 @@ public class Gui extends JFrame {
 		
 
 	}
+	
+	/**
+	 * Initialisiert alle Frame Elemente. 
+	 * @author Fabian
+	 */
 
 	private void initFrameElemente() {
 
@@ -314,60 +319,125 @@ public class Gui extends JFrame {
 
 	}
 
+	/**
+	 * getter Methode für die Gui
+	 * @return Gui
+	 */
 
 	public Gui getGui() {
 		return this;
 	}
 
+	/**
+	 * getter Methode für ein Array in dem der Zustand der Taste festgehalten wird.
+	 * @return boolean[]
+	 */
 	public boolean[] getIstTasteGedrueckt() {
 		return istTasteGedrueckt;
 	}
 
+	/**
+	 * getter Methode für die rechten Tasten
+	 * @return JToggleButton[]
+	 */
 	public JToggleButton[] getRtasten() {
 		return rtasten;
 	}
 
+	/**
+	 * get Methode für den DrumButton
+	 * @return JRadioButton
+	 */
 	public JRadioButton getRbDrum() {
 		return rbDrum;
 	}
+	
+	/**
+	 * get Methode für den PianoButton
+	 * @return JRadioButton
+	 */
 
 	public JRadioButton getRbPiano() {
 		return rbPiano;
 	}
+	
+	/**
+	 * get Methode für die linken Tasten
+	 * @return JToggleButton[]
+	 */
 
 	public JToggleButton[] getLtasten() {
 		return ltasten;
 	}
+	
+	/**
+	 * get Methode für die Notenpane
+	 * @return JPanel
+	 */
 
 	public JPanel getNotenpane() {
 		return notenpane;
 	}
+	
+	/**
+	 * get Methode um zu prüfen ob das array an einer bestimmten Stelle true ist.
+	 * 
+	 * @param stelle
+	 * @return boolean 
+	 */
 
 	public boolean getIstTasteGedrueckt(int stelle) {
 		return istTasteGedrueckt[stelle];
 	}
 
+	/**
+	 * get Methode für den TastenListener 
+	 * @return TastenListener
+	 */
 
 	public TastenListener getTastenListener() {
 		return tastenListener;
 	}
 
+	/**
+	 * get Methode für den RadioButton
+	 * @return JRadioButton
+	 */
 	public JRadioButton getRbEigenes() {
 		return rbEigenes;
 	}
 
+	
+	/**
+	 * get Methode für die Notenlinien
+	 * @return Notenlinien
+	 */
 	public Notenlinien getNotenlinien() {
 		return notenlinien;
 	}
 
+	/**
+	 * get Methode für das BenutzerProjekt
+	 * @return BenutzerProjekt
+	 */
 	public BenutzerProjekt getBenutzerProjekt() {
 		return benutzerProjekt;
 	}
 
+	/**
+	 * get Methode für das ProjektGui
+	 * @return ProjektGui
+	 */
 	public ProjektGui getProjektGui() {
 		return projektGui;
 	}
 	
+	
+	/**
+	 * get Methode für die RadioButtons. Je nachdem welcher Button ausgewählt wird, wird eine andere Zahl
+	 * zurückgegeben.
+	 * @return int
+	 */
 	public int getSelectedRB() {
 		
 		if (rbDrum.isSelected()) {

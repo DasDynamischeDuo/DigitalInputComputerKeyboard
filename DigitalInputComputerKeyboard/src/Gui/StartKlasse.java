@@ -4,6 +4,10 @@ import Projekt.ProjektGui;
 
 public class StartKlasse {
 
+	/**
+	 * Die StartKlasse. In dieser Main Methode wird die Gui gebaut und konfiguriert.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		

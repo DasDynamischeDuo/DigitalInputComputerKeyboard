@@ -24,8 +24,7 @@ public class Notenlinien extends JPanel{
     
     
     /**
-     * Konstruktor der Notenlinien Klasse.
-     * Baut Notenlinien und Schlüssel.
+     *Konstruktor der Notenlinien
      * @author Fabian
      */
     
@@ -469,11 +468,6 @@ public class Notenlinien extends JPanel{
 		
 	}
 	
-	public void NotenlinienLaufen() {
-		
 	
-	
-		
-	}
    
 }
