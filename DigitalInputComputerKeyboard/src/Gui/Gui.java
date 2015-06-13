@@ -19,6 +19,7 @@ import java.util.Vector;
 import javax.swing.*;
 
 import Projekt.BenutzerProjekt;
+import Projekt.Hilfe;
 import Projekt.ProjektGui;
 import Rekorder.Player;
 import SampleAbspielen.SampleAbspielen;
@@ -186,6 +187,17 @@ public class Gui extends JFrame {
 		this.setContentPane(contentpane);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
+		miHilfe.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Hilfe hilfeklicked = new Hilfe();
+				hilfeklicked.setVisible(true);
+				hilfeklicked.pack();
+				
+			}
+		});
 		
 		miOpenProject.addActionListener(new ActionListener() {
 
