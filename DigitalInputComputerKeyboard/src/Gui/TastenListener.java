@@ -2,7 +2,7 @@ package Gui;
 
 import java.io.IOException;
 
-import Projekt.BenutzerProjekt;
+
 import Projekt.ProjektGui;
 import SampleAbspielen.SampleStarten;
 

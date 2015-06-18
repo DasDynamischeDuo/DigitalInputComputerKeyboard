@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-import Projekt.BenutzerProjekt;
+
 import Projekt.ProjektGui;
 import Rekorder.Player;
 

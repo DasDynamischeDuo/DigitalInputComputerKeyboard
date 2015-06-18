@@ -1,6 +1,6 @@
 package Gui;
 
-import java.awt.Graphics;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -12,7 +12,9 @@ public class Notenlinien extends JPanel{
 
 	
 	
-    private BufferedImage notenschluessel;
+    
+	private static final long serialVersionUID = 1L;
+	private BufferedImage notenschluessel;
     private BufferedImage[] Noten = new BufferedImage[25];
     private JLabel lNotenBild;
     private JLabel lNotenschl;

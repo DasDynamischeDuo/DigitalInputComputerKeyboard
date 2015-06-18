@@ -3,7 +3,7 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.DefaultKeyboardFocusManager;
 import java.awt.Dimension;
-import java.awt.Graphics;
+
 import java.awt.GridLayout;
 import java.awt.KeyEventPostProcessor;
 import java.awt.event.ActionEvent;
@@ -22,7 +22,7 @@ import Projekt.BenutzerProjekt;
 import Projekt.Hilfe;
 import Projekt.ProjektGui;
 import Rekorder.Player;
-import SampleAbspielen.SampleAbspielen;
+
 
 /**
  * Die Graphische Benutzeroberflaeche des Digital Input Computer Keyboard
@@ -260,6 +260,7 @@ public class Gui extends JFrame {
 			}
 		});
 
+		
 	}
 
 	/**

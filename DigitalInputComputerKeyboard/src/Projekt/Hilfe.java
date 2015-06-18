@@ -2,8 +2,7 @@ package Projekt;
 
 
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +30,7 @@ public class Hilfe extends JFrame {
 		textpane = new JPanel();
 		
 		txt = new JTextArea();
+		txt.setFocusable(false);
 		
 		txt.setText("Hallo hier ist ihre Hilfe :D");
 		

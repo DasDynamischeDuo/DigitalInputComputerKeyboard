@@ -1,6 +1,6 @@
 package Gui;
 
-import Projekt.ProjektGui;
+
 
 public class StartKlasse {
 
