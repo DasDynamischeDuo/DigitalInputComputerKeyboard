@@ -222,6 +222,7 @@ public class Gui extends JFrame {
 						projektGui = new ProjektGui(getGui(), benutzerProjekt);
 						projektGui.setVisible(true);
 						projektGui.pack();
+						
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -302,7 +303,7 @@ public class Gui extends JFrame {
 						player.elementAt(i).setIstPausiert(false);
 					}
 
-					player.lastElement().setIstPausiert(false);
+				
 				}
 
 				if (e.getID() == KeyEvent.KEY_PRESSED) {
@@ -451,17 +452,17 @@ public class Gui extends JFrame {
 	 * zurückgegeben.
 	 * @return int
 	 */
-	public int getSelectedRB() {
+	public String getSelectedRB() {
 		
 		if (rbDrum.isSelected()) {
-			return 1;
+			return "/SchlagzeugSample";
 		} else if (rbPiano.isSelected()) {
-			return 2;
+			return "/PianoSample";
 		} else if (rbEigenes.isSelected()) {
-			return 3;
+			return benutzerProjekt.getUrlSamples() + "/" + projektGui.getCbSamples().getSelectedItem();
 		}
 	
-		return 0;
+		return "";
 		
 	}
 

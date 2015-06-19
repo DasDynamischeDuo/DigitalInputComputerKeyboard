@@ -22,7 +22,7 @@ public class Rekorder implements Runnable {
 	private TastenListener tastenListener;
 	private SampleStarten sampleStarten;
 
-	public Rekorder(String dateipfad, int tempo, int instrument, TastenListener tastenListener) throws IOException {
+	public Rekorder(String dateipfad, int tempo, String instrumentPath, TastenListener tastenListener) throws IOException {
 		
 		file = new File(dateipfad);
 		file.createNewFile();
@@ -39,16 +39,8 @@ public class Rekorder implements Runnable {
 
 		bufferedWriter.write(Integer.toString(tempo));
 		bufferedWriter.newLine();
-		
-		if (instrument == 3) {
+		bufferedWriter.write(instrumentPath);
 			
-			bufferedWriter.write();
-			
-		} else {
-			
-			bufferedWriter.write();
-			
-		}
 		
 
 		bufferedWriter.newLine();
@@ -91,7 +83,7 @@ public class Rekorder implements Runnable {
 		int pause = 15000 / tempo;
 		
 		for (int i = 0; i < 4; i++) {
-			sampleStarten.spieleSampleton(-1, 0);
+			sampleStarten.spieleSampleton(-1, "/SonstigeSample/Metronom.wav");
 			try {
 				thread.sleep(pause * 3);
 			} catch (InterruptedException e) {
@@ -162,10 +154,6 @@ public class Rekorder implements Runnable {
 			return false;
 		}
 		
-	}
-	
-	public void setProjektGui(ProjektGui projektGui){
-		tastenListener.setProjektGui(projektGui);
 	}
 
 }

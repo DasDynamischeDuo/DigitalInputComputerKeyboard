@@ -21,7 +21,7 @@ public class Player implements Runnable {
 	private String instrument;
 	private SampleStarten sampleStarten;
 	private Notenblatt notenblatt;
-	private String noten;
+	private String noten = "";
 	private ProjektGui projektGui;
 
 	public Player(ProjektGui projektGui) {
@@ -64,7 +64,7 @@ public class Player implements Runnable {
 		}
 
 		for (int i = 0; i < 4; i++) {
-			sampleStarten.spieleSampleton(-1, 0);
+			sampleStarten.spieleSampleton(-1, "/SonstigeSample/Metronom.wav");
 			try {
 				thread.sleep(pause * 3);
 			} catch (InterruptedException e) {
@@ -75,6 +75,7 @@ public class Player implements Runnable {
 		while (str != null) {
 
 			try {
+				
 				str = bufferedReader.readLine();
 				if (str != null) {
 					while (notenblatt.isIstPausiert()) {
@@ -89,7 +90,7 @@ public class Player implements Runnable {
 								+ str.charAt(i * 2 + 1);
 						taste[i] = Integer.parseInt(einzelTon[i]);
 						sampleStarten.spieleSampleton(taste[i], instrument);
-						noten += taste[i];
+						noten += getNoteName(taste[i]);
 
 						i++;
 					}
@@ -111,6 +112,91 @@ public class Player implements Runnable {
 		projektGui.removePlayer(this);
 
 	}
+	
+	
+	public String getNoteName(int ton) {
+		
+		switch (ton) {
+		case 0:
+			return "C4";
+
+		case 1:
+			return "Cis4";
+
+		case 2:
+			return "D4";
+
+		case 3:
+			return "Dis4";
+
+		case 4:
+			return "E4";
+
+		case 5:
+			return "F4";
+
+		case 6:
+			return "Fis4";
+
+		case 7:
+			return "G4";
+
+		case 8:
+			return "Gis4";
+
+		case 9:
+			return "A4";
+
+		case 10:
+			return "Ais4";
+
+		case 11:
+			return "B4";
+
+		case 12:
+			return "C5";
+
+		case 13:
+			return "Cis5";
+
+		case 14:
+			return "D5";
+
+		case 15:
+			return "Dis5";
+
+		case 16:
+			return "E5";
+
+		case 17:
+			return "F5";
+
+		case 18:
+			return "Fis5";
+
+		case 19:
+			return "G5";
+
+		case 20:
+			return "Gis5";
+
+		case 21:
+			return "A5";
+
+		case 22:
+			return "Ais5";
+
+		case 23:
+			return "B5";
+		
+		default:
+			break;
+			
+		}
+		return "";
+				
+	}
+	
 
 	public void start() {
 

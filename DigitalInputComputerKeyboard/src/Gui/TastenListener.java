@@ -2,7 +2,7 @@ package Gui;
 
 import java.io.IOException;
 
-
+import Projekt.BenutzerProjekt;
 import Projekt.ProjektGui;
 import SampleAbspielen.SampleStarten;
 
@@ -10,7 +10,6 @@ public class TastenListener implements Runnable {
 
 	private Thread thread;
 	private Gui gui;
-	private ProjektGui projektGui;
 	private SampleStarten sampleStarten;
 	private int anzToeneGleichzeitig = 0;
 
@@ -27,7 +26,7 @@ public class TastenListener implements Runnable {
 
 	@Override
 	public void run() {
-		int instrument = 0;
+		String instrumentPath = "";
 		while (true) {
 
 			for (int i = 0; i < gui.getIstTasteGedrueckt().length; i++) {
@@ -47,31 +46,36 @@ public class TastenListener implements Runnable {
 					
 					try{
 						if (gui.getRbDrum().isSelected()) {
-							
-							instrument = 1;
-							sampleStarten.spieleSampleton(i, instrument);
+						
+							instrumentPath = "/SchalgzeugSample";
+							sampleStarten.spieleSampleton(i, instrumentPath);
 
 						} else if (gui.getRbPiano().isSelected()) {
 							
-							instrument = 2;
-							sampleStarten.spieleSampleton(i, instrument);
+							instrumentPath = "/PianoSample";
+							sampleStarten.spieleSampleton(i, instrumentPath);
 							
 						} else if (gui.getRbEigenes().isSelected()) {
 							
-							instrument = 3;
-							sampleStarten.spieleSampleton(i, instrument, gui.getBenutzerProjekt(), gui.getProjektGui());
+							try {
+								instrumentPath = instrumentPath = gui.getBenutzerProjekt().getUrlSamples() + "/" + gui.getProjektGui().getCbSamples().getSelectedItem();
+								sampleStarten.spieleSampleton(i, instrumentPath, gui.getBenutzerProjekt(), gui.getProjektGui());
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							
 						}
 						
 						
 						gui.getNotenlinien().zeichneNote(i);
 						
-						if (projektGui != null && projektGui.getRekorder() != null && anzToeneGleichzeitig == 0) {
-							projektGui.getRekorder().aufnehmen(i);
+						if (gui.getProjektGui() != null && gui.getProjektGui().getRekorder() != null && anzToeneGleichzeitig == 0) {
+							gui.getProjektGui().getRekorder().aufnehmen(i);
 							anzToeneGleichzeitig++;
 
-						} else if (projektGui != null && projektGui.getRekorder() != null && projektGui.getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 2) {
-							projektGui.getRekorder().gleichzeitigerTonSchreiben(i);
+						} else if (gui.getProjektGui() != null && gui.getProjektGui().getRekorder() != null && gui.getProjektGui().getRekorder().isRekorderAsleep() && anzToeneGleichzeitig <= 2) {
+							gui.getProjektGui().getRekorder().gleichzeitigerTonSchreiben(i);
 							anzToeneGleichzeitig++;
 						}
 						
@@ -103,10 +107,6 @@ public class TastenListener implements Runnable {
 
 	public void setAnzToeneGleichzeitig(int anzToeneGleichzeitig) {
 		this.anzToeneGleichzeitig = anzToeneGleichzeitig;
-	}
-	
-	public void setProjektGui(ProjektGui projektGui){
-		this.projektGui = projektGui;
 	}
 
 }

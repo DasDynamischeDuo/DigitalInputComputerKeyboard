@@ -24,6 +24,7 @@ public class Notenblatt extends JFrame {
 	private ProjektGui projektGui;
 
 	public Notenblatt(Player player, ProjektGui projektGui) {
+		
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		lNoten = new JLabel();
