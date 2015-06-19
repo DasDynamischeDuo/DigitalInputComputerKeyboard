@@ -17,7 +17,8 @@ public class Player implements Runnable {
 	private BufferedReader bufferedReader;
 	private Thread thread;
 	private String str;
-	private int tempo, instrument;
+	private int tempo;
+	private String instrument;
 	private SampleStarten sampleStarten;
 	private Notenblatt notenblatt;
 	private String noten;
@@ -41,7 +42,7 @@ public class Player implements Runnable {
 		bufferedReader = new BufferedReader(fileReader);
 
 		tempo = Integer.parseInt(bufferedReader.readLine());
-		instrument = Integer.parseInt(bufferedReader.readLine());
+		instrument = bufferedReader.readLine();
 		str = bufferedReader.readLine();
 
 		thread.start();

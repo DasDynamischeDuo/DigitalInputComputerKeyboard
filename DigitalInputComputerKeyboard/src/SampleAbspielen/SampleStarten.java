@@ -72,7 +72,7 @@ public class SampleStarten {
 	 * @param {@link Integer} taste
 	 */
 
-	public void spieleSampleton(int taste, int instrument) {
+	public void spieleSampleton(int taste, String instrument) {
 
 		System.gc();
 		
@@ -82,7 +82,7 @@ public class SampleStarten {
 
 	}
 	
-	public void spieleSampleton(int taste, int instrument, BenutzerProjekt benutzerProjekt, ProjektGui projektGui) {
+	public void spieleSampleton(int taste, String instrument, BenutzerProjekt benutzerProjekt, ProjektGui projektGui) {
 
 		System.gc();
 		

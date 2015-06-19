@@ -39,7 +39,18 @@ public class Rekorder implements Runnable {
 
 		bufferedWriter.write(Integer.toString(tempo));
 		bufferedWriter.newLine();
-		bufferedWriter.write(Integer.toString(instrument));
+		
+		if (instrument == 3) {
+			
+			bufferedWriter.write();
+			
+		} else {
+			
+			bufferedWriter.write();
+			
+		}
+		
+
 		bufferedWriter.newLine();
 		bufferedWriter.newLine();
 		

@@ -2,6 +2,8 @@ package SampleAbspielen;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.sound.sampled.*;
@@ -23,7 +25,6 @@ public class SampleAbspielen {
 	private Clip clip;
 	private DataLine.Info dataInfo;
 	private Mixer.Info[] mixerInfos;
-	private URL soundURL;
 	private SampleStarten sampleStarten;
 	private BenutzerProjekt benutzerProjekt;
 	private ProjektGui projektGui;
@@ -64,28 +65,46 @@ public class SampleAbspielen {
 		this.benutzerProjekt = benutzerProjekt;
 		this.projektGui = projektGui;
 
+		
 		try {
 			clip = (Clip) mixer.getLine(this.dataInfo);
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
+			
 		}
-
-		/*
-		 * for (int i = 0; i < mixerInfos.length; i++) {
-		 * System.out.println(mixerInfos[i] +"----"
-		 * +mixerInfos[i].getDescription()); }
-		 */
 
 	}
 
-	public void tonAbspielen(int ton, int instrument) {
-
-		File file;
+	public void tonAbspielen(int ton, String instrument) {
 		
-		soundURL = SampleAbspielen.class.getResource(dateipfadVonTon(ton, instrument));
+		String path;
+		File file = null;
+		
+		if(instrument == 3) {
+		
+			path = dateipfadVonTon(ton, instrument);
+			
+		file = new File(path);
 
+			
+		} else {
+			
+		
+			try {
+				file = new File(SampleAbspielen.class.getResource(dateipfadVonTon(ton, instrument)).toURI());
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+		
+		
+		
 		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
 			clip.open(audioInputStream);
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -103,23 +122,25 @@ public class SampleAbspielen {
 
 	}
 
-	public String dateipfadVonTon(int ton, int instrument) {
+	public String dateipfadVonTon(int ton, String instrument) {
 
-		String source = "";
 
-		switch (instrument) {
-		case 0:
-			return source = "/SonstigeSample/Metronom.wav";
+		if (instrument.equals("/SonstigeSample/Metronom.wav")) {
+			
+		} else if (instrument.equals("/SchalgzeugSample")) {
+			
+				if (ton <= 7) {
+					return instrument += "/Kick.wav";
+				} else if (8 <= ton && ton <= 16) {
+					return instrument = "/Clap.wav";
+				} else {
+					return instrument = "/Closed-Hi-Hat.wav";
+				}
+		}
+		
 
-		case 1:
-			source = "/SchalgzeugSample/Closed-Hi-Hat.wav";
-			if (ton <= 7) {
-				return source = "/SchalgzeugSample/Kick.wav";
-			} else if (8 <= ton && ton <= 16) {
-				return source = "/SchalgzeugSample/Clap.wav";
-			} else {
-				return source = "/SchalgzeugSample/Closed-Hi-Hat.wav";
-			}
+		
+			
 
 		case 2:
 
@@ -217,7 +238,7 @@ public class SampleAbspielen {
 				return source += "/C4.wav";
 
 			case 1:
-				return source += "/4.wav";
+				return source += "/Cis4.wav";
 
 			case 2:
 				return source += "/D4.wav";
