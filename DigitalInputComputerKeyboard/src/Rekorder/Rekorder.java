@@ -33,6 +33,7 @@ public class Rekorder implements Runnable {
 		bufferedWriter = new BufferedWriter(fileWriter);
 
 		this.tempo = tempo;
+		
 		this.tastenListener = tastenListener;
 
 		thread = new Thread(this);

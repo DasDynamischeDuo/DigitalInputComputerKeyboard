@@ -10,6 +10,7 @@ import javax.sound.sampled.*;
 
 import Projekt.BenutzerProjekt;
 import Projekt.ProjektGui;
+import Projekt.exceptionFenster;
 import SampleAbspielen.SampleStarten;
 
 /**
@@ -105,12 +106,13 @@ public class SampleAbspielen {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
 			clip.open(audioInputStream);
 		} catch (UnsupportedAudioFileException e) {
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			exeptionhandle();
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
+			exeptionhandle();
 			e.printStackTrace();
 		}
 
@@ -118,6 +120,14 @@ public class SampleAbspielen {
 
 		sampleStarten.removeSoundAbspielens(this);
 
+	}
+
+	private void exeptionhandle() {
+		
+		exceptionFenster exp = new exceptionFenster();
+		exp.setVisible(true);
+		exp.pack();
+		
 	}
 
 	public String dateipfadVonTon(int ton, String instrumentPath) {

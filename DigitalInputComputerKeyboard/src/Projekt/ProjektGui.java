@@ -44,6 +44,7 @@ public class ProjektGui extends JFrame {
 		setContentPane(contentpane);
 
 		tfDateiname = new JTextField("Dateiname");
+		
 		tfTempo = new JTextField("Tempo");
 		bAufnehmen = new JButton("Aufnehmen");
 		bStop = new JButton("Stop");
@@ -133,6 +134,8 @@ public class ProjektGui extends JFrame {
 
 			}
 		});
+		
+		
 
 	}
 

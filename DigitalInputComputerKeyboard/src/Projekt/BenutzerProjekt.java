@@ -21,6 +21,7 @@ public class BenutzerProjekt extends JFrame implements Serializable{
 	public BenutzerProjekt(String projektURL, String name) {
 		
 		this.name = name;
+		
 		this.urlProjekt = projektURL +"/" +name;
 		this.urlAufnahmen = urlProjekt +"/Aufnahmen";
 		this.urlSamples = urlProjekt +"/Samples";
