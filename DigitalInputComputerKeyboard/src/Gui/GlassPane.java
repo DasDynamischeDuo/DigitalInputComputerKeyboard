@@ -14,6 +14,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Projekt.exceptionFenster;
+
 /**
  * Klasse glassPane erbt von JPanel. Ersetzt die vorhandene GlassPane der Gui durch eine eigene.
  * @author Fabian
@@ -179,6 +181,13 @@ class GlassPane extends JPanel {
 		}
 	}
 	
+	private void exeptionhandle() {
+		
+		exceptionFenster exp = new exceptionFenster();
+		exp.setVisible(true);
+		exp.pack();
+		
+	}
 	
 	/**
 	 * 
@@ -189,78 +198,36 @@ class GlassPane extends JPanel {
 
 	private void beschreibungsArrayfuellen() {
 
-		try {
-			beschreibungNoten[0] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/C.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[1] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/D.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[2] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/E.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[3] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/F.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[4] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/G.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[5] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/A.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[6] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/H.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[7] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/cis.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[8] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/dis.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[9] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/fis.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[10] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/gis.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			beschreibungNoten[11] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/ais.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			try {
+				beschreibungNoten[0] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/C.png"));
+
+				beschreibungNoten[1] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/D.png"));
+
+				beschreibungNoten[2] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/E.png"));
+
+				beschreibungNoten[3] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/F.png"));
+
+				beschreibungNoten[4] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/G.png"));
+
+				beschreibungNoten[5] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/A.png"));
+
+				beschreibungNoten[6] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/H.png"));
+
+				beschreibungNoten[7] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/cis.png"));
+
+				beschreibungNoten[8] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/dis.png"));
+
+				beschreibungNoten[9] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/fis.png"));
+
+				beschreibungNoten[10] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/gis.png"));
+
+				beschreibungNoten[11] = ImageIO.read(getClass().getResource("/Images/BeschreibungNoten/ais.png"));
+			} catch (IOException e) {
+				exeptionhandle();
+				e.printStackTrace();
+			}
+		
 		
 
 	}

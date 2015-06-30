@@ -46,6 +46,7 @@ public class SampleAbspielen {
 		try {
 			clip = (Clip) mixer.getLine(this.dataInfo);
 		} catch (LineUnavailableException e) {
+			exeptionhandle();
 			e.printStackTrace();
 		}
 
@@ -69,7 +70,9 @@ public class SampleAbspielen {
 
 		try {
 			clip = (Clip) mixer.getLine(this.dataInfo);
+			
 		} catch (LineUnavailableException e) {
+			exeptionhandle();
 			e.printStackTrace();
 
 		}
@@ -85,10 +88,12 @@ public class SampleAbspielen {
 		if (instrumentPath.equals("/PianoSample") || instrumentPath.equals("/SchalgzeugSample") || instrumentPath.equals("/SonstigeSample/Metronom.wav")) {
 
 			
+			
 			try {
 				file = new File(SampleAbspielen.class.getResource(dateipfadVonTon(ton, instrumentPath)).toURI());
+				
 			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
+				exeptionhandle();
 				e.printStackTrace();
 			}
 
@@ -97,6 +102,8 @@ public class SampleAbspielen {
 			
 			path = dateipfadVonTon(ton, instrumentPath);
 
+			System.out.println(path);
+			
 			file = new File(path);
 
 		}
@@ -108,6 +115,7 @@ public class SampleAbspielen {
 		} catch (UnsupportedAudioFileException e) {
 			
 			e.printStackTrace();
+			exeptionhandle();
 		} catch (IOException e) {
 			exeptionhandle();
 			e.printStackTrace();

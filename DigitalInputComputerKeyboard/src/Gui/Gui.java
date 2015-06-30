@@ -3,7 +3,6 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.DefaultKeyboardFocusManager;
 import java.awt.Dimension;
-
 import java.awt.GridLayout;
 import java.awt.KeyEventPostProcessor;
 import java.awt.event.ActionEvent;
@@ -21,6 +20,7 @@ import javax.swing.*;
 import Projekt.BenutzerProjekt;
 import Projekt.Hilfe;
 import Projekt.ProjektGui;
+import Projekt.exceptionFenster;
 import Rekorder.Player;
 
 
@@ -101,6 +101,14 @@ public class Gui extends JFrame {
 	 * @author Fabian
 	 */
 
+	private void exeptionhandle() {
+		
+		exceptionFenster exp = new exceptionFenster();
+		exp.setVisible(true);
+		exp.pack();
+		
+	}
+	
 	private void initFrameElemente() {
 
 
@@ -225,12 +233,15 @@ public class Gui extends JFrame {
 						
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
+						exeptionhandle();
 						e1.printStackTrace();
 					} catch (ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
+						exeptionhandle();
 						e1.printStackTrace();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
+						exeptionhandle();
 						e1.printStackTrace();
 					}
 					
@@ -311,6 +322,7 @@ public class Gui extends JFrame {
 					try {
 						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = true;
 					} catch (KeyException e2) {
+						exeptionhandle();
 						e2.printStackTrace();
 					}
 
@@ -319,6 +331,7 @@ public class Gui extends JFrame {
 					try {
 						istTasteGedrueckt[Klaviertasten.getIntVonKey(e)] = false;
 					} catch (KeyException e1) {
+						exeptionhandle();
 						e1.printStackTrace();
 					}
 				}
