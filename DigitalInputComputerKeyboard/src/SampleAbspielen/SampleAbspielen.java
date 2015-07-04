@@ -132,9 +132,7 @@ public class SampleAbspielen {
 
 	private void exeptionhandle() {
 		
-		exceptionFenster exp = new exceptionFenster();
-		exp.setVisible(true);
-		exp.pack();
+		
 		
 	}
 

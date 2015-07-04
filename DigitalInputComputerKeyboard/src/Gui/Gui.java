@@ -103,9 +103,7 @@ public class Gui extends JFrame {
 
 	private void exeptionhandle() {
 		
-		exceptionFenster exp = new exceptionFenster();
-		exp.setVisible(true);
-		exp.pack();
+		
 		
 	}
 	

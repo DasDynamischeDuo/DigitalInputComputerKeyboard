@@ -183,9 +183,7 @@ class GlassPane extends JPanel {
 	
 	private void exeptionhandle() {
 		
-		exceptionFenster exp = new exceptionFenster();
-		exp.setVisible(true);
-		exp.pack();
+		
 		
 	}
 	
