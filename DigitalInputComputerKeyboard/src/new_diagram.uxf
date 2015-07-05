@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>287</x>
+      <y>210</y>
+      <w>238</w>
+      <h>434</h>
+    </coordinates>
+    <panel_attributes>Gui::Gui
+--
+~NL = new Notenlinien(this): Notenlinien
+-projektGui: ProjektGui
+-benutzerProjekt: BenutzerProjekt
+-tastenListener: TastenListener
+-contentpane: JPanel
++notenpane, buttonpane, tastenpane: JPanel
+-lklav, rklav: JPanel
+-lgrid, rgrid: JPanel
++rbDrum: JRadioButton
++rbPiano: JRadioButton
++rbEigenes: JRadioButton
+-groupRadioButton: ButtonGroup
+-jFileChooser: JFileChooser
+-objectInputStream: ObjectInputStream
++menuBar: JMenuBar
++mProjektOpen, mHilfe, mProjektNeu: JMenu
++miNewProject, miOpenProject, miHilfe: JMenuItem
++istTasteGedrueckt = new boolean[27]: boolean[]
+-rtasten = new JToggleButton[103]: JToggleButton[]
+-ltasten = new JToggleButton[103]: JToggleButton[]
+--
++Gui(): ctor
+-initFrameElemente(): void
+-initButtons(): void
++getGui(): Gui
++getIstTasteGedrueckt(): boolean[]
++getRtasten(): JToggleButton[]
++getRbDrum(): JRadioButton
++getRbPiano(): JRadioButton
++getLtasten(): JToggleButton[]
++getNotenpane(): JPanel
++getIstTasteGedrueckt(int stelle): boolean
++getTastenListener(): TastenListener
++getRbEigenes(): JRadioButton
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>938</x>
+      <y>308</y>
+      <w>399</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>Rekorder::Rekorder
+--
+-tastenListener: TastenListener
+-sampleStarten: SampleStarten
+-fileWriter: FileWriter
+-bufferedWriter: BufferedWriter
+-file: File
+-thread: Thread
+-istRekorderAktiv = false: boolean
+-istTonGespieltwurden: boolean
+-taste, tempo: int
+--
++Rekorder(String dateipfad, int tempo, int instrument, TastenListener tastenListener): ctor
++aufnehmen(int taste): void
++aufnahmeBeenden(): void
++gleichzeitigerTonSchreiben(int taste): void
++run(): void
++setIstRekorderAktiv(boolean istRekorderAktiv): void
++start(): void
++isRekorderAsleep(): boolean
++setProjektGui(ProjektGui projektGui): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>343</x>
+      <y>847</y>
+      <w>273</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>Projekt::ProjektGui
+--
+-gui: Gui
+-benutzerProjekt: BenutzerProjekt
+-contentpane: JPanel
+-tfDateiname, tfTempo: JTextField
+-bAufnehmen, bStop, bPlay: JButton
+-jFileChooser: JFileChooser
+-cbSamples: JComboBox&lt;String&gt;
+-player: Vector&lt;Player&gt;
+-rekorder: Rekorder
+--
++ProjektGui(Gui gui, BenutzerProjekt benutzerProjekt): ctor
++removePlayer(Object o): boolean
++getPlayer(): Vector&lt;Player&gt;
++getRekorder(): Rekorder
++getProjektGui(): ProjektGui
++getGui(): Gui
++getBenutzerProjekt(): BenutzerProjekt
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>756</x>
+      <y>980</y>
+      <w>189</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>Rekorder::Player
+--
+-projektGui: ProjektGui
+-notenblatt: Notenblatt
+-fileReader: FileReader
+-bufferedReader: BufferedReader
+-thread: Thread
+-str: String
+-tempo, instrument: int
+-sampleStarten: SampleStarten
+-noten: String
+--
++Player(ProjektGui projektGui): ctor
++abspielen(File file): void
++run(): void
++start(): void
++setIstPausiert(boolean istPausiert): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>721</y>
+      <w>252</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>Gui::Notenblatt
+--
+-player: Player
+-projektGui: ProjektGui
+-contentPane: JPanel
+-lNoten: JLabel
+-tbPause: JToggleButton
+-istButtonBetaetigt = true, istPausiert = true: boolean
+--
++Notenblatt(Player player, ProjektGui projektGui): ctor
++isIstPausiert(): boolean
++setIstPausiert(boolean istPausiert): void
++setIstButtonBetaetigt(boolean istButtonBetaetigt): void
++getlNoten(): JLabel
++getPlayer(): Player
++getProjektGui(): ProjektGui
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>609</x>
+      <y>112</y>
+      <w>231</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Gui::Notenlinien
+--
+-notenschluessel: BufferedImage
+-Noten = new BufferedImage[25]: BufferedImage[]
+-lNotenBild: JLabel
+-lNotenschl: JLabel
+-lNotenlinien = new JLabel[15]: JLabel[]
+~g: Gui
+--
++Notenlinien(Gui g): ctor
++NotenlinienSchluesselSetzenLeer(): void
++zeichneNote(int intVonKey): void
++NotenArrayFuellen(): void
++NotenlinienLaufen(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>595</x>
+      <y>308</y>
+      <w>266</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Gui::TastenListener
+--
+-gui: Gui
+-projektGui: ProjektGui
+-thread: Thread
+-sampleStarten: SampleStarten
+-anzToeneGleichzeitig = 0: int
+-istTonAbgespielt: boolean[]
+--
++TastenListener(Gui gui): ctor
++run(): void
++start(): void
++setAnzToeneGleichzeitig(int anzToeneGleichzeitig): void
++setProjektGui(ProjektGui projektGui): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1183</x>
+      <y>875</y>
+      <w>273</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>SampleAbspielen::SampleAbspielen
+--
+-sampleStarten: SampleStarten
+-benutzerProjekt: BenutzerProjekt
+-mixer: Mixer
+-clip: Clip
+-dataInfo: DataLine.Info
+-mixerInfos: Mixer.Info[]
+-soundURL: URL
+--
++SampleAbspielen(SampleStarten sampleStarten): ctor
++tonAbspielen(int ton, int instrument): void
++dateipfadVonTon(int ton, int instrument): String
++setBenutzerProjekt(BenutzerProjekt benutzerProjekt): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1120</x>
+      <y>1092</y>
+      <w>252</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Projekt::BenutzerProjekt
+--
+-name: String
+-urlProjekt: String
+-urlAufnahmen: String
+-urlSamples: String
+--
++BenutzerProjekt(String projektURL, String name): ctor
++getUrlAufnahmen(): String
++getProjektName(): String
++getUrlSamples(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>518</y>
+      <w>217</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Gui::GlassPane
+--
+~g: Gui
+-beschreibungNoten = new Image[14]: Image[]
+--
++GlassPane(Gui g): ctor
+#paintComponent(Graphics g): void
+-redispatchMouseEvent(MouseEvent e): void
+-beschreibungsArrayfuellen(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1211</x>
+      <y>707</y>
+      <w>217</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>SampleAbspielen::SampleStarten
+--
+~sampleAbspielen: Vector&lt;SampleAbspielen&gt;
+--
++SampleStarten(): ctor
++lastElement(): SampleAbspielen
++indexOf(Object o): int
++removeSoundAbspielens(Object o): boolean
++spieleSampleton(int taste, int instrument): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>287</x>
+      <y>0</y>
+      <w>371</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Gui::Klaviertasten
+--
+--
++releasButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten): void
++pressButton(int intVonKey, JToggleButton[] ltasten, JToggleButton[] rtasten): void
++buttonsInitialisieren(JToggleButton rtasten[], JToggleButton ltasten[]): void
++buttonsKonfig(JToggleButton rtasten[], JToggleButton ltasten[]): void
++getIntVonKey(KeyEvent e): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>945</x>
+      <y>161</y>
+      <w>119</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Gui::StartKlasse
+--
+--
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>147</y>
+      <w>105</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>441</y>
+      <w>56</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>385</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>609</x>
+      <y>791</y>
+      <w>252</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;160.0;340.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>847</x>
+      <y>910</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+xxxxx</panel_attributes>
+    <additional_attributes>10.0;100.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1281</x>
+      <y>553</y>
+      <w>21</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>854</x>
+      <y>378</y>
+      <w>98</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1295</x>
+      <y>812</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>637</y>
+      <w>35</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+xxx</panel_attributes>
+    <additional_attributes>10.0;300.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>609</x>
+      <y>1022</y>
+      <w>161</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>609</x>
+      <y>469</y>
+      <w>217</w>
+      <h>399</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;550.0;290.0;420.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>637</y>
+      <w>840</w>
+      <h>588</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>1180.0;810.0;10.0;820.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1302</x>
+      <y>1036</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>1071</y>
+      <w>546</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>760.0;170.0;20.0;170.0;10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>357</x>
+      <y>91</y>
+      <w>21</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+</diagram>
