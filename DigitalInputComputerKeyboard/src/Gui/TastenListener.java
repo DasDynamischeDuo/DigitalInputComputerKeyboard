@@ -24,6 +24,15 @@ public class TastenListener implements Runnable {
 
 	}
 
+	
+	/**
+	 * @author Emanuel
+	 * 
+	 * Hier prüft der TastenListener ab welche Tasten gedrückt wurden und spielt diese dem entsprechend ab.
+	 * 
+	 */
+	
+	
 	@Override
 	public void run() {
 		String instrumentPath = "";

@@ -33,6 +33,16 @@ public class Player implements Runnable {
 		notenblatt.setVisible(true);
 
 	}
+	
+	/**
+	 * @author Emanuel
+	 * 
+	 * Diese Methode startet das Abspielen der dazu gehörigen Aufnahme.
+	 * 
+	 * 
+	 * @param file
+	 * @throws IOException
+	 */
 
 	public void abspielen(File file) throws IOException {
 

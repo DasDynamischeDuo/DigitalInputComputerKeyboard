@@ -28,7 +28,7 @@ import Rekorder.Player;
  * Die Graphische Benutzeroberflaeche des Digital Input Computer Keyboard
  * 
  * @author Emanuel
- * @version 0.1
+ * @version 1.0
  */
 
 public class Gui extends JFrame {

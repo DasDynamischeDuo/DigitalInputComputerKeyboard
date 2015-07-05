@@ -78,6 +78,17 @@ public class SampleAbspielen {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @author Emanuel
+	 * 
+	 * Diese Methode startet einen Clip des geünschten Tones mit dem ausgewählten Instrument.
+	 * 
+	 * @param ton
+	 * @param instrumentPath
+	 */
+	
 
 	public void tonAbspielen(int ton, String instrumentPath) {
 

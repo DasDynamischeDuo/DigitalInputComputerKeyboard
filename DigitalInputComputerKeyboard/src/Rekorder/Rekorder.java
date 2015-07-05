@@ -62,6 +62,17 @@ public class Rekorder implements Runnable {
 		bufferedWriter.close();
 	}
 	
+	
+	/**
+	 * 
+	 * @author Emanuel
+	 * 
+	 *  Durch diese Methode können Töne aufgezeichnet werden, obwohl in diesem 16tel schritt schon ein Ton aufgenommen wurde.
+	 * 
+	 * @param taste
+	 */
+	
+	
 	public void gleichzeitigerTonSchreiben(int taste) {
 		
 		try {
